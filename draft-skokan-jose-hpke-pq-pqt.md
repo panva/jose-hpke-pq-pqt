@@ -57,20 +57,13 @@ hybrid algorithm identifiers for use with JSON Object Signing and Encryption
 # Introduction
 
 {{I-D.ietf-jose-hpke-encrypt}} defines how to use Hybrid Public Key Encryption
-(HPKE) with JSON Web Encryption (JWE). That specification registers algorithm
-identifiers for traditional Key Encapsulation Mechanisms
+(HPKE) with JSON Web Encryption (JWE) using traditional Key Encapsulation Mechanisms
 (KEM) based on Elliptic-curve Diffie-Hellman (ECDH).
 
-This document extends the set of registered algorithms to include Post-Quantum
+This document extends the set of registered HPKE algorithms to include Post-Quantum
 (PQ) and Post-Quantum/Traditional (PQ/T) hybrid KEMs, as defined in
 {{I-D.ietf-hpke-pq}}. These algorithms provide protection against attacks by
 cryptographically relevant quantum computers.
-
-All algorithms defined in this document follow the same operational model as
-those in {{I-D.ietf-jose-hpke-encrypt}}, supporting both integrated encryption
-(where HPKE directly protects the plaintext) and key encryption (where HPKE
-protects a Content Encryption Key (CEK)).
-
 
 # Conventions and Definitions
 
@@ -83,6 +76,11 @@ This section defines the algorithm identifiers for PQ and PQ/T HPKE-based
 encryption in JOSE. Each algorithm is defined by a combination of an HPKE KEM,
 a Key Derivation Function (KDF), and an Authenticated Encryption with
 Associated Data (AEAD) algorithm.
+
+All algorithms defined in this section follow the same operational model as
+those in {{I-D.ietf-jose-hpke-encrypt}}, supporting both integrated encryption
+as defined in {{Section 5 of I-D.ietf-jose-hpke-encrypt}} and key encryption
+as defined in {{Section 6 of I-D.ietf-jose-hpke-encrypt}}.
 
 ## PQ/T Hybrid Integrated Encryption Algorithms
 
