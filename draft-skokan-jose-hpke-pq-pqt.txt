@@ -4,8 +4,9 @@
 
 Javascript Object Signing and Encryption                       F. Skokan
 Internet-Draft                                                      Okta
-Intended status: Standards Track                         4 February 2026
-Expires: 8 August 2026
+Intended status: Standards Track                             B. Campbell
+Expires: 8 August 2026                                     Ping Identity
+                                                         4 February 2026
 
 
               JOSE HPKE PQ & PQ/T Algorithm Registrations
@@ -102,7 +103,7 @@ Table of Contents
        6.1.20. HPKE-17-KE
    7.  Normative References
    Acknowledgments
-   Author's Address
+   Authors' Addresses
 
 1.  Introduction
 
@@ -658,8 +659,13 @@ Acknowledgments
 
    TODO acknowledge.
 
-Author's Address
+Authors' Addresses
 
    Filip Skokan
    Okta
    Email: panva.ip@gmail.com
+
+
+   Brian Campbell
+   Ping Identity
+   Email: bcampbell@pingidentity.com
