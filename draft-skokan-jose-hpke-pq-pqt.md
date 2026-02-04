@@ -121,7 +121,7 @@ traditional algorithm component.
 ## PQ/T Hybrid Key Encryption Algorithms
 
 The following table lists the algorithm identifiers for PQ/T hybrid key
-encryption, where HPKE encrypts the Content Encryption Key (CEK):
+encryption, where HPKE encrypts the Content Encryption Key:
 
 | "alg" value | HPKE KEM                    | HPKE KDF            | HPKE AEAD                   |
 | ----------- | --------------------------- | ------------------- | --------------------------- |
