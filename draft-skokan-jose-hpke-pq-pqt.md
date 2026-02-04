@@ -75,7 +75,7 @@ protects a Content Encryption Key).
 {::boilerplate bcp14-tagged}
 
 
-# Algorithm Identifiers
+# Algorithm Identifiers {#algorithm-identifiers}
 
 This section defines the algorithm identifiers for PQ and PQ/T HPKE-based
 encryption in JOSE.
@@ -173,7 +173,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): (#algorithm-identifiers) of this document
+- Specification Document(s): {{algorithm-identifiers}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-8-KE
@@ -183,7 +183,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): (#algorithm-identifiers) of this document
+- Specification Document(s): {{algorithm-identifiers}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-9
@@ -193,7 +193,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): (#algorithm-identifiers) of this document
+- Specification Document(s): {{algorithm-identifiers}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-9-KE
@@ -203,7 +203,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): (#algorithm-identifiers) of this document
+- Specification Document(s): {{algorithm-identifiers}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-10
@@ -213,7 +213,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): (#algorithm-identifiers) of this document
+- Specification Document(s): {{algorithm-identifiers}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-10-KE
@@ -223,7 +223,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): (#algorithm-identifiers) of this document
+- Specification Document(s): {{algorithm-identifiers}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-11
@@ -233,7 +233,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): (#algorithm-identifiers) of this document
+- Specification Document(s): {{algorithm-identifiers}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-11-KE
@@ -243,7 +243,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): (#algorithm-identifiers) of this document
+- Specification Document(s): {{algorithm-identifiers}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-12
@@ -253,7 +253,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): (#algorithm-identifiers) of this document
+- Specification Document(s): {{algorithm-identifiers}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-12-KE
@@ -263,7 +263,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): (#algorithm-identifiers) of this document
+- Specification Document(s): {{algorithm-identifiers}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-13
@@ -273,7 +273,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): (#algorithm-identifiers) of this document
+- Specification Document(s): {{algorithm-identifiers}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-13-KE
@@ -283,7 +283,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): (#algorithm-identifiers) of this document
+- Specification Document(s): {{algorithm-identifiers}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-14
@@ -293,7 +293,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): (#algorithm-identifiers) of this document
+- Specification Document(s): {{algorithm-identifiers}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-14-KE
@@ -303,7 +303,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): (#algorithm-identifiers) of this document
+- Specification Document(s): {{algorithm-identifiers}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-15
@@ -313,7 +313,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): (#algorithm-identifiers) of this document
+- Specification Document(s): {{algorithm-identifiers}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-15-KE
@@ -323,7 +323,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): (#algorithm-identifiers) of this document
+- Specification Document(s): {{algorithm-identifiers}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-16
@@ -333,7 +333,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): (#algorithm-identifiers) of this document
+- Specification Document(s): {{algorithm-identifiers}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-16-KE
@@ -343,7 +343,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): (#algorithm-identifiers) of this document
+- Specification Document(s): {{algorithm-identifiers}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-17
@@ -353,7 +353,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): (#algorithm-identifiers) of this document
+- Specification Document(s): {{algorithm-identifiers}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-17-KE
@@ -363,7 +363,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): (#algorithm-identifiers) of this document
+- Specification Document(s): {{algorithm-identifiers}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 
