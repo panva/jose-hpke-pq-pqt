@@ -250,7 +250,7 @@ Table of Contents
 4.  JSON Web Key Representation
 
    Keys for the algorithms defined in this document use the "AKP"
-   (Asymmetric Key Pair) key type defined in [I-D.ietf-cose-dilithium].
+   (Algorithm Key Pair) key type defined in [I-D.ietf-cose-dilithium].
 
    For the algorithms in this document, the "pub" parameter contains the
    base64url encoding of HPKE's SerializePublicKey() output for the
