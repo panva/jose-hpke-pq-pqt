@@ -81,35 +81,68 @@ protects a Content Encryption Key).
 This section defines the algorithm identifiers for PQ and PQ/T HPKE-based
 encryption in JOSE.
 
-## Integrated Encryption Algorithms
+## PQ/T Hybrid Integrated Encryption Algorithms
 
-The following table lists the algorithm identifiers for integrated encryption,
-where HPKE directly encrypts the plaintext without a separate Content
-Encryption Key:
+The following table lists the algorithm identifiers for PQ/T hybrid integrated
+encryption, where HPKE directly encrypts the plaintext without a separate
+Content Encryption Key:
 
-| "alg" value | HPKE KEM | HPKE KDF | HPKE AEAD |
-|-------------|----------|----------|-----------|
-| HPKE-8 | ML-KEM-768 | HKDF-SHA256 | AES-128-GCM |
-| HPKE-9 | MLKEM768-X25519 | HKDF-SHA256 | AES-128-GCM |
+| "alg" value | HPKE KEM                    | HPKE KDF            | HPKE AEAD                   |
+| ----------- | --------------------------- | ------------------- | --------------------------- |
+| HPKE-8      | MLKEM768-P256 (`0x0050`)    | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
+| HPKE-9      | MLKEM768-P256 (`0x0050`)    | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
+| HPKE-10     | MLKEM768-X25519 (`0x647a`)  | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
+| HPKE-11     | MLKEM768-X25519 (`0x647a`)  | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
+| HPKE-12     | MLKEM1024-P384 (`0x0051`)   | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
+| HPKE-13     | MLKEM1024-P384 (`0x0051`)   | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
 
-HPKE-8 provides pure post-quantum security using ML-KEM-768.
+These algorithms provide hybrid post-quantum/traditional security by combining
+ML-KEM with a traditional elliptic curve algorithm, ensuring protection against
+both classical and quantum adversaries.
 
-HPKE-9 provides hybrid post-quantum/traditional security by combining
-ML-KEM-768 with X25519, ensuring protection against both classical and
-quantum adversaries.
+## Pure PQ Integrated Encryption Algorithms
+
+The following table lists the algorithm identifiers for pure post-quantum
+integrated encryption:
+
+| "alg" value | HPKE KEM                 | HPKE KDF            | HPKE AEAD                   |
+| ----------- | ------------------------ | ------------------- | --------------------------- |
+| HPKE-14     | ML-KEM-768 (`0x0041`)    | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
+| HPKE-15     | ML-KEM-768 (`0x0041`)    | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
+| HPKE-16     | ML-KEM-1024 (`0x0042`)   | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
+| HPKE-17     | ML-KEM-1024 (`0x0042`)   | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
+
+These algorithms provide pure post-quantum security using ML-KEM without a
+traditional algorithm component.
 
 When using integrated encryption algorithms, the "enc" (encryption algorithm)
 Header Parameter MUST NOT be present, as specified in {{I-D.ietf-jose-hpke-encrypt}}.
 
-## Key Encryption Algorithms
+## PQ/T Hybrid Key Encryption Algorithms
 
-The following table lists the algorithm identifiers for key encryption, where
-HPKE encrypts the Content Encryption Key (CEK):
+The following table lists the algorithm identifiers for PQ/T hybrid key
+encryption, where HPKE encrypts the Content Encryption Key (CEK):
 
-| "alg" value | HPKE KEM | HPKE KDF | HPKE AEAD |
-|-------------|----------|----------|-----------|
-| HPKE-8-KE | ML-KEM-768 | HKDF-SHA256 | AES-128-GCM |
-| HPKE-9-KE | MLKEM768-X25519 | HKDF-SHA256 | AES-128-GCM |
+| "alg" value | HPKE KEM                    | HPKE KDF            | HPKE AEAD                   |
+| ----------- | --------------------------- | ------------------- | --------------------------- |
+| HPKE-8-KE   | MLKEM768-P256 (`0x0050`)    | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
+| HPKE-9-KE   | MLKEM768-P256 (`0x0050`)    | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
+| HPKE-10-KE  | MLKEM768-X25519 (`0x647a`)  | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
+| HPKE-11-KE  | MLKEM768-X25519 (`0x647a`)  | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
+| HPKE-12-KE  | MLKEM1024-P384 (`0x0051`)   | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
+| HPKE-13-KE  | MLKEM1024-P384 (`0x0051`)   | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
+
+## Pure PQ Key Encryption Algorithms
+
+The following table lists the algorithm identifiers for pure post-quantum key
+encryption:
+
+| "alg" value | HPKE KEM                 | HPKE KDF            | HPKE AEAD                   |
+| ----------- | ------------------------ | ------------------- | --------------------------- |
+| HPKE-14-KE  | ML-KEM-768 (`0x0041`)    | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
+| HPKE-15-KE  | ML-KEM-768 (`0x0041`)    | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
+| HPKE-16-KE  | ML-KEM-1024 (`0x0042`)   | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
+| HPKE-17-KE  | ML-KEM-1024 (`0x0042`)   | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
 
 Key encryption algorithms are used with the "enc" Header Parameter to specify
 the content encryption algorithm, as defined in {{RFC7516}}.
@@ -143,7 +176,7 @@ established by {{RFC7518}}:
 ### HPKE-8
 
 - Algorithm Name: HPKE-8
-- Algorithm Description: Integrated Encryption with HPKE using ML-KEM-768 KEM, HKDF-SHA256 KDF, and AES-128-GCM AEAD
+- Algorithm Description: Integrated Encryption with HPKE using MLKEM768-P256 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
@@ -153,7 +186,7 @@ established by {{RFC7518}}:
 ### HPKE-8-KE
 
 - Algorithm Name: HPKE-8-KE
-- Algorithm Description: Key Encryption with HPKE using ML-KEM-768 KEM, HKDF-SHA256 KDF, and AES-128-GCM AEAD
+- Algorithm Description: Key Encryption with HPKE using MLKEM768-P256 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
@@ -163,7 +196,7 @@ established by {{RFC7518}}:
 ### HPKE-9
 
 - Algorithm Name: HPKE-9
-- Algorithm Description: Integrated Encryption with HPKE using MLKEM768-X25519 KEM, HKDF-SHA256 KDF, and AES-128-GCM AEAD
+- Algorithm Description: Integrated Encryption with HPKE using MLKEM768-P256 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
@@ -173,7 +206,167 @@ established by {{RFC7518}}:
 ### HPKE-9-KE
 
 - Algorithm Name: HPKE-9-KE
-- Algorithm Description: Key Encryption with HPKE using MLKEM768-X25519 KEM, HKDF-SHA256 KDF, and AES-128-GCM AEAD
+- Algorithm Description: Key Encryption with HPKE using MLKEM768-P256 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
+- Algorithm Usage Location(s): "alg"
+- JOSE Implementation Requirements: Optional
+- Change Controller: IETF
+- Specification Document(s): (#algorithm-identifiers) of this document
+- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+
+### HPKE-10
+
+- Algorithm Name: HPKE-10
+- Algorithm Description: Integrated Encryption with HPKE using MLKEM768-X25519 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+- Algorithm Usage Location(s): "alg"
+- JOSE Implementation Requirements: Optional
+- Change Controller: IETF
+- Specification Document(s): (#algorithm-identifiers) of this document
+- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+
+### HPKE-10-KE
+
+- Algorithm Name: HPKE-10-KE
+- Algorithm Description: Key Encryption with HPKE using MLKEM768-X25519 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+- Algorithm Usage Location(s): "alg"
+- JOSE Implementation Requirements: Optional
+- Change Controller: IETF
+- Specification Document(s): (#algorithm-identifiers) of this document
+- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+
+### HPKE-11
+
+- Algorithm Name: HPKE-11
+- Algorithm Description: Integrated Encryption with HPKE using MLKEM768-X25519 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
+- Algorithm Usage Location(s): "alg"
+- JOSE Implementation Requirements: Optional
+- Change Controller: IETF
+- Specification Document(s): (#algorithm-identifiers) of this document
+- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+
+### HPKE-11-KE
+
+- Algorithm Name: HPKE-11-KE
+- Algorithm Description: Key Encryption with HPKE using MLKEM768-X25519 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
+- Algorithm Usage Location(s): "alg"
+- JOSE Implementation Requirements: Optional
+- Change Controller: IETF
+- Specification Document(s): (#algorithm-identifiers) of this document
+- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+
+### HPKE-12
+
+- Algorithm Name: HPKE-12
+- Algorithm Description: Integrated Encryption with HPKE using MLKEM1024-P384 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+- Algorithm Usage Location(s): "alg"
+- JOSE Implementation Requirements: Optional
+- Change Controller: IETF
+- Specification Document(s): (#algorithm-identifiers) of this document
+- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+
+### HPKE-12-KE
+
+- Algorithm Name: HPKE-12-KE
+- Algorithm Description: Key Encryption with HPKE using MLKEM1024-P384 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+- Algorithm Usage Location(s): "alg"
+- JOSE Implementation Requirements: Optional
+- Change Controller: IETF
+- Specification Document(s): (#algorithm-identifiers) of this document
+- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+
+### HPKE-13
+
+- Algorithm Name: HPKE-13
+- Algorithm Description: Integrated Encryption with HPKE using MLKEM1024-P384 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
+- Algorithm Usage Location(s): "alg"
+- JOSE Implementation Requirements: Optional
+- Change Controller: IETF
+- Specification Document(s): (#algorithm-identifiers) of this document
+- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+
+### HPKE-13-KE
+
+- Algorithm Name: HPKE-13-KE
+- Algorithm Description: Key Encryption with HPKE using MLKEM1024-P384 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
+- Algorithm Usage Location(s): "alg"
+- JOSE Implementation Requirements: Optional
+- Change Controller: IETF
+- Specification Document(s): (#algorithm-identifiers) of this document
+- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+
+### HPKE-14
+
+- Algorithm Name: HPKE-14
+- Algorithm Description: Integrated Encryption with HPKE using ML-KEM-768 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+- Algorithm Usage Location(s): "alg"
+- JOSE Implementation Requirements: Optional
+- Change Controller: IETF
+- Specification Document(s): (#algorithm-identifiers) of this document
+- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+
+### HPKE-14-KE
+
+- Algorithm Name: HPKE-14-KE
+- Algorithm Description: Key Encryption with HPKE using ML-KEM-768 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+- Algorithm Usage Location(s): "alg"
+- JOSE Implementation Requirements: Optional
+- Change Controller: IETF
+- Specification Document(s): (#algorithm-identifiers) of this document
+- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+
+### HPKE-15
+
+- Algorithm Name: HPKE-15
+- Algorithm Description: Integrated Encryption with HPKE using ML-KEM-768 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
+- Algorithm Usage Location(s): "alg"
+- JOSE Implementation Requirements: Optional
+- Change Controller: IETF
+- Specification Document(s): (#algorithm-identifiers) of this document
+- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+
+### HPKE-15-KE
+
+- Algorithm Name: HPKE-15-KE
+- Algorithm Description: Key Encryption with HPKE using ML-KEM-768 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
+- Algorithm Usage Location(s): "alg"
+- JOSE Implementation Requirements: Optional
+- Change Controller: IETF
+- Specification Document(s): (#algorithm-identifiers) of this document
+- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+
+### HPKE-16
+
+- Algorithm Name: HPKE-16
+- Algorithm Description: Integrated Encryption with HPKE using ML-KEM-1024 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+- Algorithm Usage Location(s): "alg"
+- JOSE Implementation Requirements: Optional
+- Change Controller: IETF
+- Specification Document(s): (#algorithm-identifiers) of this document
+- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+
+### HPKE-16-KE
+
+- Algorithm Name: HPKE-16-KE
+- Algorithm Description: Key Encryption with HPKE using ML-KEM-1024 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+- Algorithm Usage Location(s): "alg"
+- JOSE Implementation Requirements: Optional
+- Change Controller: IETF
+- Specification Document(s): (#algorithm-identifiers) of this document
+- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+
+### HPKE-17
+
+- Algorithm Name: HPKE-17
+- Algorithm Description: Integrated Encryption with HPKE using ML-KEM-1024 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
+- Algorithm Usage Location(s): "alg"
+- JOSE Implementation Requirements: Optional
+- Change Controller: IETF
+- Specification Document(s): (#algorithm-identifiers) of this document
+- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+
+### HPKE-17-KE
+
+- Algorithm Name: HPKE-17-KE
+- Algorithm Description: Key Encryption with HPKE using ML-KEM-1024 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
