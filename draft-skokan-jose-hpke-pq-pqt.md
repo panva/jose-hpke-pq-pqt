@@ -9,8 +9,8 @@ number:
 date:
 consensus: true
 v: 3
-area: SEC
-workgroup: jose
+area: "Security"
+workgroup: "Javascript Object Signing and Encryption"
 keyword:
  - JOSE
  - HPKE
@@ -18,12 +18,12 @@ keyword:
  - hybrid
  - ML-KEM
 venue:
-  group: jose
-  type: Working Group
-  mail: jose@ietf.org
-  arch: https://mailarchive.ietf.org/arch/browse/jose/
-  github: panva/jose-hpke-pq-pqt
-  latest: https://panva.github.io/jose-hpke-pq-pqt/draft-skokan-jose-hpke-pq-pqt.html
+  group: "Javascript Object Signing and Encryption"
+  type: "Working Group"
+  mail: "jose@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/jose/"
+  github: "panva/jose-hpke-pq-pqt"
+  latest: "https://panva.github.io/jose-hpke-pq-pqt/draft-skokan-jose-hpke-pq-pqt.html"
 
 author:
  -
