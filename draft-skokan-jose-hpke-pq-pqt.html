@@ -1063,7 +1063,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <div id="internal-metadata" class="document-information">
 <dl id="identifiers">
 <dt class="label-workgroup">Workgroup:</dt>
-<dd class="workgroup">jose</dd>
+<dd class="workgroup">Javascript Object Signing and Encryption</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
 <dd class="internet-draft">draft-skokan-jose-hpke-pq-pqt-latest</dd>
 <dt class="label-published">Published:</dt>
@@ -1101,7 +1101,7 @@ Encryption (HPKE) framework defined in <span>[<a href="#I-D.ietf-jose-hpke-encry
         Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-skokan-jose-hpke-pq-pqt/">https://datatracker.ietf.org/doc/draft-skokan-jose-hpke-pq-pqt/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
 <p id="section-note.1-3">
         Discussion of this document takes place on the
-        jose Working Group mailing list (<span><a href="mailto:jose@ietf.org">mailto:jose@ietf.org</a></span>),
+        Javascript Object Signing and Encryption Working Group mailing list (<span><a href="mailto:jose@ietf.org">mailto:jose@ietf.org</a></span>),
         which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/jose/">https://mailarchive.ietf.org/arch/browse/jose/</a></span>.
         Subscribe at <span><a href="https://www.ietf.org/mailman/listinfo/jose/">https://www.ietf.org/mailman/listinfo/jose/</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
 <p id="section-note.1-4">Source for this draft and an issue tracker can be found at
@@ -1165,10 +1165,16 @@ Encryption (HPKE) framework defined in <span>[<a href="#I-D.ietf-jose-hpke-encry
             <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-algorithm-identifiers" class="internal xref">Algorithm Identifiers</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-integrated-encryption-algor" class="internal xref">Integrated Encryption Algorithms</a></p>
+                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-pq-t-hybrid-integrated-encr" class="internal xref">PQ/T Hybrid Integrated Encryption Algorithms</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-key-encryption-algorithms" class="internal xref">Key Encryption Algorithms</a></p>
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-pure-pq-integrated-encrypti" class="internal xref">Pure PQ Integrated Encryption Algorithms</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-pq-t-hybrid-key-encryption-" class="internal xref">PQ/T Hybrid Key Encryption Algorithms</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
+                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-pure-pq-key-encryption-algo" class="internal xref">Pure PQ Key Encryption Algorithms</a></p>
 </li>
             </ul>
 </li>
@@ -1195,6 +1201,54 @@ Encryption (HPKE) framework defined in <span>[<a href="#I-D.ietf-jose-hpke-encry
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.4">
                     <p id="section-toc.1-1.6.2.1.2.4.1"><a href="#section-6.1.4" class="auto internal xref">6.1.4</a>.  <a href="#name-hpke-9-ke" class="internal xref">HPKE-9-KE</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.5">
+                    <p id="section-toc.1-1.6.2.1.2.5.1"><a href="#section-6.1.5" class="auto internal xref">6.1.5</a>.  <a href="#name-hpke-10" class="internal xref">HPKE-10</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.6">
+                    <p id="section-toc.1-1.6.2.1.2.6.1"><a href="#section-6.1.6" class="auto internal xref">6.1.6</a>.  <a href="#name-hpke-10-ke" class="internal xref">HPKE-10-KE</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.7">
+                    <p id="section-toc.1-1.6.2.1.2.7.1"><a href="#section-6.1.7" class="auto internal xref">6.1.7</a>.  <a href="#name-hpke-11" class="internal xref">HPKE-11</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.8">
+                    <p id="section-toc.1-1.6.2.1.2.8.1"><a href="#section-6.1.8" class="auto internal xref">6.1.8</a>.  <a href="#name-hpke-11-ke" class="internal xref">HPKE-11-KE</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.9">
+                    <p id="section-toc.1-1.6.2.1.2.9.1"><a href="#section-6.1.9" class="auto internal xref">6.1.9</a>.  <a href="#name-hpke-12" class="internal xref">HPKE-12</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.10">
+                    <p id="section-toc.1-1.6.2.1.2.10.1"><a href="#section-6.1.10" class="auto internal xref">6.1.10</a>. <a href="#name-hpke-12-ke" class="internal xref">HPKE-12-KE</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.11">
+                    <p id="section-toc.1-1.6.2.1.2.11.1"><a href="#section-6.1.11" class="auto internal xref">6.1.11</a>. <a href="#name-hpke-13" class="internal xref">HPKE-13</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.12">
+                    <p id="section-toc.1-1.6.2.1.2.12.1"><a href="#section-6.1.12" class="auto internal xref">6.1.12</a>. <a href="#name-hpke-13-ke" class="internal xref">HPKE-13-KE</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.13">
+                    <p id="section-toc.1-1.6.2.1.2.13.1"><a href="#section-6.1.13" class="auto internal xref">6.1.13</a>. <a href="#name-hpke-14" class="internal xref">HPKE-14</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.14">
+                    <p id="section-toc.1-1.6.2.1.2.14.1"><a href="#section-6.1.14" class="auto internal xref">6.1.14</a>. <a href="#name-hpke-14-ke" class="internal xref">HPKE-14-KE</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.15">
+                    <p id="section-toc.1-1.6.2.1.2.15.1"><a href="#section-6.1.15" class="auto internal xref">6.1.15</a>. <a href="#name-hpke-15" class="internal xref">HPKE-15</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.16">
+                    <p id="section-toc.1-1.6.2.1.2.16.1"><a href="#section-6.1.16" class="auto internal xref">6.1.16</a>. <a href="#name-hpke-15-ke" class="internal xref">HPKE-15-KE</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.17">
+                    <p id="section-toc.1-1.6.2.1.2.17.1"><a href="#section-6.1.17" class="auto internal xref">6.1.17</a>. <a href="#name-hpke-16" class="internal xref">HPKE-16</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.18">
+                    <p id="section-toc.1-1.6.2.1.2.18.1"><a href="#section-6.1.18" class="auto internal xref">6.1.18</a>. <a href="#name-hpke-16-ke" class="internal xref">HPKE-16-KE</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.19">
+                    <p id="section-toc.1-1.6.2.1.2.19.1"><a href="#section-6.1.19" class="auto internal xref">6.1.19</a>. <a href="#name-hpke-17" class="internal xref">HPKE-17</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.20">
+                    <p id="section-toc.1-1.6.2.1.2.20.1"><a href="#section-6.1.20" class="auto internal xref">6.1.20</a>. <a href="#name-hpke-17-ke" class="internal xref">HPKE-17-KE</a></p>
 </li>
                 </ul>
 </li>
@@ -1250,14 +1304,14 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       </h2>
 <p id="section-3-1">This section defines the algorithm identifiers for PQ and PQ/T HPKE-based
 encryption in JOSE.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<div id="integrated-encryption-algorithms">
+<div id="pqt-hybrid-integrated-encryption-algorithms">
 <section id="section-3.1">
-        <h3 id="name-integrated-encryption-algor">
-<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-integrated-encryption-algor" class="section-name selfRef">Integrated Encryption Algorithms</a>
+        <h3 id="name-pq-t-hybrid-integrated-encr">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-pq-t-hybrid-integrated-encr" class="section-name selfRef">PQ/T Hybrid Integrated Encryption Algorithms</a>
         </h3>
-<p id="section-3.1-1">The following table lists the algorithm identifiers for integrated encryption,
-where HPKE directly encrypts the plaintext without a separate Content
-Encryption Key:<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-1">The following table lists the algorithm identifiers for PQ/T hybrid integrated
+encryption, where HPKE directly encrypts the plaintext without a separate
+Content Encryption Key:<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 <table class="center" id="table-1">
           <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
 <thead>
@@ -1271,33 +1325,54 @@ Encryption Key:<a href="#section-3.1-1" class="pilcrow">¶</a></p>
           <tbody>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">HPKE-8</td>
-              <td class="text-left" rowspan="1" colspan="1">ML-KEM-768</td>
-              <td class="text-left" rowspan="1" colspan="1">HKDF-SHA256</td>
-              <td class="text-left" rowspan="1" colspan="1">AES-128-GCM</td>
+              <td class="text-left" rowspan="1" colspan="1">MLKEM768-P256 (<code>0x0050</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">SHAKE256 (<code>0x0011</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">AES-256-GCM (<code>0x0002</code>)</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">HPKE-9</td>
-              <td class="text-left" rowspan="1" colspan="1">MLKEM768-X25519</td>
-              <td class="text-left" rowspan="1" colspan="1">HKDF-SHA256</td>
-              <td class="text-left" rowspan="1" colspan="1">AES-128-GCM</td>
+              <td class="text-left" rowspan="1" colspan="1">MLKEM768-P256 (<code>0x0050</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">SHAKE256 (<code>0x0011</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">ChaCha20Poly1305 (<code>0x0003</code>)</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">HPKE-10</td>
+              <td class="text-left" rowspan="1" colspan="1">MLKEM768-X25519 (<code>0x647a</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">SHAKE256 (<code>0x0011</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">AES-256-GCM (<code>0x0002</code>)</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">HPKE-11</td>
+              <td class="text-left" rowspan="1" colspan="1">MLKEM768-X25519 (<code>0x647a</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">SHAKE256 (<code>0x0011</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">ChaCha20Poly1305 (<code>0x0003</code>)</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">HPKE-12</td>
+              <td class="text-left" rowspan="1" colspan="1">MLKEM1024-P384 (<code>0x0051</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">SHAKE256 (<code>0x0011</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">AES-256-GCM (<code>0x0002</code>)</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">HPKE-13</td>
+              <td class="text-left" rowspan="1" colspan="1">MLKEM1024-P384 (<code>0x0051</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">SHAKE256 (<code>0x0011</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">ChaCha20Poly1305 (<code>0x0003</code>)</td>
             </tr>
           </tbody>
         </table>
-<p id="section-3.1-3">HPKE-8 provides pure post-quantum security using ML-KEM-768.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
-<p id="section-3.1-4">HPKE-9 provides hybrid post-quantum/traditional security by combining
-ML-KEM-768 with X25519, ensuring protection against both classical and
-quantum adversaries.<a href="#section-3.1-4" class="pilcrow">¶</a></p>
-<p id="section-3.1-5">When using integrated encryption algorithms, the "enc" (encryption algorithm)
-Header Parameter <span class="bcp14">MUST NOT</span> be present, as specified in <span>[<a href="#I-D.ietf-jose-hpke-encrypt" class="cite xref">I-D.ietf-jose-hpke-encrypt</a>]</span>.<a href="#section-3.1-5" class="pilcrow">¶</a></p>
+<p id="section-3.1-3">These algorithms provide hybrid post-quantum/traditional security by combining
+ML-KEM with a traditional elliptic curve algorithm, ensuring protection against
+both classical and quantum adversaries.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="key-encryption-algorithms">
+<div id="pure-pq-integrated-encryption-algorithms">
 <section id="section-3.2">
-        <h3 id="name-key-encryption-algorithms">
-<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-key-encryption-algorithms" class="section-name selfRef">Key Encryption Algorithms</a>
+        <h3 id="name-pure-pq-integrated-encrypti">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-pure-pq-integrated-encrypti" class="section-name selfRef">Pure PQ Integrated Encryption Algorithms</a>
         </h3>
-<p id="section-3.2-1">The following table lists the algorithm identifiers for key encryption, where
-HPKE encrypts the Content Encryption Key (CEK):<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-1">The following table lists the algorithm identifiers for pure post-quantum
+integrated encryption:<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 <table class="center" id="table-2">
           <caption><a href="#table-2" class="selfRef">Table 2</a></caption>
 <thead>
@@ -1310,21 +1385,141 @@ HPKE encrypts the Content Encryption Key (CEK):<a href="#section-3.2-1" class="p
           </thead>
           <tbody>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">HPKE-8-KE</td>
-              <td class="text-left" rowspan="1" colspan="1">ML-KEM-768</td>
-              <td class="text-left" rowspan="1" colspan="1">HKDF-SHA256</td>
-              <td class="text-left" rowspan="1" colspan="1">AES-128-GCM</td>
+              <td class="text-left" rowspan="1" colspan="1">HPKE-14</td>
+              <td class="text-left" rowspan="1" colspan="1">ML-KEM-768 (<code>0x0041</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">SHAKE256 (<code>0x0011</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">AES-256-GCM (<code>0x0002</code>)</td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">HPKE-9-KE</td>
-              <td class="text-left" rowspan="1" colspan="1">MLKEM768-X25519</td>
-              <td class="text-left" rowspan="1" colspan="1">HKDF-SHA256</td>
-              <td class="text-left" rowspan="1" colspan="1">AES-128-GCM</td>
+              <td class="text-left" rowspan="1" colspan="1">HPKE-15</td>
+              <td class="text-left" rowspan="1" colspan="1">ML-KEM-768 (<code>0x0041</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">SHAKE256 (<code>0x0011</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">ChaCha20Poly1305 (<code>0x0003</code>)</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">HPKE-16</td>
+              <td class="text-left" rowspan="1" colspan="1">ML-KEM-1024 (<code>0x0042</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">SHAKE256 (<code>0x0011</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">AES-256-GCM (<code>0x0002</code>)</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">HPKE-17</td>
+              <td class="text-left" rowspan="1" colspan="1">ML-KEM-1024 (<code>0x0042</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">SHAKE256 (<code>0x0011</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">ChaCha20Poly1305 (<code>0x0003</code>)</td>
             </tr>
           </tbody>
         </table>
-<p id="section-3.2-3">Key encryption algorithms are used with the "enc" Header Parameter to specify
-the content encryption algorithm, as defined in <span>[<a href="#RFC7516" class="cite xref">RFC7516</a>]</span>.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+<p id="section-3.2-3">These algorithms provide pure post-quantum security using ML-KEM without a
+traditional algorithm component.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+<p id="section-3.2-4">When using integrated encryption algorithms, the "enc" (encryption algorithm)
+Header Parameter <span class="bcp14">MUST NOT</span> be present, as specified in <span>[<a href="#I-D.ietf-jose-hpke-encrypt" class="cite xref">I-D.ietf-jose-hpke-encrypt</a>]</span>.<a href="#section-3.2-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="pqt-hybrid-key-encryption-algorithms">
+<section id="section-3.3">
+        <h3 id="name-pq-t-hybrid-key-encryption-">
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-pq-t-hybrid-key-encryption-" class="section-name selfRef">PQ/T Hybrid Key Encryption Algorithms</a>
+        </h3>
+<p id="section-3.3-1">The following table lists the algorithm identifiers for PQ/T hybrid key
+encryption, where HPKE encrypts the Content Encryption Key (CEK):<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<table class="center" id="table-3">
+          <caption><a href="#table-3" class="selfRef">Table 3</a></caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">"alg" value</th>
+              <th class="text-left" rowspan="1" colspan="1">HPKE KEM</th>
+              <th class="text-left" rowspan="1" colspan="1">HPKE KDF</th>
+              <th class="text-left" rowspan="1" colspan="1">HPKE AEAD</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">HPKE-8-KE</td>
+              <td class="text-left" rowspan="1" colspan="1">MLKEM768-P256 (<code>0x0050</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">SHAKE256 (<code>0x0011</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">AES-256-GCM (<code>0x0002</code>)</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">HPKE-9-KE</td>
+              <td class="text-left" rowspan="1" colspan="1">MLKEM768-P256 (<code>0x0050</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">SHAKE256 (<code>0x0011</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">ChaCha20Poly1305 (<code>0x0003</code>)</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">HPKE-10-KE</td>
+              <td class="text-left" rowspan="1" colspan="1">MLKEM768-X25519 (<code>0x647a</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">SHAKE256 (<code>0x0011</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">AES-256-GCM (<code>0x0002</code>)</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">HPKE-11-KE</td>
+              <td class="text-left" rowspan="1" colspan="1">MLKEM768-X25519 (<code>0x647a</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">SHAKE256 (<code>0x0011</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">ChaCha20Poly1305 (<code>0x0003</code>)</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">HPKE-12-KE</td>
+              <td class="text-left" rowspan="1" colspan="1">MLKEM1024-P384 (<code>0x0051</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">SHAKE256 (<code>0x0011</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">AES-256-GCM (<code>0x0002</code>)</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">HPKE-13-KE</td>
+              <td class="text-left" rowspan="1" colspan="1">MLKEM1024-P384 (<code>0x0051</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">SHAKE256 (<code>0x0011</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">ChaCha20Poly1305 (<code>0x0003</code>)</td>
+            </tr>
+          </tbody>
+        </table>
+</section>
+</div>
+<div id="pure-pq-key-encryption-algorithms">
+<section id="section-3.4">
+        <h3 id="name-pure-pq-key-encryption-algo">
+<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-pure-pq-key-encryption-algo" class="section-name selfRef">Pure PQ Key Encryption Algorithms</a>
+        </h3>
+<p id="section-3.4-1">The following table lists the algorithm identifiers for pure post-quantum key
+encryption:<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+<table class="center" id="table-4">
+          <caption><a href="#table-4" class="selfRef">Table 4</a></caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">"alg" value</th>
+              <th class="text-left" rowspan="1" colspan="1">HPKE KEM</th>
+              <th class="text-left" rowspan="1" colspan="1">HPKE KDF</th>
+              <th class="text-left" rowspan="1" colspan="1">HPKE AEAD</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">HPKE-14-KE</td>
+              <td class="text-left" rowspan="1" colspan="1">ML-KEM-768 (<code>0x0041</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">SHAKE256 (<code>0x0011</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">AES-256-GCM (<code>0x0002</code>)</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">HPKE-15-KE</td>
+              <td class="text-left" rowspan="1" colspan="1">ML-KEM-768 (<code>0x0041</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">SHAKE256 (<code>0x0011</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">ChaCha20Poly1305 (<code>0x0003</code>)</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">HPKE-16-KE</td>
+              <td class="text-left" rowspan="1" colspan="1">ML-KEM-1024 (<code>0x0042</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">SHAKE256 (<code>0x0011</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">AES-256-GCM (<code>0x0002</code>)</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">HPKE-17-KE</td>
+              <td class="text-left" rowspan="1" colspan="1">ML-KEM-1024 (<code>0x0042</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">SHAKE256 (<code>0x0011</code>)</td>
+              <td class="text-left" rowspan="1" colspan="1">ChaCha20Poly1305 (<code>0x0003</code>)</td>
+            </tr>
+          </tbody>
+        </table>
+<p id="section-3.4-3">Key encryption algorithms are used with the "enc" Header Parameter to specify
+the content encryption algorithm, as defined in <span>[<a href="#RFC7516" class="cite xref">RFC7516</a>]</span>.<a href="#section-3.4-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1374,7 +1569,7 @@ established by <span>[<a href="#RFC7518" class="cite xref">RFC7518</a>]</span>:<
               <p id="section-6.1.1-1.1.1">Algorithm Name: HPKE-8<a href="#section-6.1.1-1.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-6.1.1-1.2">
-              <p id="section-6.1.1-1.2.1">Algorithm Description: Integrated Encryption with HPKE using ML-KEM-768 KEM, HKDF-SHA256 KDF, and AES-128-GCM AEAD<a href="#section-6.1.1-1.2.1" class="pilcrow">¶</a></p>
+              <p id="section-6.1.1-1.2.1">Algorithm Description: Integrated Encryption with HPKE using MLKEM768-P256 KEM, SHAKE256 KDF, and AES-256-GCM AEAD<a href="#section-6.1.1-1.2.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-6.1.1-1.3">
               <p id="section-6.1.1-1.3.1">Algorithm Usage Location(s): "alg"<a href="#section-6.1.1-1.3.1" class="pilcrow">¶</a></p>
@@ -1404,7 +1599,7 @@ established by <span>[<a href="#RFC7518" class="cite xref">RFC7518</a>]</span>:<
               <p id="section-6.1.2-1.1.1">Algorithm Name: HPKE-8-KE<a href="#section-6.1.2-1.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-6.1.2-1.2">
-              <p id="section-6.1.2-1.2.1">Algorithm Description: Key Encryption with HPKE using ML-KEM-768 KEM, HKDF-SHA256 KDF, and AES-128-GCM AEAD<a href="#section-6.1.2-1.2.1" class="pilcrow">¶</a></p>
+              <p id="section-6.1.2-1.2.1">Algorithm Description: Key Encryption with HPKE using MLKEM768-P256 KEM, SHAKE256 KDF, and AES-256-GCM AEAD<a href="#section-6.1.2-1.2.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-6.1.2-1.3">
               <p id="section-6.1.2-1.3.1">Algorithm Usage Location(s): "alg"<a href="#section-6.1.2-1.3.1" class="pilcrow">¶</a></p>
@@ -1434,7 +1629,7 @@ established by <span>[<a href="#RFC7518" class="cite xref">RFC7518</a>]</span>:<
               <p id="section-6.1.3-1.1.1">Algorithm Name: HPKE-9<a href="#section-6.1.3-1.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-6.1.3-1.2">
-              <p id="section-6.1.3-1.2.1">Algorithm Description: Integrated Encryption with HPKE using MLKEM768-X25519 KEM, HKDF-SHA256 KDF, and AES-128-GCM AEAD<a href="#section-6.1.3-1.2.1" class="pilcrow">¶</a></p>
+              <p id="section-6.1.3-1.2.1">Algorithm Description: Integrated Encryption with HPKE using MLKEM768-P256 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD<a href="#section-6.1.3-1.2.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-6.1.3-1.3">
               <p id="section-6.1.3-1.3.1">Algorithm Usage Location(s): "alg"<a href="#section-6.1.3-1.3.1" class="pilcrow">¶</a></p>
@@ -1464,7 +1659,7 @@ established by <span>[<a href="#RFC7518" class="cite xref">RFC7518</a>]</span>:<
               <p id="section-6.1.4-1.1.1">Algorithm Name: HPKE-9-KE<a href="#section-6.1.4-1.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-6.1.4-1.2">
-              <p id="section-6.1.4-1.2.1">Algorithm Description: Key Encryption with HPKE using MLKEM768-X25519 KEM, HKDF-SHA256 KDF, and AES-128-GCM AEAD<a href="#section-6.1.4-1.2.1" class="pilcrow">¶</a></p>
+              <p id="section-6.1.4-1.2.1">Algorithm Description: Key Encryption with HPKE using MLKEM768-P256 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD<a href="#section-6.1.4-1.2.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-6.1.4-1.3">
               <p id="section-6.1.4-1.3.1">Algorithm Usage Location(s): "alg"<a href="#section-6.1.4-1.3.1" class="pilcrow">¶</a></p>
@@ -1480,6 +1675,486 @@ established by <span>[<a href="#RFC7518" class="cite xref">RFC7518</a>]</span>:<
 </li>
             <li class="normal" id="section-6.1.4-1.7">
               <p id="section-6.1.4-1.7.1">Algorithm Analysis Documents(s): <span>[<a href="#I-D.ietf-hpke-pq" class="cite xref">I-D.ietf-hpke-pq</a>]</span><a href="#section-6.1.4-1.7.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="hpke-10">
+<section id="section-6.1.5">
+          <h4 id="name-hpke-10">
+<a href="#section-6.1.5" class="section-number selfRef">6.1.5. </a><a href="#name-hpke-10" class="section-name selfRef">HPKE-10</a>
+          </h4>
+<ul class="normal">
+<li class="normal" id="section-6.1.5-1.1">
+              <p id="section-6.1.5-1.1.1">Algorithm Name: HPKE-10<a href="#section-6.1.5-1.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.5-1.2">
+              <p id="section-6.1.5-1.2.1">Algorithm Description: Integrated Encryption with HPKE using MLKEM768-X25519 KEM, SHAKE256 KDF, and AES-256-GCM AEAD<a href="#section-6.1.5-1.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.5-1.3">
+              <p id="section-6.1.5-1.3.1">Algorithm Usage Location(s): "alg"<a href="#section-6.1.5-1.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.5-1.4">
+              <p id="section-6.1.5-1.4.1">JOSE Implementation Requirements: Optional<a href="#section-6.1.5-1.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.5-1.5">
+              <p id="section-6.1.5-1.5.1">Change Controller: IETF<a href="#section-6.1.5-1.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.5-1.6">
+              <p id="section-6.1.5-1.6.1">Specification Document(s): (#algorithm-identifiers) of this document<a href="#section-6.1.5-1.6.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.5-1.7">
+              <p id="section-6.1.5-1.7.1">Algorithm Analysis Documents(s): <span>[<a href="#I-D.ietf-hpke-pq" class="cite xref">I-D.ietf-hpke-pq</a>]</span><a href="#section-6.1.5-1.7.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="hpke-10-ke">
+<section id="section-6.1.6">
+          <h4 id="name-hpke-10-ke">
+<a href="#section-6.1.6" class="section-number selfRef">6.1.6. </a><a href="#name-hpke-10-ke" class="section-name selfRef">HPKE-10-KE</a>
+          </h4>
+<ul class="normal">
+<li class="normal" id="section-6.1.6-1.1">
+              <p id="section-6.1.6-1.1.1">Algorithm Name: HPKE-10-KE<a href="#section-6.1.6-1.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.6-1.2">
+              <p id="section-6.1.6-1.2.1">Algorithm Description: Key Encryption with HPKE using MLKEM768-X25519 KEM, SHAKE256 KDF, and AES-256-GCM AEAD<a href="#section-6.1.6-1.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.6-1.3">
+              <p id="section-6.1.6-1.3.1">Algorithm Usage Location(s): "alg"<a href="#section-6.1.6-1.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.6-1.4">
+              <p id="section-6.1.6-1.4.1">JOSE Implementation Requirements: Optional<a href="#section-6.1.6-1.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.6-1.5">
+              <p id="section-6.1.6-1.5.1">Change Controller: IETF<a href="#section-6.1.6-1.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.6-1.6">
+              <p id="section-6.1.6-1.6.1">Specification Document(s): (#algorithm-identifiers) of this document<a href="#section-6.1.6-1.6.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.6-1.7">
+              <p id="section-6.1.6-1.7.1">Algorithm Analysis Documents(s): <span>[<a href="#I-D.ietf-hpke-pq" class="cite xref">I-D.ietf-hpke-pq</a>]</span><a href="#section-6.1.6-1.7.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="hpke-11">
+<section id="section-6.1.7">
+          <h4 id="name-hpke-11">
+<a href="#section-6.1.7" class="section-number selfRef">6.1.7. </a><a href="#name-hpke-11" class="section-name selfRef">HPKE-11</a>
+          </h4>
+<ul class="normal">
+<li class="normal" id="section-6.1.7-1.1">
+              <p id="section-6.1.7-1.1.1">Algorithm Name: HPKE-11<a href="#section-6.1.7-1.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.7-1.2">
+              <p id="section-6.1.7-1.2.1">Algorithm Description: Integrated Encryption with HPKE using MLKEM768-X25519 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD<a href="#section-6.1.7-1.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.7-1.3">
+              <p id="section-6.1.7-1.3.1">Algorithm Usage Location(s): "alg"<a href="#section-6.1.7-1.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.7-1.4">
+              <p id="section-6.1.7-1.4.1">JOSE Implementation Requirements: Optional<a href="#section-6.1.7-1.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.7-1.5">
+              <p id="section-6.1.7-1.5.1">Change Controller: IETF<a href="#section-6.1.7-1.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.7-1.6">
+              <p id="section-6.1.7-1.6.1">Specification Document(s): (#algorithm-identifiers) of this document<a href="#section-6.1.7-1.6.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.7-1.7">
+              <p id="section-6.1.7-1.7.1">Algorithm Analysis Documents(s): <span>[<a href="#I-D.ietf-hpke-pq" class="cite xref">I-D.ietf-hpke-pq</a>]</span><a href="#section-6.1.7-1.7.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="hpke-11-ke">
+<section id="section-6.1.8">
+          <h4 id="name-hpke-11-ke">
+<a href="#section-6.1.8" class="section-number selfRef">6.1.8. </a><a href="#name-hpke-11-ke" class="section-name selfRef">HPKE-11-KE</a>
+          </h4>
+<ul class="normal">
+<li class="normal" id="section-6.1.8-1.1">
+              <p id="section-6.1.8-1.1.1">Algorithm Name: HPKE-11-KE<a href="#section-6.1.8-1.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.8-1.2">
+              <p id="section-6.1.8-1.2.1">Algorithm Description: Key Encryption with HPKE using MLKEM768-X25519 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD<a href="#section-6.1.8-1.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.8-1.3">
+              <p id="section-6.1.8-1.3.1">Algorithm Usage Location(s): "alg"<a href="#section-6.1.8-1.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.8-1.4">
+              <p id="section-6.1.8-1.4.1">JOSE Implementation Requirements: Optional<a href="#section-6.1.8-1.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.8-1.5">
+              <p id="section-6.1.8-1.5.1">Change Controller: IETF<a href="#section-6.1.8-1.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.8-1.6">
+              <p id="section-6.1.8-1.6.1">Specification Document(s): (#algorithm-identifiers) of this document<a href="#section-6.1.8-1.6.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.8-1.7">
+              <p id="section-6.1.8-1.7.1">Algorithm Analysis Documents(s): <span>[<a href="#I-D.ietf-hpke-pq" class="cite xref">I-D.ietf-hpke-pq</a>]</span><a href="#section-6.1.8-1.7.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="hpke-12">
+<section id="section-6.1.9">
+          <h4 id="name-hpke-12">
+<a href="#section-6.1.9" class="section-number selfRef">6.1.9. </a><a href="#name-hpke-12" class="section-name selfRef">HPKE-12</a>
+          </h4>
+<ul class="normal">
+<li class="normal" id="section-6.1.9-1.1">
+              <p id="section-6.1.9-1.1.1">Algorithm Name: HPKE-12<a href="#section-6.1.9-1.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.9-1.2">
+              <p id="section-6.1.9-1.2.1">Algorithm Description: Integrated Encryption with HPKE using MLKEM1024-P384 KEM, SHAKE256 KDF, and AES-256-GCM AEAD<a href="#section-6.1.9-1.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.9-1.3">
+              <p id="section-6.1.9-1.3.1">Algorithm Usage Location(s): "alg"<a href="#section-6.1.9-1.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.9-1.4">
+              <p id="section-6.1.9-1.4.1">JOSE Implementation Requirements: Optional<a href="#section-6.1.9-1.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.9-1.5">
+              <p id="section-6.1.9-1.5.1">Change Controller: IETF<a href="#section-6.1.9-1.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.9-1.6">
+              <p id="section-6.1.9-1.6.1">Specification Document(s): (#algorithm-identifiers) of this document<a href="#section-6.1.9-1.6.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.9-1.7">
+              <p id="section-6.1.9-1.7.1">Algorithm Analysis Documents(s): <span>[<a href="#I-D.ietf-hpke-pq" class="cite xref">I-D.ietf-hpke-pq</a>]</span><a href="#section-6.1.9-1.7.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="hpke-12-ke">
+<section id="section-6.1.10">
+          <h4 id="name-hpke-12-ke">
+<a href="#section-6.1.10" class="section-number selfRef">6.1.10. </a><a href="#name-hpke-12-ke" class="section-name selfRef">HPKE-12-KE</a>
+          </h4>
+<ul class="normal">
+<li class="normal" id="section-6.1.10-1.1">
+              <p id="section-6.1.10-1.1.1">Algorithm Name: HPKE-12-KE<a href="#section-6.1.10-1.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.10-1.2">
+              <p id="section-6.1.10-1.2.1">Algorithm Description: Key Encryption with HPKE using MLKEM1024-P384 KEM, SHAKE256 KDF, and AES-256-GCM AEAD<a href="#section-6.1.10-1.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.10-1.3">
+              <p id="section-6.1.10-1.3.1">Algorithm Usage Location(s): "alg"<a href="#section-6.1.10-1.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.10-1.4">
+              <p id="section-6.1.10-1.4.1">JOSE Implementation Requirements: Optional<a href="#section-6.1.10-1.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.10-1.5">
+              <p id="section-6.1.10-1.5.1">Change Controller: IETF<a href="#section-6.1.10-1.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.10-1.6">
+              <p id="section-6.1.10-1.6.1">Specification Document(s): (#algorithm-identifiers) of this document<a href="#section-6.1.10-1.6.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.10-1.7">
+              <p id="section-6.1.10-1.7.1">Algorithm Analysis Documents(s): <span>[<a href="#I-D.ietf-hpke-pq" class="cite xref">I-D.ietf-hpke-pq</a>]</span><a href="#section-6.1.10-1.7.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="hpke-13">
+<section id="section-6.1.11">
+          <h4 id="name-hpke-13">
+<a href="#section-6.1.11" class="section-number selfRef">6.1.11. </a><a href="#name-hpke-13" class="section-name selfRef">HPKE-13</a>
+          </h4>
+<ul class="normal">
+<li class="normal" id="section-6.1.11-1.1">
+              <p id="section-6.1.11-1.1.1">Algorithm Name: HPKE-13<a href="#section-6.1.11-1.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.11-1.2">
+              <p id="section-6.1.11-1.2.1">Algorithm Description: Integrated Encryption with HPKE using MLKEM1024-P384 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD<a href="#section-6.1.11-1.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.11-1.3">
+              <p id="section-6.1.11-1.3.1">Algorithm Usage Location(s): "alg"<a href="#section-6.1.11-1.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.11-1.4">
+              <p id="section-6.1.11-1.4.1">JOSE Implementation Requirements: Optional<a href="#section-6.1.11-1.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.11-1.5">
+              <p id="section-6.1.11-1.5.1">Change Controller: IETF<a href="#section-6.1.11-1.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.11-1.6">
+              <p id="section-6.1.11-1.6.1">Specification Document(s): (#algorithm-identifiers) of this document<a href="#section-6.1.11-1.6.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.11-1.7">
+              <p id="section-6.1.11-1.7.1">Algorithm Analysis Documents(s): <span>[<a href="#I-D.ietf-hpke-pq" class="cite xref">I-D.ietf-hpke-pq</a>]</span><a href="#section-6.1.11-1.7.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="hpke-13-ke">
+<section id="section-6.1.12">
+          <h4 id="name-hpke-13-ke">
+<a href="#section-6.1.12" class="section-number selfRef">6.1.12. </a><a href="#name-hpke-13-ke" class="section-name selfRef">HPKE-13-KE</a>
+          </h4>
+<ul class="normal">
+<li class="normal" id="section-6.1.12-1.1">
+              <p id="section-6.1.12-1.1.1">Algorithm Name: HPKE-13-KE<a href="#section-6.1.12-1.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.12-1.2">
+              <p id="section-6.1.12-1.2.1">Algorithm Description: Key Encryption with HPKE using MLKEM1024-P384 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD<a href="#section-6.1.12-1.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.12-1.3">
+              <p id="section-6.1.12-1.3.1">Algorithm Usage Location(s): "alg"<a href="#section-6.1.12-1.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.12-1.4">
+              <p id="section-6.1.12-1.4.1">JOSE Implementation Requirements: Optional<a href="#section-6.1.12-1.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.12-1.5">
+              <p id="section-6.1.12-1.5.1">Change Controller: IETF<a href="#section-6.1.12-1.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.12-1.6">
+              <p id="section-6.1.12-1.6.1">Specification Document(s): (#algorithm-identifiers) of this document<a href="#section-6.1.12-1.6.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.12-1.7">
+              <p id="section-6.1.12-1.7.1">Algorithm Analysis Documents(s): <span>[<a href="#I-D.ietf-hpke-pq" class="cite xref">I-D.ietf-hpke-pq</a>]</span><a href="#section-6.1.12-1.7.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="hpke-14">
+<section id="section-6.1.13">
+          <h4 id="name-hpke-14">
+<a href="#section-6.1.13" class="section-number selfRef">6.1.13. </a><a href="#name-hpke-14" class="section-name selfRef">HPKE-14</a>
+          </h4>
+<ul class="normal">
+<li class="normal" id="section-6.1.13-1.1">
+              <p id="section-6.1.13-1.1.1">Algorithm Name: HPKE-14<a href="#section-6.1.13-1.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.13-1.2">
+              <p id="section-6.1.13-1.2.1">Algorithm Description: Integrated Encryption with HPKE using ML-KEM-768 KEM, SHAKE256 KDF, and AES-256-GCM AEAD<a href="#section-6.1.13-1.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.13-1.3">
+              <p id="section-6.1.13-1.3.1">Algorithm Usage Location(s): "alg"<a href="#section-6.1.13-1.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.13-1.4">
+              <p id="section-6.1.13-1.4.1">JOSE Implementation Requirements: Optional<a href="#section-6.1.13-1.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.13-1.5">
+              <p id="section-6.1.13-1.5.1">Change Controller: IETF<a href="#section-6.1.13-1.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.13-1.6">
+              <p id="section-6.1.13-1.6.1">Specification Document(s): (#algorithm-identifiers) of this document<a href="#section-6.1.13-1.6.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.13-1.7">
+              <p id="section-6.1.13-1.7.1">Algorithm Analysis Documents(s): <span>[<a href="#I-D.ietf-hpke-pq" class="cite xref">I-D.ietf-hpke-pq</a>]</span><a href="#section-6.1.13-1.7.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="hpke-14-ke">
+<section id="section-6.1.14">
+          <h4 id="name-hpke-14-ke">
+<a href="#section-6.1.14" class="section-number selfRef">6.1.14. </a><a href="#name-hpke-14-ke" class="section-name selfRef">HPKE-14-KE</a>
+          </h4>
+<ul class="normal">
+<li class="normal" id="section-6.1.14-1.1">
+              <p id="section-6.1.14-1.1.1">Algorithm Name: HPKE-14-KE<a href="#section-6.1.14-1.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.14-1.2">
+              <p id="section-6.1.14-1.2.1">Algorithm Description: Key Encryption with HPKE using ML-KEM-768 KEM, SHAKE256 KDF, and AES-256-GCM AEAD<a href="#section-6.1.14-1.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.14-1.3">
+              <p id="section-6.1.14-1.3.1">Algorithm Usage Location(s): "alg"<a href="#section-6.1.14-1.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.14-1.4">
+              <p id="section-6.1.14-1.4.1">JOSE Implementation Requirements: Optional<a href="#section-6.1.14-1.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.14-1.5">
+              <p id="section-6.1.14-1.5.1">Change Controller: IETF<a href="#section-6.1.14-1.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.14-1.6">
+              <p id="section-6.1.14-1.6.1">Specification Document(s): (#algorithm-identifiers) of this document<a href="#section-6.1.14-1.6.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.14-1.7">
+              <p id="section-6.1.14-1.7.1">Algorithm Analysis Documents(s): <span>[<a href="#I-D.ietf-hpke-pq" class="cite xref">I-D.ietf-hpke-pq</a>]</span><a href="#section-6.1.14-1.7.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="hpke-15">
+<section id="section-6.1.15">
+          <h4 id="name-hpke-15">
+<a href="#section-6.1.15" class="section-number selfRef">6.1.15. </a><a href="#name-hpke-15" class="section-name selfRef">HPKE-15</a>
+          </h4>
+<ul class="normal">
+<li class="normal" id="section-6.1.15-1.1">
+              <p id="section-6.1.15-1.1.1">Algorithm Name: HPKE-15<a href="#section-6.1.15-1.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.15-1.2">
+              <p id="section-6.1.15-1.2.1">Algorithm Description: Integrated Encryption with HPKE using ML-KEM-768 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD<a href="#section-6.1.15-1.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.15-1.3">
+              <p id="section-6.1.15-1.3.1">Algorithm Usage Location(s): "alg"<a href="#section-6.1.15-1.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.15-1.4">
+              <p id="section-6.1.15-1.4.1">JOSE Implementation Requirements: Optional<a href="#section-6.1.15-1.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.15-1.5">
+              <p id="section-6.1.15-1.5.1">Change Controller: IETF<a href="#section-6.1.15-1.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.15-1.6">
+              <p id="section-6.1.15-1.6.1">Specification Document(s): (#algorithm-identifiers) of this document<a href="#section-6.1.15-1.6.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.15-1.7">
+              <p id="section-6.1.15-1.7.1">Algorithm Analysis Documents(s): <span>[<a href="#I-D.ietf-hpke-pq" class="cite xref">I-D.ietf-hpke-pq</a>]</span><a href="#section-6.1.15-1.7.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="hpke-15-ke">
+<section id="section-6.1.16">
+          <h4 id="name-hpke-15-ke">
+<a href="#section-6.1.16" class="section-number selfRef">6.1.16. </a><a href="#name-hpke-15-ke" class="section-name selfRef">HPKE-15-KE</a>
+          </h4>
+<ul class="normal">
+<li class="normal" id="section-6.1.16-1.1">
+              <p id="section-6.1.16-1.1.1">Algorithm Name: HPKE-15-KE<a href="#section-6.1.16-1.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.16-1.2">
+              <p id="section-6.1.16-1.2.1">Algorithm Description: Key Encryption with HPKE using ML-KEM-768 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD<a href="#section-6.1.16-1.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.16-1.3">
+              <p id="section-6.1.16-1.3.1">Algorithm Usage Location(s): "alg"<a href="#section-6.1.16-1.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.16-1.4">
+              <p id="section-6.1.16-1.4.1">JOSE Implementation Requirements: Optional<a href="#section-6.1.16-1.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.16-1.5">
+              <p id="section-6.1.16-1.5.1">Change Controller: IETF<a href="#section-6.1.16-1.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.16-1.6">
+              <p id="section-6.1.16-1.6.1">Specification Document(s): (#algorithm-identifiers) of this document<a href="#section-6.1.16-1.6.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.16-1.7">
+              <p id="section-6.1.16-1.7.1">Algorithm Analysis Documents(s): <span>[<a href="#I-D.ietf-hpke-pq" class="cite xref">I-D.ietf-hpke-pq</a>]</span><a href="#section-6.1.16-1.7.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="hpke-16">
+<section id="section-6.1.17">
+          <h4 id="name-hpke-16">
+<a href="#section-6.1.17" class="section-number selfRef">6.1.17. </a><a href="#name-hpke-16" class="section-name selfRef">HPKE-16</a>
+          </h4>
+<ul class="normal">
+<li class="normal" id="section-6.1.17-1.1">
+              <p id="section-6.1.17-1.1.1">Algorithm Name: HPKE-16<a href="#section-6.1.17-1.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.17-1.2">
+              <p id="section-6.1.17-1.2.1">Algorithm Description: Integrated Encryption with HPKE using ML-KEM-1024 KEM, SHAKE256 KDF, and AES-256-GCM AEAD<a href="#section-6.1.17-1.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.17-1.3">
+              <p id="section-6.1.17-1.3.1">Algorithm Usage Location(s): "alg"<a href="#section-6.1.17-1.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.17-1.4">
+              <p id="section-6.1.17-1.4.1">JOSE Implementation Requirements: Optional<a href="#section-6.1.17-1.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.17-1.5">
+              <p id="section-6.1.17-1.5.1">Change Controller: IETF<a href="#section-6.1.17-1.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.17-1.6">
+              <p id="section-6.1.17-1.6.1">Specification Document(s): (#algorithm-identifiers) of this document<a href="#section-6.1.17-1.6.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.17-1.7">
+              <p id="section-6.1.17-1.7.1">Algorithm Analysis Documents(s): <span>[<a href="#I-D.ietf-hpke-pq" class="cite xref">I-D.ietf-hpke-pq</a>]</span><a href="#section-6.1.17-1.7.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="hpke-16-ke">
+<section id="section-6.1.18">
+          <h4 id="name-hpke-16-ke">
+<a href="#section-6.1.18" class="section-number selfRef">6.1.18. </a><a href="#name-hpke-16-ke" class="section-name selfRef">HPKE-16-KE</a>
+          </h4>
+<ul class="normal">
+<li class="normal" id="section-6.1.18-1.1">
+              <p id="section-6.1.18-1.1.1">Algorithm Name: HPKE-16-KE<a href="#section-6.1.18-1.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.18-1.2">
+              <p id="section-6.1.18-1.2.1">Algorithm Description: Key Encryption with HPKE using ML-KEM-1024 KEM, SHAKE256 KDF, and AES-256-GCM AEAD<a href="#section-6.1.18-1.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.18-1.3">
+              <p id="section-6.1.18-1.3.1">Algorithm Usage Location(s): "alg"<a href="#section-6.1.18-1.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.18-1.4">
+              <p id="section-6.1.18-1.4.1">JOSE Implementation Requirements: Optional<a href="#section-6.1.18-1.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.18-1.5">
+              <p id="section-6.1.18-1.5.1">Change Controller: IETF<a href="#section-6.1.18-1.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.18-1.6">
+              <p id="section-6.1.18-1.6.1">Specification Document(s): (#algorithm-identifiers) of this document<a href="#section-6.1.18-1.6.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.18-1.7">
+              <p id="section-6.1.18-1.7.1">Algorithm Analysis Documents(s): <span>[<a href="#I-D.ietf-hpke-pq" class="cite xref">I-D.ietf-hpke-pq</a>]</span><a href="#section-6.1.18-1.7.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="hpke-17">
+<section id="section-6.1.19">
+          <h4 id="name-hpke-17">
+<a href="#section-6.1.19" class="section-number selfRef">6.1.19. </a><a href="#name-hpke-17" class="section-name selfRef">HPKE-17</a>
+          </h4>
+<ul class="normal">
+<li class="normal" id="section-6.1.19-1.1">
+              <p id="section-6.1.19-1.1.1">Algorithm Name: HPKE-17<a href="#section-6.1.19-1.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.19-1.2">
+              <p id="section-6.1.19-1.2.1">Algorithm Description: Integrated Encryption with HPKE using ML-KEM-1024 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD<a href="#section-6.1.19-1.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.19-1.3">
+              <p id="section-6.1.19-1.3.1">Algorithm Usage Location(s): "alg"<a href="#section-6.1.19-1.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.19-1.4">
+              <p id="section-6.1.19-1.4.1">JOSE Implementation Requirements: Optional<a href="#section-6.1.19-1.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.19-1.5">
+              <p id="section-6.1.19-1.5.1">Change Controller: IETF<a href="#section-6.1.19-1.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.19-1.6">
+              <p id="section-6.1.19-1.6.1">Specification Document(s): (#algorithm-identifiers) of this document<a href="#section-6.1.19-1.6.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.19-1.7">
+              <p id="section-6.1.19-1.7.1">Algorithm Analysis Documents(s): <span>[<a href="#I-D.ietf-hpke-pq" class="cite xref">I-D.ietf-hpke-pq</a>]</span><a href="#section-6.1.19-1.7.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="hpke-17-ke">
+<section id="section-6.1.20">
+          <h4 id="name-hpke-17-ke">
+<a href="#section-6.1.20" class="section-number selfRef">6.1.20. </a><a href="#name-hpke-17-ke" class="section-name selfRef">HPKE-17-KE</a>
+          </h4>
+<ul class="normal">
+<li class="normal" id="section-6.1.20-1.1">
+              <p id="section-6.1.20-1.1.1">Algorithm Name: HPKE-17-KE<a href="#section-6.1.20-1.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.20-1.2">
+              <p id="section-6.1.20-1.2.1">Algorithm Description: Key Encryption with HPKE using ML-KEM-1024 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD<a href="#section-6.1.20-1.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.20-1.3">
+              <p id="section-6.1.20-1.3.1">Algorithm Usage Location(s): "alg"<a href="#section-6.1.20-1.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.20-1.4">
+              <p id="section-6.1.20-1.4.1">JOSE Implementation Requirements: Optional<a href="#section-6.1.20-1.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.20-1.5">
+              <p id="section-6.1.20-1.5.1">Change Controller: IETF<a href="#section-6.1.20-1.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.20-1.6">
+              <p id="section-6.1.20-1.6.1">Specification Document(s): (#algorithm-identifiers) of this document<a href="#section-6.1.20-1.6.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.1.20-1.7">
+              <p id="section-6.1.20-1.7.1">Algorithm Analysis Documents(s): <span>[<a href="#I-D.ietf-hpke-pq" class="cite xref">I-D.ietf-hpke-pq</a>]</span><a href="#section-6.1.20-1.7.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </section>
