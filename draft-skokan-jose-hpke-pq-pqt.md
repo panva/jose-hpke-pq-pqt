@@ -30,6 +30,10 @@ author:
     fullname: Filip Skokan
     organization: Okta
     email: panva.ip@gmail.com
+ -
+    fullname: Brian Campbell
+    organization: Ping Identity
+    email: bcampbell@pingidentity.com
 
 normative:
   RFC7516:
