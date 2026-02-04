@@ -101,7 +101,9 @@ Table of Contents
        6.1.18. HPKE-16-KE
        6.1.19. HPKE-17
        6.1.20. HPKE-17-KE
-   7.  Normative References
+   7.  References
+     7.1.  Normative References
+     7.2.  Informative References
    Acknowledgments
    Authors' Addresses
 
@@ -610,7 +612,9 @@ Table of Contents
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
-7.  Normative References
+7.  References
+
+7.1.  Normative References
 
    [I-D.ietf-cose-dilithium]
               Prorock, M. and O. Steele, "ML-DSA for JOSE and COSE",
@@ -639,21 +643,15 @@ Table of Contents
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
 
-   [RFC7516]  Jones, M. and J. Hildebrand, "JSON Web Encryption (JWE)",
-              RFC 7516, DOI 10.17487/RFC7516, May 2015,
-              <https://www.rfc-editor.org/rfc/rfc7516>.
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
-   [RFC7517]  Jones, M., "JSON Web Key (JWK)", RFC 7517,
-              DOI 10.17487/RFC7517, May 2015,
-              <https://www.rfc-editor.org/rfc/rfc7517>.
+7.2.  Informative References
 
    [RFC7518]  Jones, M., "JSON Web Algorithms (JWA)", RFC 7518,
               DOI 10.17487/RFC7518, May 2015,
               <https://www.rfc-editor.org/rfc/rfc7518>.
-
-   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
-              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
 Acknowledgments
 
