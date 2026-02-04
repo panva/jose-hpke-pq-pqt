@@ -1272,8 +1272,8 @@ hybrid algorithm identifiers for use with JSON Object Signing and Encryption
       </h2>
 <p id="section-1-1"><span>[<a href="#I-D.ietf-jose-hpke-encrypt" class="cite xref">I-D.ietf-jose-hpke-encrypt</a>]</span> defines how to use Hybrid Public Key Encryption
 (HPKE) with JSON Web Encryption (JWE). That specification registers algorithm
-identifiers for traditional (non-post-quantum) KEMs based on elliptic curve
-Diffie-Hellman.<a href="#section-1-1" class="pilcrow">¶</a></p>
+identifiers for traditional (non-post-quantum) KEMs based on Elliptic-curve
+Diffie-Hellman (ECDH).<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">This document extends the set of registered algorithms to include Post-Quantum
 (PQ) and Post-Quantum/Traditional (PQ/T) hybrid KEMs, as defined in
 <span>[<a href="#I-D.ietf-hpke-pq" class="cite xref">I-D.ietf-hpke-pq</a>]</span>. These algorithms provide protection against attacks by
@@ -1410,8 +1410,6 @@ integrated encryption:<a href="#section-3.2-1" class="pilcrow">¶</a></p>
         </table>
 <p id="section-3.2-3">These algorithms provide pure post-quantum security using ML-KEM without a
 traditional algorithm component.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
-<p id="section-3.2-4">When using integrated encryption algorithms, the "enc" (encryption algorithm)
-Header Parameter <span class="bcp14">MUST NOT</span> be present, as specified in <span>[<a href="#I-D.ietf-jose-hpke-encrypt" class="cite xref">I-D.ietf-jose-hpke-encrypt</a>]</span>.<a href="#section-3.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="pqt-hybrid-key-encryption-algorithms">
@@ -1516,8 +1514,6 @@ encryption:<a href="#section-3.4-1" class="pilcrow">¶</a></p>
             </tr>
           </tbody>
         </table>
-<p id="section-3.4-3">Key encryption algorithms are used with the "enc" Header Parameter to specify
-the content encryption algorithm, as defined in <span>[<a href="#RFC7516" class="cite xref">RFC7516</a>]</span>.<a href="#section-3.4-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>

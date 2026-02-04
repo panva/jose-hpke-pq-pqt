@@ -109,7 +109,7 @@ Table of Contents
    [I-D.ietf-jose-hpke-encrypt] defines how to use Hybrid Public Key
    Encryption (HPKE) with JSON Web Encryption (JWE).  That specification
    registers algorithm identifiers for traditional (non-post-quantum)
-   KEMs based on elliptic curve Diffie-Hellman.
+   KEMs based on Elliptic-curve Diffie-Hellman (ECDH).
 
    This document extends the set of registered algorithms to include
    Post-Quantum (PQ) and Post-Quantum/Traditional (PQ/T) hybrid KEMs, as
@@ -194,10 +194,6 @@ Table of Contents
    These algorithms provide pure post-quantum security using ML-KEM
    without a traditional algorithm component.
 
-   When using integrated encryption algorithms, the "enc" (encryption
-   algorithm) Header Parameter MUST NOT be present, as specified in
-   [I-D.ietf-jose-hpke-encrypt].
-
 3.3.  PQ/T Hybrid Key Encryption Algorithms
 
    The following table lists the algorithm identifiers for PQ/T hybrid
@@ -249,9 +245,6 @@ Table of Contents
     +-------------+---------------------+----------+------------------+
 
                                   Table 4
-
-   Key encryption algorithms are used with the "enc" Header Parameter to
-   specify the content encryption algorithm, as defined in [RFC7516].
 
 4.  JSON Web Key Representation
 
