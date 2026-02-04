@@ -36,14 +36,12 @@ author:
     email: bcampbell@pingidentity.com
 
 normative:
-  RFC7516:
-  RFC7517:
-  RFC7518:
   I-D.ietf-jose-hpke-encrypt:
   I-D.ietf-hpke-pq:
   I-D.ietf-cose-dilithium:
 
 informative:
+  RFC7518:
 
 ...
 
