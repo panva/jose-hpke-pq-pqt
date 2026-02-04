@@ -168,7 +168,7 @@ Table of Contents
       |             | (0x0051)        | (0x0011) | (0x0003)         |
       +-------------+-----------------+----------+------------------+
 
-                                  Table 1
+           Table 1: PQ/T Hybrid Integrated Encryption Algorithms
 
    These algorithms provide hybrid post-quantum/traditional security by
    combining ML-KEM with a traditional elliptic curve algorithm,
@@ -195,7 +195,7 @@ Table of Contents
     |             | (0x0042)            | (0x0011) | (0x0003)         |
     +-------------+---------------------+----------+------------------+
 
-                                  Table 2
+             Table 2: Pure PQ Integrated Encryption Algorithms
 
    These algorithms provide pure post-quantum security using ML-KEM
    without a traditional algorithm component.
@@ -227,7 +227,7 @@ Table of Contents
       |             | (0x0051)        | (0x0011) | (0x0003)         |
       +-------------+-----------------+----------+------------------+
 
-                                  Table 3
+               Table 3: PQ/T Hybrid Key Encryption Algorithms
 
 3.4.  Pure PQ Key Encryption Algorithms
 
@@ -250,7 +250,7 @@ Table of Contents
     |             | (0x0042)            | (0x0011) | (0x0003)         |
     +-------------+---------------------+----------+------------------+
 
-                                  Table 4
+                 Table 4: Pure PQ Key Encryption Algorithms
 
 4.  JSON Web Key Representation
 
@@ -288,7 +288,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): Section 3 of this document
+   *  Specification Document(s): Table 1 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -305,7 +305,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): Section 3 of this document
+   *  Specification Document(s): Table 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -322,7 +322,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): Section 3 of this document
+   *  Specification Document(s): Table 1 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -339,7 +339,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): Section 3 of this document
+   *  Specification Document(s): Table 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -356,7 +356,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): Section 3 of this document
+   *  Specification Document(s): Table 1 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -373,7 +373,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): Section 3 of this document
+   *  Specification Document(s): Table 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -390,7 +390,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): Section 3 of this document
+   *  Specification Document(s): Table 1 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -407,7 +407,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): Section 3 of this document
+   *  Specification Document(s): Table 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -424,7 +424,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): Section 3 of this document
+   *  Specification Document(s): Table 1 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -441,7 +441,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): Section 3 of this document
+   *  Specification Document(s): Table 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -458,7 +458,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): Section 3 of this document
+   *  Specification Document(s): Table 1 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -475,7 +475,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): Section 3 of this document
+   *  Specification Document(s): Table 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -492,7 +492,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): Section 3 of this document
+   *  Specification Document(s): Table 2 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -509,7 +509,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): Section 3 of this document
+   *  Specification Document(s): Table 4 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -526,7 +526,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): Section 3 of this document
+   *  Specification Document(s): Table 2 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -543,7 +543,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): Section 3 of this document
+   *  Specification Document(s): Table 4 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -560,7 +560,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): Section 3 of this document
+   *  Specification Document(s): Table 2 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -577,7 +577,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): Section 3 of this document
+   *  Specification Document(s): Table 4 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -594,7 +594,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): Section 3 of this document
+   *  Specification Document(s): Table 2 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -611,7 +611,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): Section 3 of this document
+   *  Specification Document(s): Table 4 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
