@@ -98,6 +98,7 @@ Content Encryption Key:
 | HPKE-11     | MLKEM768-X25519 (`0x647a`)  | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
 | HPKE-12     | MLKEM1024-P384 (`0x0051`)   | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
 | HPKE-13     | MLKEM1024-P384 (`0x0051`)   | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
+{: #pqt-hybrid-integrated-table title="PQ/T Hybrid Integrated Encryption Algorithms" }
 
 These algorithms provide hybrid post-quantum/traditional security by combining
 ML-KEM with a traditional elliptic curve algorithm, ensuring protection against
@@ -114,6 +115,7 @@ integrated encryption:
 | HPKE-15     | ML-KEM-768 (`0x0041`)    | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
 | HPKE-16     | ML-KEM-1024 (`0x0042`)   | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
 | HPKE-17     | ML-KEM-1024 (`0x0042`)   | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
+{: #pure-pq-integrated-table title="Pure PQ Integrated Encryption Algorithms" }
 
 These algorithms provide pure post-quantum security using ML-KEM without a
 traditional algorithm component.
@@ -131,6 +133,7 @@ encryption, where HPKE encrypts the Content Encryption Key (CEK):
 | HPKE-11-KE  | MLKEM768-X25519 (`0x647a`)  | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
 | HPKE-12-KE  | MLKEM1024-P384 (`0x0051`)   | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
 | HPKE-13-KE  | MLKEM1024-P384 (`0x0051`)   | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
+{: #pqt-hybrid-key-encryption-table title="PQ/T Hybrid Key Encryption Algorithms" }
 
 ## Pure PQ Key Encryption Algorithms
 
@@ -143,6 +146,7 @@ encryption:
 | HPKE-15-KE  | ML-KEM-768 (`0x0041`)    | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
 | HPKE-16-KE  | ML-KEM-1024 (`0x0042`)   | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
 | HPKE-17-KE  | ML-KEM-1024 (`0x0042`)   | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
+{: #pure-pq-key-encryption-table title="Pure PQ Key Encryption Algorithms" }
 
 
 # JSON Web Key Representation
@@ -177,7 +181,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): {{algorithm-identifiers}} of this document
+- Specification Document(s): {{pqt-hybrid-integrated-table}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-8-KE
@@ -187,7 +191,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): {{algorithm-identifiers}} of this document
+- Specification Document(s): {{pqt-hybrid-key-encryption-table}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-9
@@ -197,7 +201,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): {{algorithm-identifiers}} of this document
+- Specification Document(s): {{pqt-hybrid-integrated-table}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-9-KE
@@ -207,7 +211,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): {{algorithm-identifiers}} of this document
+- Specification Document(s): {{pqt-hybrid-key-encryption-table}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-10
@@ -217,7 +221,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): {{algorithm-identifiers}} of this document
+- Specification Document(s): {{pqt-hybrid-integrated-table}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-10-KE
@@ -227,7 +231,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): {{algorithm-identifiers}} of this document
+- Specification Document(s): {{pqt-hybrid-key-encryption-table}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-11
@@ -237,7 +241,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): {{algorithm-identifiers}} of this document
+- Specification Document(s): {{pqt-hybrid-integrated-table}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-11-KE
@@ -247,7 +251,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): {{algorithm-identifiers}} of this document
+- Specification Document(s): {{pqt-hybrid-key-encryption-table}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-12
@@ -257,7 +261,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): {{algorithm-identifiers}} of this document
+- Specification Document(s): {{pqt-hybrid-integrated-table}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-12-KE
@@ -267,7 +271,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): {{algorithm-identifiers}} of this document
+- Specification Document(s): {{pqt-hybrid-key-encryption-table}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-13
@@ -277,7 +281,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): {{algorithm-identifiers}} of this document
+- Specification Document(s): {{pqt-hybrid-integrated-table}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-13-KE
@@ -287,7 +291,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): {{algorithm-identifiers}} of this document
+- Specification Document(s): {{pqt-hybrid-key-encryption-table}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-14
@@ -297,7 +301,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): {{algorithm-identifiers}} of this document
+- Specification Document(s): {{pure-pq-integrated-table}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-14-KE
@@ -307,7 +311,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): {{algorithm-identifiers}} of this document
+- Specification Document(s): {{pure-pq-key-encryption-table}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-15
@@ -317,7 +321,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): {{algorithm-identifiers}} of this document
+- Specification Document(s): {{pure-pq-integrated-table}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-15-KE
@@ -327,7 +331,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): {{algorithm-identifiers}} of this document
+- Specification Document(s): {{pure-pq-key-encryption-table}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-16
@@ -337,7 +341,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): {{algorithm-identifiers}} of this document
+- Specification Document(s): {{pure-pq-integrated-table}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-16-KE
@@ -347,7 +351,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): {{algorithm-identifiers}} of this document
+- Specification Document(s): {{pure-pq-key-encryption-table}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-17
@@ -357,7 +361,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): {{algorithm-identifiers}} of this document
+- Specification Document(s): {{pure-pq-integrated-table}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-17-KE
@@ -367,7 +371,7 @@ established by {{RFC7518}}:
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
-- Specification Document(s): {{algorithm-identifiers}} of this document
+- Specification Document(s): {{pure-pq-key-encryption-table}} of this document
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 
