@@ -282,8 +282,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): (#algorithm-identifiers) of this
-      document
+   *  Specification Document(s): Section 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -300,8 +299,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): (#algorithm-identifiers) of this
-      document
+   *  Specification Document(s): Section 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -318,8 +316,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): (#algorithm-identifiers) of this
-      document
+   *  Specification Document(s): Section 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -336,8 +333,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): (#algorithm-identifiers) of this
-      document
+   *  Specification Document(s): Section 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -354,8 +350,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): (#algorithm-identifiers) of this
-      document
+   *  Specification Document(s): Section 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -372,8 +367,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): (#algorithm-identifiers) of this
-      document
+   *  Specification Document(s): Section 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -390,8 +384,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): (#algorithm-identifiers) of this
-      document
+   *  Specification Document(s): Section 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -408,8 +401,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): (#algorithm-identifiers) of this
-      document
+   *  Specification Document(s): Section 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -426,8 +418,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): (#algorithm-identifiers) of this
-      document
+   *  Specification Document(s): Section 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -444,8 +435,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): (#algorithm-identifiers) of this
-      document
+   *  Specification Document(s): Section 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -462,8 +452,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): (#algorithm-identifiers) of this
-      document
+   *  Specification Document(s): Section 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -480,8 +469,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): (#algorithm-identifiers) of this
-      document
+   *  Specification Document(s): Section 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -498,8 +486,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): (#algorithm-identifiers) of this
-      document
+   *  Specification Document(s): Section 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -516,8 +503,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): (#algorithm-identifiers) of this
-      document
+   *  Specification Document(s): Section 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -534,8 +520,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): (#algorithm-identifiers) of this
-      document
+   *  Specification Document(s): Section 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -552,8 +537,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): (#algorithm-identifiers) of this
-      document
+   *  Specification Document(s): Section 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -570,8 +554,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): (#algorithm-identifiers) of this
-      document
+   *  Specification Document(s): Section 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -588,8 +571,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): (#algorithm-identifiers) of this
-      document
+   *  Specification Document(s): Section 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -606,8 +588,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): (#algorithm-identifiers) of this
-      document
+   *  Specification Document(s): Section 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
@@ -624,8 +605,7 @@ Table of Contents
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): (#algorithm-identifiers) of this
-      document
+   *  Specification Document(s): Section 3 of this document
 
    *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
 
