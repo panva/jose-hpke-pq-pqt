@@ -147,7 +147,7 @@ encryption:
 
 # JSON Web Key Representation
 
-Keys for the algorithms defined in this document use the "AKP" (Asymmetric
+Keys for the algorithms defined in this document use the "AKP" (Algorithm
 Key Pair) key type defined in {{I-D.ietf-cose-dilithium}}.
 
 For the algorithms in this document, the "pub" parameter contains the
