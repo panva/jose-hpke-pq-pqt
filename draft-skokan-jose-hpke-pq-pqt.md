@@ -47,8 +47,7 @@ informative:
 
 This document registers Post-Quantum (PQ) and Post-Quantum/Traditional (PQ/T)
 hybrid algorithm identifiers for use with JSON Object Signing and Encryption
-(JOSE) and JSON Web Encryption (JWE), building on the Hybrid Public Key
-Encryption (HPKE) framework defined in {{I-D.ietf-jose-hpke-encrypt}}.
+(JOSE), building on the Hybrid Public Key Encryption (HPKE) framework.
 
 
 --- middle
