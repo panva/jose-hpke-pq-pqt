@@ -1,0 +1,746 @@
+
+
+
+
+Javascript Object Signing and Encryption                       F. Skokan
+Internet-Draft                                                      Okta
+Intended status: Standards Track                             B. Campbell
+Expires: 11 August 2026                                    Ping Identity
+                                                         7 February 2026
+
+
+              JOSE HPKE PQ & PQ/T Algorithm Registrations
+                  draft-skokan-jose-hpke-pq-pqt-latest
+
+Abstract
+
+   This document registers Post-Quantum (PQ) and Post-Quantum/
+   Traditional (PQ/T) hybrid algorithm identifiers for use with JSON
+   Object Signing and Encryption (JOSE), building on the Hybrid Public
+   Key Encryption (HPKE) framework.
+
+About This Document
+
+   This note is to be removed before publishing as an RFC.
+
+   The latest revision of this draft can be found at
+   https://panva.github.io/jose-hpke-pq-pqt/draft-skokan-jose-hpke-pq-
+   pqt.html.  Status information for this document may be found at
+   https://datatracker.ietf.org/doc/draft-skokan-jose-hpke-pq-pqt/.
+
+   Discussion of this document takes place on the Javascript Object
+   Signing and Encryption Working Group mailing list
+   (mailto:jose@ietf.org), which is archived at
+   https://mailarchive.ietf.org/arch/browse/jose/.  Subscribe at
+   https://www.ietf.org/mailman/listinfo/jose/.
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/panva/jose-hpke-pq-pqt.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 11 August 2026.
+
+Copyright Notice
+
+   Copyright (c) 2026 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction
+   2.  Conventions and Definitions
+   3.  Algorithm Identifiers
+     3.1.  PQ/T Hybrid Integrated Encryption Algorithms
+     3.2.  Pure PQ Integrated Encryption Algorithms
+     3.3.  PQ/T Hybrid Key Encryption Algorithms
+     3.4.  Pure PQ Key Encryption Algorithms
+   4.  JSON Web Key Representation
+     4.1.  Examples
+   5.  Security Considerations
+   6.  IANA Considerations
+     6.1.  JSON Web Signature and Encryption Algorithms Registry
+       6.1.1.  HPKE-8
+       6.1.2.  HPKE-8-KE
+       6.1.3.  HPKE-9
+       6.1.4.  HPKE-9-KE
+       6.1.5.  HPKE-10
+       6.1.6.  HPKE-10-KE
+       6.1.7.  HPKE-11
+       6.1.8.  HPKE-11-KE
+       6.1.9.  HPKE-12
+       6.1.10. HPKE-12-KE
+       6.1.11. HPKE-13
+       6.1.12. HPKE-13-KE
+       6.1.13. HPKE-14
+       6.1.14. HPKE-14-KE
+       6.1.15. HPKE-15
+       6.1.16. HPKE-15-KE
+       6.1.17. HPKE-16
+       6.1.18. HPKE-16-KE
+       6.1.19. HPKE-17
+       6.1.20. HPKE-17-KE
+   7.  References
+     7.1.  Normative References
+     7.2.  Informative References
+   Acknowledgments
+   Document History
+   Authors' Addresses
+
+1.  Introduction
+
+   [I-D.ietf-jose-hpke-encrypt] defines how to use Hybrid Public Key
+   Encryption (HPKE) with JSON Web Encryption (JWE) using traditional
+   Key Encapsulation Mechanisms (KEM) based on Elliptic-curve Diffie-
+   Hellman (ECDH).
+
+   This document extends the set of registered HPKE algorithms to
+   include Post-Quantum (PQ) and Post-Quantum/Traditional (PQ/T) hybrid
+   KEMs, as defined in [I-D.ietf-hpke-pq].  These algorithms provide
+   protection against attacks by cryptographically relevant quantum
+   computers.
+
+   The term “PQ/T hybrid” is used here consistent with
+   [I-D.ietf-hpke-pq] to denote a combination of post-quantum and
+   traditional algorithms, and should not be confused with HPKE’s use of
+   “hybrid” to describe internal KEM composition.
+
+2.  Conventions and Definitions
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in
+   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+3.  Algorithm Identifiers
+
+   This section defines the algorithm identifiers for PQ and PQ/T HPKE-
+   based encryption in JOSE.  Each algorithm is defined by a combination
+   of an HPKE KEM, a Key Derivation Function (KDF), and an Authenticated
+   Encryption with Associated Data (AEAD) algorithm.
+
+   All algorithms defined in this section follow the same operational
+   model as those in [I-D.ietf-jose-hpke-encrypt], supporting both
+   integrated encryption as defined in Section 5 of
+   [I-D.ietf-jose-hpke-encrypt] and key encryption as defined in
+   Section 6 of [I-D.ietf-jose-hpke-encrypt].
+
+3.1.  PQ/T Hybrid Integrated Encryption Algorithms
+
+   The following table lists the algorithm identifiers for PQ/T hybrid
+   integrated encryption, where HPKE directly encrypts the plaintext
+   without a separate Content Encryption Key:
+
+      +=============+=================+==========+==================+
+      | "alg" value | HPKE KEM        | HPKE KDF | HPKE AEAD        |
+      +=============+=================+==========+==================+
+      | HPKE-8      | MLKEM768-P256   | SHAKE256 | AES-256-GCM      |
+      |             | (0x0050)        | (0x0011) | (0x0002)         |
+      +-------------+-----------------+----------+------------------+
+      | HPKE-9      | MLKEM768-P256   | SHAKE256 | ChaCha20Poly1305 |
+      |             | (0x0050)        | (0x0011) | (0x0003)         |
+      +-------------+-----------------+----------+------------------+
+      | HPKE-10     | MLKEM768-X25519 | SHAKE256 | AES-256-GCM      |
+      |             | (0x647a)        | (0x0011) | (0x0002)         |
+      +-------------+-----------------+----------+------------------+
+      | HPKE-11     | MLKEM768-X25519 | SHAKE256 | ChaCha20Poly1305 |
+      |             | (0x647a)        | (0x0011) | (0x0003)         |
+      +-------------+-----------------+----------+------------------+
+      | HPKE-12     | MLKEM1024-P384  | SHAKE256 | AES-256-GCM      |
+      |             | (0x0051)        | (0x0011) | (0x0002)         |
+      +-------------+-----------------+----------+------------------+
+      | HPKE-13     | MLKEM1024-P384  | SHAKE256 | ChaCha20Poly1305 |
+      |             | (0x0051)        | (0x0011) | (0x0003)         |
+      +-------------+-----------------+----------+------------------+
+
+           Table 1: PQ/T Hybrid Integrated Encryption Algorithms
+
+   These algorithms combine ML-KEM with a traditional elliptic curve
+   algorithm in a PQ/T hybrid KEM construction, with the goal that
+   compromise of either the post-quantum or the traditional component
+   alone does not undermine the security of the resulting encryption.
+
+3.2.  Pure PQ Integrated Encryption Algorithms
+
+   The following table lists the algorithm identifiers for pure post-
+   quantum integrated encryption:
+
+    +=============+=====================+==========+==================+
+    | "alg" value | HPKE KEM            | HPKE KDF | HPKE AEAD        |
+    +=============+=====================+==========+==================+
+    | HPKE-14     | ML-KEM-768 (0x0041) | SHAKE256 | AES-256-GCM      |
+    |             |                     | (0x0011) | (0x0002)         |
+    +-------------+---------------------+----------+------------------+
+    | HPKE-15     | ML-KEM-768 (0x0041) | SHAKE256 | ChaCha20Poly1305 |
+    |             |                     | (0x0011) | (0x0003)         |
+    +-------------+---------------------+----------+------------------+
+    | HPKE-16     | ML-KEM-1024         | SHAKE256 | AES-256-GCM      |
+    |             | (0x0042)            | (0x0011) | (0x0002)         |
+    +-------------+---------------------+----------+------------------+
+    | HPKE-17     | ML-KEM-1024         | SHAKE256 | ChaCha20Poly1305 |
+    |             | (0x0042)            | (0x0011) | (0x0003)         |
+    +-------------+---------------------+----------+------------------+
+
+             Table 2: Pure PQ Integrated Encryption Algorithms
+
+   These algorithms provide pure post-quantum security using ML-KEM
+   without a traditional algorithm component.
+
+3.3.  PQ/T Hybrid Key Encryption Algorithms
+
+   The following table lists the algorithm identifiers for PQ/T hybrid
+   key encryption, where HPKE encrypts the Content Encryption Key:
+
+      +=============+=================+==========+==================+
+      | "alg" value | HPKE KEM        | HPKE KDF | HPKE AEAD        |
+      +=============+=================+==========+==================+
+      | HPKE-8-KE   | MLKEM768-P256   | SHAKE256 | AES-256-GCM      |
+      |             | (0x0050)        | (0x0011) | (0x0002)         |
+      +-------------+-----------------+----------+------------------+
+      | HPKE-9-KE   | MLKEM768-P256   | SHAKE256 | ChaCha20Poly1305 |
+      |             | (0x0050)        | (0x0011) | (0x0003)         |
+      +-------------+-----------------+----------+------------------+
+      | HPKE-10-KE  | MLKEM768-X25519 | SHAKE256 | AES-256-GCM      |
+      |             | (0x647a)        | (0x0011) | (0x0002)         |
+      +-------------+-----------------+----------+------------------+
+      | HPKE-11-KE  | MLKEM768-X25519 | SHAKE256 | ChaCha20Poly1305 |
+      |             | (0x647a)        | (0x0011) | (0x0003)         |
+      +-------------+-----------------+----------+------------------+
+      | HPKE-12-KE  | MLKEM1024-P384  | SHAKE256 | AES-256-GCM      |
+      |             | (0x0051)        | (0x0011) | (0x0002)         |
+      +-------------+-----------------+----------+------------------+
+      | HPKE-13-KE  | MLKEM1024-P384  | SHAKE256 | ChaCha20Poly1305 |
+      |             | (0x0051)        | (0x0011) | (0x0003)         |
+      +-------------+-----------------+----------+------------------+
+
+               Table 3: PQ/T Hybrid Key Encryption Algorithms
+
+3.4.  Pure PQ Key Encryption Algorithms
+
+   The following table lists the algorithm identifiers for pure post-
+   quantum key encryption:
+
+    +=============+=====================+==========+==================+
+    | "alg" value | HPKE KEM            | HPKE KDF | HPKE AEAD        |
+    +=============+=====================+==========+==================+
+    | HPKE-14-KE  | ML-KEM-768 (0x0041) | SHAKE256 | AES-256-GCM      |
+    |             |                     | (0x0011) | (0x0002)         |
+    +-------------+---------------------+----------+------------------+
+    | HPKE-15-KE  | ML-KEM-768 (0x0041) | SHAKE256 | ChaCha20Poly1305 |
+    |             |                     | (0x0011) | (0x0003)         |
+    +-------------+---------------------+----------+------------------+
+    | HPKE-16-KE  | ML-KEM-1024         | SHAKE256 | AES-256-GCM      |
+    |             | (0x0042)            | (0x0011) | (0x0002)         |
+    +-------------+---------------------+----------+------------------+
+    | HPKE-17-KE  | ML-KEM-1024         | SHAKE256 | ChaCha20Poly1305 |
+    |             | (0x0042)            | (0x0011) | (0x0003)         |
+    +-------------+---------------------+----------+------------------+
+
+                 Table 4: Pure PQ Key Encryption Algorithms
+
+4.  JSON Web Key Representation
+
+   Keys for the algorithms defined in this document use the "AKP"
+   (Algorithm Key Pair) key type defined in [I-D.ietf-cose-dilithium].
+
+   For the algorithms in this document, the "pub" parameter contains the
+   base64url encoding of HPKE's SerializePublicKey() output for the
+   corresponding KEM, and the "priv" parameter contains the base64url
+   encoding of HPKE's SerializePrivateKey() output.
+
+4.1.  Examples
+
+   The following are example JWK representations for each of the KEMs
+   used by the algorithms defined in this document.
+
+   {
+     "kty": "AKP",
+     "alg": "HPKE-8",
+     "kid": "DmOWQi-VwrjZWjO6mQQWdv3CJ_v9k_PH3vS7S0xoah8",
+     "pub": "6XRnIatC1KtI7DZlj8ISDxZvtsFeBOPKQETMRRYb45dR0kw6TDSb8UMXHHWhUBdbEBof5gvIJacZG4exGku4JsysQcc9AVR6Ydih7kaPNQgCiiKw9QACNCMWx2p171RVCpGSFoOwaejNGZeNJKS4jqulOWFQHGtbWhl64HZzlkZMxhqdA-EecEOLhzCkbCMMtXxb-cxUVkOxQpKkO5ofmEaKH7tjyNZyVsxqgUZFn6K8jOq9g6GCOEG4awGB6AZC72yNXLDBnVCy_7OMn2bAeos8AvhHkbsL0hsFFjsnWcG_IYvNPzUAcyGZlpsqjXJIh4AUxTi6iFeJFOE08nNM3KQEYlxkMAulVas2E4KU_TGeoEJeZjA5TPWVAQiPFFQ4nNRh1kotf4OHtHQVpaMzAypItIXAU8LI_gl4rdFKTfYu18MKnygjEnO9Z7e2cYwj_hqx-AQdA6ulQBcNR4DFSCOTLnMB22GMXGVOMDCmiaxZvchp9iEKNJG4TkZQmoKwR9pbEbahmsm1WvUbR6kEqNYOE0MMsRWNM3RBNltm0Iqo8RKMlpRq5RceWRRdjRkKdChyhuJ2ebBI05iRsuE6AwWEbCV6dQqNZ0gqdeU5imECjFWLNqYvs0BaxDgmoSdg4rFlq3UrZ3gLD4UTT4kM97HO5iedxoox__octTEEImMTf8uJI2M0nKTIpbWBHlofTfulcqVXjFYpr9GvuKM_mElaoJwn3MQYrFNLcwY-fzy9fqvGFtF-62fHcpcL7SVUu9KW7igiAHQfwXmCnMQzsxwLowVk8mFjDYgV2iIoNIeuwZdc8-I0A1CLiqOQNwCLObgSMVeo-WUvzmocsFOUtSUS1chNNwpjMCGKuHxOYOcvKLxH7mvPp6czIovPsqQUZdloA5Wqt8U1sDRZfrhRlUi4IVoTmevBpaEYK_Jze3cIMOkRKdO5Y1tB4TIcAHE8oNUarUEYx1YDUinIolRBBDyBAmR7rbV4iGenGHwgeTIZ0cpppFEDbkAX4AaG4YKGdGWrgWhhiDoPX2mda_BLOSilnlhmM2BhqGZBkKK2E1B5fgER-_AMYeVl9HEoKCFHm6KApgnLVnYMQjEv7kC6tsqxs-pOcnSs2EpGKMMk4gdIlcFNxsVU6sXINHADvNmtNyQgjRFKhmNPtYchXHWz_tgccWNkm1DD6qMATOoZcscAu8BBpKUwUIkIUICwKpay5KUsFjKpC9HPqSONVMVu7GYysVC8UDTMetWoXlSiDetoiolwFGGpIscf1ic_rUhbD3pyxVI8DqCsdFg2NcSvIJRoJBO12KHKRIYnc8ObgCzJBULNZ1Rmc5tCbmcW_mmhg0OiA7EJjwi_eoY82_g0eiyAr0K4DmBy8yqWDZV45KfAnYQBQZvK8zlj0npGqVWusxzP1mw_Dbhnp-Z6SyIrHNI9unG7DbeDhcnBD2QBp2t6cNgvUoCLzPReQPYy_bwVEwcrPSO4SjUG8mhuybiU5NWdgIRD95gD1ApNRoZeJIhfP7yM1vt1ZCxfV0xEvUSb25DOebimyplEvv7nxam2hbnlRQme00B5wPt9pETxPSQE4ZUd6u60U9e6F3C-Fqjwfg_xYMk3oOcZQ-P5NrsNxK3ho7xmtpSKVahpf_2P_o2Vz8YFc7t2S7jAx9bRLQQpbA",
+     "priv": "c1il1CJwUdajeAm8PMZMq4mw2PH9Z2vThLkHU2MQ10A"
+   }
+
+         Figure 1: Example HPKE-8 Private JWK (uses MLKEM768-P256)
+
+   {
+     "kty": "AKP",
+     "alg": "HPKE-11",
+     "kid": "oATA96dt4yMW31bur8UcRzxVBNV0Y0x30-NZ8x6dW3A",
+     "pub": "rtOlgemxnEE1spKpxRZjEawan7uQlgA4JPQKxViqjZE_ITiUd_cA3PQJRmVLGefIIODEIZqgoHhX2qLIRDhY2oIMcQFsDsuzX2G18BcGIYNiUGU9YzoEsEat-KDELTJTirkaA8ODJnlPeJda7oBB08lC4pu6OYDLzQcCt7iYdTCFPbrHH-wIDYIMzfM0bzlINJUTmKAXk6aNCTNAUggxgkaTRSNU5qUlXzYdjeTGeKoSayMUiXK2Y9ewM3qV3pvBbmkVPqR_uahgtkk-81QbnOEho1mZVVGDkHdn6bMWiYBYQfQVvmRxhifD17TNMlLKYHROUudxoaZt_aMBBzc-dSV6KtcE1ykdknmd6hMA1qFGq2kO5dk11ChLHQt0LCGDa7kVodnMy1HCbIMj-IF3d5tEw0Uwh2Y2lUSODKO_S4aJjAGcolp1RPGftKhh73OqpwpptcYpeeaDPUxbJHYW3yaygfpjjKgpQiog6OzGcfDIyAKkefFRiQQfdBMEercKFqgnjpN03zePQlYEjtpcNyhtg4mkcDUQfKJ5FqGbenY6DwHF3LyT3kTG-NljCamDcrQPA0ldXJPPTYwLPZlyzPtQRTPBhrhC-7se90g38tOXP-N9Sbax8fWtP-ykQQbBQQk9Pled82hrRWyg5gXBnSc__OIDSbEUIMMFhqy-UrqnrkMzXxq5vwgp7RQBWTQKrwGZjICbOMiPiDlQ4GTD8BUqmRgUW0mXeaiRtMoeIzzHwpQpDLEMsCddfskNIpV4deJqcfi_8CVRY1LBrZyXvVypmsSx_nSJb8k8S9WrBafG-DAZtAO8UAMmBnvOw6eaf7RuqVypexAkvsYW3bpFcAjLGaqqVuQPChSBRUQot-WxmBdET0kkTOUCLMpeK9nEi3Zi_jqG44lR9Hm7ZmfColYHhLguMKduKut03Th6TuhssuotLVmO-si2arOWWzRgB-tcAhcfRWDIgCcOHEmQfKAYw2RRTcS84zvHoGBdCSA2ILzGAHBESQAcvoc0SWvIons9yLSvaZZrpudSHDoV5XDMbNtCIcx4OsxIc_vEYSCFDPxLlcK5MNWzaGV4_Opgn5a89LcTyLgSukxsSaFxsvmhLnDI-axYvTezhzatjfmhYwg2VcVNOyQymau1GXXAnneS-9uwGEWXEEgA4JLI8zqVESOajMJQNtqhdYAPVfOKn1lJKPpz73abLNlU-JI6NxGSsapQiMfLbpIEHKhP7Pc1hzg4nnwmZ2xgnYwWUski4lCqeWKRiRSYEqqL1-SMDMHKJRs04kWZ_HVBbPkXLAzOajAXksFbBCt9NLwkhfRNnbVzQAe5CBAfUNUYyFuxWyw8IGZkvnIHngyKgVGztQVOkHGPnhWA1kgn4QFdyKuHPNNwEnh4EpNQBLXBe1Bmq6MwPOJ7U9SrwnuDRtGCU0u2WuyIBZq-kPNE6Rpe44ZEKuWflFoMqBIFZspuJRvOKJteINN2NCk3zKKTamYpmNqI8FxdXHF3Kix-pNdn4MyWy6CXBStwXUiMKiF2rLBvCh1N2kgtbkZSh1SM3Lf7EwK5vBHKgtzFMncy0jTUHWKLpyYut0fp1cyud8VefH6I4YWjqUg-IPY-XTna20PnMQ",
+     "priv": "fhCGTZ2DqLNXWjKdD8z7uSd28DZfYszfPpv4ndr44oc"
+   }
+
+        Figure 2: Example HPKE-11 Private JWK (uses MLKEM768-X25519)
+
+   {
+     "kty": "AKP",
+     "alg": "HPKE-13",
+     "kid": "4xifOIawsHO0-c6lM_fIgh0hmcKUGV0ohj0aw8BQrA4",
+     "pub": "XCYFhAuieqBanCe6DZR7Rbdl2kST_-vGeTIobXcQuFAwaHiqlFuwf_BS2CAbcfe_j2pZO2JMNnaCpHU618FiPlu6jRsmYUy4m7aIB_xblaShNpuzO4eL16ZSh5KtILqNB9AbAVAuLOtigWGbQ7UeBuG8idyjXROjWpgHXrplOqmCyqQInfuMHESRsGU7_wN5pFRA8LpA01dPTjJffQGwnvND6VZfN1MuVMc1-cA2c8KYoaSDFtWhitVAestW-CGIL1G2xBKT1SK0CltxTRRR_UgrpUcvm3c0W6U4Y9QTRIZbncdhD3kdiYXNwwEXEstlvdYuSjcnwlIEhZFsLNCuH_G-a1aBmfyeUoHCKlYxHxsmf7sJvXYLyQEfzhfLA8lyqZWEXRNOshTNMrC7NimiHNIK-zF9vyqFTsE8Q4a0HKIjTvdMNXaoKgpqxgUDqTQk3HUS7oIYJOVN0qSeXqeaZnweAfy972CSOfVkTEk2BZQxzBFJRDGabMIuztggAbElcLEZVbMue_OvdOCj18w3BYI-PHs4zUU3R6NK21jGiJGIWYNyxui36KOqcvceGiG3X9V_zfUIrUtvdEsQ2_JKQvZcw8Rtw2JTnVQPKhpFsDZkzwhkaHOgdWnJPqSA8CmK0ZJnkXyS2CWYBiy9LQm018sn6hm5rLslIos4SHudeZBnOpdwkteQghFkx2Ic59Zmggw1mvJyYCyDUCMXYRVkXZGPrIe-CcAiUPQV_nmJjLwBwOdfh1rPF2KOsrcid3Zv06IuvJS5R8Oj37QfAKq_LtUjOTebm6Vr21VRzsJ0B3gN2wwei1MjM8VIS0yKMwtW1qg0vaoswSKpHvtYeqQt80CGK9yYx1R5X7Nih3sGQABMo_Gd_qu4m6XOI1QZUWmRQ7RcjzMDFvQVx-hxrtfFRRgqg3pyybnJkjlGhjyeChFGtBk15wskdGRu5Aql0WYnEcRhdsJnMcugA5nDGkSOEDQh8hmjCrqWLySwuzjBBlMNrfELTQSg3ZKMMDDBCfkKIBJzKNqOSch9FIoAubQBFqgthzpbLYafp9Y4IOvObpS-WkkyaVKy4YW4zuk49aQkkbeW4ZMlwCuhhHOga9VriKs1BWIfk0ukrECDWGWisstZTdW50LlTUlZZcvKgjfRTeUmuptsQWBtTDKaP3tFzq2wNjAQJpkuKcamIbLeKfXKCyvNrDgggfQggBNFCUgYXeIjL6KUbDbIIE3qtHZB_JwNMCogKzxi7rwsXZ-wQZGG7iNweL1rORhK8UUrFJ5uXKowHZNpwI6prZknPHOmEuJO0lXOnoDs5SKxzJHQ1kPCExymAClBeO6KPlTK0x8AWXos4wWeL3JoJjvNbhAMuzip9GTofQAfIGQIENfZ7D2WYAOa4tLwFHeAn1mTLRgVcD5QRGJdU-epS2gGhvdwcbhc5LjtXXVdWeWR6YuSw7ZGdwdSLHitYGLkJwMhZNCt4muDH94rLfnhYoXPOFzyrYeKRjdFCIhAj1aZsxTBYEpqTv8jDQcFdNTNGiazOB4c2G4G7IbdK92mYdrtwMGpW3YmPLYJKNhoIVhPKrQN0BYjJUPkDJlVPKZo9cWPAhVOCXbu8QkF85LkcR-wIfuClBzlWVWK8MBsB-DaBJkQgaNVQ2UqtQhw31rB41JMMZYQQUsyCl7lhVYu5eSd_x4qTEjl7TCu6xGkqXlAPZWUO8XeeuThSR4MqwFwqhYuQ35GPSVaI3bhvlfE1U_c7kmANl4ywPdUQVUOmOHt4abikK1GOKLurRHoZpRLCzsDJifRt5jJkBUiTpxkX7iY6-HV7J1DB2qCe5buiq1BixnqRFwmOx8ch1XZbmrZZc6iOP3GVqfW5jAxHCNrC-LYDfGg774uBzsIfyHdv8rUFmpQExcRYiQgnIdxsFAdkbkeucYKo2tgXyppUjYhe7ByjOmDOStyOVWPL_0cV9dRHSnhLRNJixaefp-AuyKBHzvmEvmNb5DeW39pIFTID6VpwQDBrFPyalvJXkhiQ1xkyfGEHXkNFAdpEbTNT0GC_K7BpYZWisXF-CPBYUNti0acN-izfVBRxV7TVEOCly9H9rzUWBn0EL_Alcz4-0u16W3ufnpD1NNsYaGu5ZyGCabEGaoAgPS8izvrwqFC-2kcS05W7Am6Rx4uMxZTjx3j2QG6KLkkw3SSbaOsfVABOlArIplM1Jv7ajoAFSPCKfhOKtOmSYljF",
+     "priv": "P8toumlkmiSZKU6UB6tJC0jx1pEqf2kpiawqW6x4Zsw"
+   }
+
+        Figure 3: Example HPKE-13 Private JWK (uses MLKEM1024-P384)
+
+   {
+     "kty": "AKP",
+     "alg": "HPKE-14",
+     "kid": "tTd2rviNEWmlDSv55i7bpOBkYgi5nYuGG44ptRhV51A",
+     "pub": "NPoE7SUAWwcVJbAWGEAUiZUcIrAIN1UJIoR-ZjZSAvIUxKJcyhMFoeliHppZ1ncZuqqmSTCNmCM7j5XCvRRUZgqYgHgmHuCJOdMK3raAbPF_g2kkj-iRqtQJ5poXC4bIpYd7ruJcHyyf8rEytrTGOKejA7xw_9IN8VtW27ah89F-3fUGm3xidSJTgrgGHcHKPhewgnNkNprFpzqwwpUz1jlnz-mPGwAkMBlM-xiIeUlX6hqKR0xeTDGUbyt53iMUdbqi0EaRdHC63GSruEwE8NYjr-Wy1-NXPEYSU7qlLjGNeSRSxZInTarM0ulwnFTFzii7kkmygCkGDgIaeufJ7hGVvwSI_hcE5pyBMcaTDiSyH-ExcCQC3RpXsTGbvEm8uSRqCfkiucLKgKPMbmpkcRR_bqESteo-JoYrNtLDLbtifGDKnit823vKEDRpbDMpQzlNThOO-vlNh-hHIHNjCUocRqBp6HwLRTQBpkIv0ka4djEU3HVDNkEZfNAkcJK3lDQDgGdWzltRb8gBZjBrWLB4zdCxXGSjwaGwRJcHfmVTBZtCx5GAlDjBiYxhmqdS20ZnXDMTRbyh3kPFxcpNa1Ch9uBkAsLORtY2rVIdztxsmkOQ2pg6lJBM5ugPRaRCeZmUhfFFQhB9dQVQNno2R1skBHh8InJe7PNBhKu1P5Uom-p5Hll3PgVWsus4QbfG5fsykOWC1QByTCgcvewJftuc-XUtq3dBcVCNrsaOMACE60Ci55WxFtlHHpJ7qvvJMfeYkeyfGaCweFFMFOc9BbeRVaKGItC73QLPM-Fsuylr90BcXGKTMHNyIHIuSEFChzOzb4AefYuz1VZeWXwhuETOkFkPlFkVOdueGJZLvUhu9BC2bDgcETosxYlX77dbxiGjSilEI6TI-NiG5IxznwoctbxIv2kp7pUu-WdMJEiYJSCCO8io4XpqKQI6S5Zh48drHQG7NjcGhgAyGuUNWKUS9qauz_iyYihl1AAel4DL-keymseFwPk8NAuwORtPhiR671RWYNoUJvWG5pwhJBczvVCx2mgrLjZAFhaGgPJcdRY_Ymy-aQmVlWFgpkjOuaZCjKtInfJn79AMUKoLaFwj9LEaf_RYyCtlslnH1Ym2_0aIpqmGeFu4e3O4M4Yi-HAOK0kQmgUx2BS7xpfPmksEMiZ47CZMBqRqJGHK1vWlVAKbjRE3m4o0qSe2LlAUQPJvPwt3ktjA1VsyGtpROSw0-CcGUtEiHQMrOXQhIaUFebVWVnOVMnNeISpQj4gtDEkXTbUBdUqJSBZsJ3upmNqxckie-OC2c0GiflFOJjbD-rw7ORlqyaZPYqKyKUo2uEhlJYc2StwnG9J7FiJq_jLA-ROc-QLIirdxDGNxvKA8FddTCnqtxyR_y1ac9CQXL4mazTNWFLGjcmiXm1S1BSg9eYzJe_tC3FJlijSV1vpCEEljF6u8pMaRhIhGuCSPC3ifEZMzl8a8E9CkdjOug-hTWkdJzjE_vZkkBGce8vJSVelkY_mTVnO4kBqYyRmqo56COq_xTDAOFj12mqzWYsB0FfV1aXwEIThj4GHHhD8",
+     "priv": "N_Ad_9j_QIuhusOi_mWxWKvtFWt_Wvw8f5pL7LOW6hepmK0yxo8tk72JwqMJNfKM5-xzI3CjEM_ZdotrjtKHlw"
+   }
+
+          Figure 4: Example HPKE-14 Private JWK (uses ML-KEM-768)
+
+   {
+     "kty": "AKP",
+     "alg": "HPKE-17",
+     "kid": "QWZdkjasH-qrIlYW1fIk0iqfSMJQBhY4-FbbeIMVErY",
+     "pub": "LTEwJhh9rvh6Qal4SbKkTHws7-RJvpEc8hBzO4BYl2KgEHCEd1LC62EvAAIMhQnJSil24tEh0IMD-JeyDiZ3ugUZ8dmM7Sc-zDc-StiEEiDBdLwNa3JUPjETBvkMcXk9rTjM-Xanl4QdY4oaHzPMv1c7g5eojHiXmWqj4MS-N1Sus7dmVkIsS2TIMsxIpiZWMAOzSmULK1FB6IRplXEyrKBKCshj-yBz45Ku7cwkQXnIZ2NHnjdh7jJfNdqhKgp8GcMej9s0y8MWCWt7phUIZKO3jZh1mvQ1GEqGRgBkQRINISxmlqA2UlyQZkE2w8dxCzzO7Sp3W4dvP5kpCPpDn4V6GphogiPMwogzfESSAGKjWsEIn7I6ECm39cAlMch1ccFB5-XF1ajFnYGVdOeopeUsW6J1yPhkuycXUZlExadrfcyM5Dg3xeKgmuy0w1yiuqXIRauaZ0oiSNoxQ7UfeRWY_aK4ujm2dDG1W5ce81qKZfyqD8HB4LqLUTebMQCCMkZyCgRRK-Mc7FmaRqFx01SIYwg4cvevjzeU2FyvfCqVGHy2lbRzFjdGDet0s-NgAgcsdfI8CUV4XZixA3B-xFaTBHq8OKpaNuFEsyu6fhQUfXxY7Peu4YxPsxKdQwqTJkVn0vYZGTABGyQ-uyWH3qKIqXkPLhMNBHs9DPESRDAcNcNbNgXK7HIFt7mvVzIB-1BGhPRiJDKosalBmRVoVUEq7JQ6AsQRmnRbgHouI_WTIyR8cCaqJWdpjvEOZghynYYL37ohT1cZlnFaRop_GppK-1k0gGqF7vJ_niKy8hhud5WA1LcjzXVE6vCWfunKv8IxjyUWzLsWBqaPmSaeEWUlWvcbJlZTjekMiDwtmqQdgoI33vwslieT__EhbDeEBERTGfJqO2ZP7luPQDTOVegmTVnAWpwWUOGY8VVdbGqADye-Ubt5oaWse3tThpXPXKeOpDNEvHzLy7KF0iIlNEQjYQrN_cQb0tKOMdWeVHqkmqsqNah9lfJXonQSqkerSgV2u0B639yew7gJ4-h2ZFg9WDcTO6Kx46GaA9Mr0MtuUawqqOLBiaW724qTKZiuJTUzkBZ7NKcgdbRy_SwEbbFvA6tbg7KNtaJIJUBZnLySnfSbB6R5lAdTLSlBx_HKUAE6Tcim6_tUJEmGNOyHOfTMFqHCUOoop1Zl7dlbkGVGdLY2eckVqBO6a_k9Scqa3IAQkNBYRlgsBKSKjWSkitF72FadR2wsnZIpbMqY-OWutZgKg7RrfTaMGioYrEuEcRRiCXEHhUBTpaQsWtISmnWF_sZkMkOkKTK_L9MUSmWqnxo5yLt5nWshAQWuVsU7QcIFP6oNnok5ObUL1AithOTFk1mBIKBgMelk58ptXydifTkgTfyeKFl7ffcpf7EpAbgl7gMVPVKAH6iFZNgs5OyDSyUJ-IUjgQSVPxpNr9S82WOAonh8UlBVGtiNUKca3Zx9SbpvDppsTQVdPhox5CUcv0hjF9mqr7qV6AUODCJpmGWJ4QpexiOOyZZ8MRetOSOdpVxviDotR7cTC4W8osYHvEbDo1V-axClLFaA8IBJK7N73tVcj8yoPBCuTGo-6-bAxLgZpRpOhNqDiAeUKoy-8FuCLdd8C8B9Fct-u7A6GbgWw9RwpqFES2BnqQzA-AtYBuF9HChrdOCHs6EmbwE0F0dGmQHGI4aVv4OPBJNjF3EO5LQ8UbQTj-Rt3fEhZ2MlMRVUxvQ_tDfNIwmtXPzIbhI4Q9QX0JVL46YN8pmV7Fw-ChdgEjxFywrB7JpzavacoLEHvtejHlFKLXnGtdLM7yrOBPHECBujbqdvIHfJNauyz2NVvoG7w7nEIZseKrEdPbanEMsGr7QA3mcPDxlMyORSSpsvP4QgUGWuy-JwrISjjyMHuLJJrXTI42fG-6uIQSAugHWOJmMQaXpNPWZDa7RtIThcigaWLhnO9NeX-iYEceKTGnlULLO8nLelaGeTnthdbcw6JhtpteLDMfZFEPs_-6p4NKY8BGi7k8ICggtrk9ywo-qo2jPLSHFtkJdYuqHz5Gdm3331wMfI-spQk4JNFy1der3YZkwP8TU",
+     "priv": "I1v-IPJPcDMw2xO4rcknLwMM89dk7Yto68XITmRf7YCQ5R99pM_cm0NLKf_zSzrd55rQEKk5KED1Mv3NBtxkJw"
+   }
+
+          Figure 5: Example HPKE-17 Private JWK (uses ML-KEM-1024)
+
+5.  Security Considerations
+
+   The security considerations of [I-D.ietf-jose-hpke-encrypt] and
+   [I-D.ietf-hpke-pq] apply to this document.
+
+6.  IANA Considerations
+
+6.1.  JSON Web Signature and Encryption Algorithms Registry
+
+   This document requests registration of the following values in the
+   IANA "JSON Web Signature and Encryption Algorithms" registry
+   established by [RFC7518]:
+
+6.1.1.  HPKE-8
+
+   *  Algorithm Name: HPKE-8
+
+   *  Algorithm Description: Integrated Encryption with HPKE using
+      MLKEM768-P256 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 1 of this document
+
+   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+
+6.1.2.  HPKE-8-KE
+
+   *  Algorithm Name: HPKE-8-KE
+
+   *  Algorithm Description: Key Encryption with HPKE using
+      MLKEM768-P256 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 3 of this document
+
+   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+
+6.1.3.  HPKE-9
+
+   *  Algorithm Name: HPKE-9
+
+   *  Algorithm Description: Integrated Encryption with HPKE using
+      MLKEM768-P256 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 1 of this document
+
+   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+
+6.1.4.  HPKE-9-KE
+
+   *  Algorithm Name: HPKE-9-KE
+
+   *  Algorithm Description: Key Encryption with HPKE using
+      MLKEM768-P256 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 3 of this document
+
+   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+
+6.1.5.  HPKE-10
+
+   *  Algorithm Name: HPKE-10
+
+   *  Algorithm Description: Integrated Encryption with HPKE using
+      MLKEM768-X25519 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 1 of this document
+
+   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+
+6.1.6.  HPKE-10-KE
+
+   *  Algorithm Name: HPKE-10-KE
+
+   *  Algorithm Description: Key Encryption with HPKE using
+      MLKEM768-X25519 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 3 of this document
+
+   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+
+6.1.7.  HPKE-11
+
+   *  Algorithm Name: HPKE-11
+
+   *  Algorithm Description: Integrated Encryption with HPKE using
+      MLKEM768-X25519 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 1 of this document
+
+   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+
+6.1.8.  HPKE-11-KE
+
+   *  Algorithm Name: HPKE-11-KE
+
+   *  Algorithm Description: Key Encryption with HPKE using
+      MLKEM768-X25519 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 3 of this document
+
+   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+
+6.1.9.  HPKE-12
+
+   *  Algorithm Name: HPKE-12
+
+   *  Algorithm Description: Integrated Encryption with HPKE using
+      MLKEM1024-P384 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 1 of this document
+
+   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+
+6.1.10.  HPKE-12-KE
+
+   *  Algorithm Name: HPKE-12-KE
+
+   *  Algorithm Description: Key Encryption with HPKE using
+      MLKEM1024-P384 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 3 of this document
+
+   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+
+6.1.11.  HPKE-13
+
+   *  Algorithm Name: HPKE-13
+
+   *  Algorithm Description: Integrated Encryption with HPKE using
+      MLKEM1024-P384 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 1 of this document
+
+   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+
+6.1.12.  HPKE-13-KE
+
+   *  Algorithm Name: HPKE-13-KE
+
+   *  Algorithm Description: Key Encryption with HPKE using
+      MLKEM1024-P384 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 3 of this document
+
+   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+
+6.1.13.  HPKE-14
+
+   *  Algorithm Name: HPKE-14
+
+   *  Algorithm Description: Integrated Encryption with HPKE using ML-
+      KEM-768 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 2 of this document
+
+   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+
+6.1.14.  HPKE-14-KE
+
+   *  Algorithm Name: HPKE-14-KE
+
+   *  Algorithm Description: Key Encryption with HPKE using ML-KEM-768
+      KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 4 of this document
+
+   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+
+6.1.15.  HPKE-15
+
+   *  Algorithm Name: HPKE-15
+
+   *  Algorithm Description: Integrated Encryption with HPKE using ML-
+      KEM-768 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 2 of this document
+
+   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+
+6.1.16.  HPKE-15-KE
+
+   *  Algorithm Name: HPKE-15-KE
+
+   *  Algorithm Description: Key Encryption with HPKE using ML-KEM-768
+      KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 4 of this document
+
+   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+
+6.1.17.  HPKE-16
+
+   *  Algorithm Name: HPKE-16
+
+   *  Algorithm Description: Integrated Encryption with HPKE using ML-
+      KEM-1024 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 2 of this document
+
+   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+
+6.1.18.  HPKE-16-KE
+
+   *  Algorithm Name: HPKE-16-KE
+
+   *  Algorithm Description: Key Encryption with HPKE using ML-KEM-1024
+      KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 4 of this document
+
+   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+
+6.1.19.  HPKE-17
+
+   *  Algorithm Name: HPKE-17
+
+   *  Algorithm Description: Integrated Encryption with HPKE using ML-
+      KEM-1024 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 2 of this document
+
+   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+
+6.1.20.  HPKE-17-KE
+
+   *  Algorithm Name: HPKE-17-KE
+
+   *  Algorithm Description: Key Encryption with HPKE using ML-KEM-1024
+      KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 4 of this document
+
+   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+
+7.  References
+
+7.1.  Normative References
+
+   [I-D.ietf-cose-dilithium]
+              Prorock, M. and O. Steele, "ML-DSA for JOSE and COSE",
+              Work in Progress, Internet-Draft, draft-ietf-cose-
+              dilithium-11, 15 November 2025,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-cose-
+              dilithium-11>.
+
+   [I-D.ietf-hpke-pq]
+              Barnes, R. and D. Connolly, "Post-Quantum and Post-
+              Quantum/Traditional Hybrid Algorithms for HPKE", Work in
+              Progress, Internet-Draft, draft-ietf-hpke-pq-03, 6
+              November 2025, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-hpke-pq-03>.
+
+   [I-D.ietf-jose-hpke-encrypt]
+              Reddy.K, T., Tschofenig, H., Banerjee, A., Steele, O., and
+              M. B. Jones, "Use of Hybrid Public Key Encryption (HPKE)
+              with JSON Web Encryption (JWE)", Work in Progress,
+              Internet-Draft, draft-ietf-jose-hpke-encrypt-15, 30
+              November 2025, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-jose-hpke-encrypt-15>.
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
+7.2.  Informative References
+
+   [RFC7518]  Jones, M., "JSON Web Algorithms (JWA)", RFC 7518,
+              DOI 10.17487/RFC7518, May 2015,
+              <https://www.rfc-editor.org/rfc/rfc7518>.
+
+Acknowledgments
+
+   TODO acknowledge.
+
+Document History
+
+   draft-skokan-jose-hpke-pq-pqt-01
+
+   *  Added example JWK representations
+
+   draft-skokan-jose-hpke-pq-pqt-00
+
+   *  Initial draft
+
+Authors' Addresses
+
+   Filip Skokan
+   Okta
+   Email: panva.ip@gmail.com
+
+
+   Brian Campbell
+   Ping Identity
+   Email: bcampbell@pingidentity.com
