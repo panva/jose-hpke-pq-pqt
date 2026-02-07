@@ -65,6 +65,10 @@ This document extends the set of registered HPKE algorithms to include Post-Quan
 {{I-D.ietf-hpke-pq}}. These algorithms provide protection against attacks by
 cryptographically relevant quantum computers.
 
+The term “PQ/T hybrid” is used here consistent with {{I-D.ietf-hpke-pq}} to denote a
+combination of post-quantum and traditional algorithms, and should not be confused
+with HPKE’s use of “hybrid” to describe internal KEM composition.
+
 # Conventions and Definitions
 
 {::boilerplate bcp14-tagged}
