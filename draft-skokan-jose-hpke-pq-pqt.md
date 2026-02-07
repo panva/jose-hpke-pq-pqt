@@ -17,6 +17,10 @@ keyword:
  - post-quantum
  - hybrid
  - ML-KEM
+ - PQ
+ - PQ/T
+ - JWE
+ - CRQC
 venue:
   group: "Javascript Object Signing and Encryption"
   type: "Working Group"
