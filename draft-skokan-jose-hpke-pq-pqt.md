@@ -107,9 +107,8 @@ Content Encryption Key:
 {: #pqt-hybrid-integrated-table title="PQ/T Hybrid Integrated Encryption Algorithms" }
 
 These algorithms combine ML-KEM with a traditional elliptic curve algorithm in a PQ/T
-hybrid KEM construction, providing security that is intended to remain robust against
-both classical adversaries and adversaries with access to cryptographically relevant
-quantum computers during the transition to post-quantum cryptography.
+hybrid KEM construction, with the goal that compromise of either the post-quantum or
+the traditional component alone does not undermine the security of the resulting encryption.
 
 ## Pure PQ Integrated Encryption Algorithms
 
