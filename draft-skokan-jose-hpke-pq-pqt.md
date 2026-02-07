@@ -102,9 +102,10 @@ Content Encryption Key:
 | HPKE-13     | MLKEM1024-P384 (`0x0051`)   | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
 {: #pqt-hybrid-integrated-table title="PQ/T Hybrid Integrated Encryption Algorithms" }
 
-These algorithms provide hybrid post-quantum/traditional security by combining
-ML-KEM with a traditional elliptic curve algorithm, ensuring protection against
-both classical and quantum adversaries.
+These algorithms combine ML-KEM with a traditional elliptic curve algorithm in a PQ/T
+hybrid KEM construction, providing security that is intended to remain robust against
+both classical adversaries and adversaries with access to cryptographically relevant
+quantum computers during the transition to post-quantum cryptography.
 
 ## Pure PQ Integrated Encryption Algorithms
 
