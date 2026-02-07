@@ -1,16 +1,7 @@
-import {
-  CipherSuite,
-  KEM_MLKEM768_P256,
-  KEM_MLKEM768_X25519,
-  KEM_MLKEM1024_P384,
-  KEM_ML_KEM_768,
-  KEM_ML_KEM_1024,
-  KDF_SHAKE256,
-  AEAD_AES_256_GCM,
-  AEAD_ChaCha20Poly1305,
-} from "hpke";
+import { CipherSuite } from "hpke";
+import { algorithms } from "./algorithms.mjs";
 
-import { calculateJwkThumbprint } from "jose";
+import { createHash } from "node:crypto";
 import { writeFileSync, mkdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -23,130 +14,11 @@ function base64url(buf) {
   return Buffer.from(buf).toString("base64url");
 }
 
-const algorithms = [
-  // PQ/T Hybrid
-  {
-    alg: "HPKE-8",
-    kem: KEM_MLKEM768_P256,
-    kdf: KDF_SHAKE256,
-    aead: AEAD_AES_256_GCM,
-  },
-  {
-    alg: "HPKE-8-KE",
-    kem: KEM_MLKEM768_P256,
-    kdf: KDF_SHAKE256,
-    aead: AEAD_AES_256_GCM,
-  },
-  {
-    alg: "HPKE-9",
-    kem: KEM_MLKEM768_P256,
-    kdf: KDF_SHAKE256,
-    aead: AEAD_ChaCha20Poly1305,
-  },
-  {
-    alg: "HPKE-9-KE",
-    kem: KEM_MLKEM768_P256,
-    kdf: KDF_SHAKE256,
-    aead: AEAD_ChaCha20Poly1305,
-  },
-  {
-    alg: "HPKE-10",
-    kem: KEM_MLKEM768_X25519,
-    kdf: KDF_SHAKE256,
-    aead: AEAD_AES_256_GCM,
-  },
-  {
-    alg: "HPKE-10-KE",
-    kem: KEM_MLKEM768_X25519,
-    kdf: KDF_SHAKE256,
-    aead: AEAD_AES_256_GCM,
-  },
-  {
-    alg: "HPKE-11",
-    kem: KEM_MLKEM768_X25519,
-    kdf: KDF_SHAKE256,
-    aead: AEAD_ChaCha20Poly1305,
-  },
-  {
-    alg: "HPKE-11-KE",
-    kem: KEM_MLKEM768_X25519,
-    kdf: KDF_SHAKE256,
-    aead: AEAD_ChaCha20Poly1305,
-  },
-  {
-    alg: "HPKE-12",
-    kem: KEM_MLKEM1024_P384,
-    kdf: KDF_SHAKE256,
-    aead: AEAD_AES_256_GCM,
-  },
-  {
-    alg: "HPKE-12-KE",
-    kem: KEM_MLKEM1024_P384,
-    kdf: KDF_SHAKE256,
-    aead: AEAD_AES_256_GCM,
-  },
-  {
-    alg: "HPKE-13",
-    kem: KEM_MLKEM1024_P384,
-    kdf: KDF_SHAKE256,
-    aead: AEAD_ChaCha20Poly1305,
-  },
-  {
-    alg: "HPKE-13-KE",
-    kem: KEM_MLKEM1024_P384,
-    kdf: KDF_SHAKE256,
-    aead: AEAD_ChaCha20Poly1305,
-  },
-  // Pure PQ
-  {
-    alg: "HPKE-14",
-    kem: KEM_ML_KEM_768,
-    kdf: KDF_SHAKE256,
-    aead: AEAD_AES_256_GCM,
-  },
-  {
-    alg: "HPKE-14-KE",
-    kem: KEM_ML_KEM_768,
-    kdf: KDF_SHAKE256,
-    aead: AEAD_AES_256_GCM,
-  },
-  {
-    alg: "HPKE-15",
-    kem: KEM_ML_KEM_768,
-    kdf: KDF_SHAKE256,
-    aead: AEAD_ChaCha20Poly1305,
-  },
-  {
-    alg: "HPKE-15-KE",
-    kem: KEM_ML_KEM_768,
-    kdf: KDF_SHAKE256,
-    aead: AEAD_ChaCha20Poly1305,
-  },
-  {
-    alg: "HPKE-16",
-    kem: KEM_ML_KEM_1024,
-    kdf: KDF_SHAKE256,
-    aead: AEAD_AES_256_GCM,
-  },
-  {
-    alg: "HPKE-16-KE",
-    kem: KEM_ML_KEM_1024,
-    kdf: KDF_SHAKE256,
-    aead: AEAD_AES_256_GCM,
-  },
-  {
-    alg: "HPKE-17",
-    kem: KEM_ML_KEM_1024,
-    kdf: KDF_SHAKE256,
-    aead: AEAD_ChaCha20Poly1305,
-  },
-  {
-    alg: "HPKE-17-KE",
-    kem: KEM_ML_KEM_1024,
-    kdf: KDF_SHAKE256,
-    aead: AEAD_ChaCha20Poly1305,
-  },
-];
+// JWK Thumbprint (RFC 7638) — SHA-256 of the lexicographically sorted required members
+function jwkThumbprint(jwk) {
+  const input = JSON.stringify({ alg: jwk.alg, kty: jwk.kty, pub: jwk.pub });
+  return createHash("sha256").update(input).digest("base64url");
+}
 
 const kty = "AKP";
 for (const { alg, kem, kdf, aead } of algorithms) {
@@ -164,7 +36,7 @@ for (const { alg, kem, kdf, aead } of algorithms) {
   const keyPair = await suite.DeriveKeyPair(ikm, true);
   const pub = base64url(await suite.SerializePublicKey(keyPair.publicKey));
   const priv = base64url(await suite.SerializePrivateKey(keyPair.privateKey));
-  const kid = await calculateJwkThumbprint({ kty, alg, pub });
+  const kid = jwkThumbprint({ kty, alg, pub });
 
   const jwk = {
     kty,
@@ -176,5 +48,4 @@ for (const { alg, kem, kdf, aead } of algorithms) {
 
   const filename = join(outDir, `${alg}.json`);
   writeFileSync(filename, JSON.stringify(jwk, null, 2) + "\n");
-  console.log(`Wrote ${filename}`);
 }

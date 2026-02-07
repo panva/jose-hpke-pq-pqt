@@ -90,6 +90,9 @@ those in {{I-D.ietf-jose-hpke-encrypt}}, supporting both integrated encryption
 as defined in {{Section 5 of I-D.ietf-jose-hpke-encrypt}} and key encryption
 as defined in {{Section 6 of I-D.ietf-jose-hpke-encrypt}}.
 
+Test vectors for all algorithms defined in this section are provided in
+{{test-vectors}}.
+
 ## PQ/T Hybrid Integrated Encryption Algorithms
 
 The following table lists the algorithm identifiers for PQ/T hybrid integrated
@@ -165,34 +168,7 @@ base64url encoding of HPKE's SerializePublicKey() output for the
 corresponding KEM, and the "priv" parameter contains the base64url encoding
 of HPKE's SerializePrivateKey() output.
 
-## Examples
-
-The following are example JWK representations for each of the KEMs used by the algorithms defined in this document.
-
-~~~ json
-{::include examples/jwks/HPKE-8.json}
-~~~
-{: #example-jwk-hpke-8 title="Example HPKE-8 Private JWK (uses MLKEM768-P256)"}
-
-~~~ json
-{::include examples/jwks/HPKE-11.json}
-~~~
-{: #example-jwk-hpke-11 title="Example HPKE-11 Private JWK (uses MLKEM768-X25519)"}
-
-~~~ json
-{::include examples/jwks/HPKE-13.json}
-~~~
-{: #example-jwk-hpke-13 title="Example HPKE-13 Private JWK (uses MLKEM1024-P384)"}
-
-~~~ json
-{::include examples/jwks/HPKE-14.json}
-~~~
-{: #example-jwk-hpke-14 title="Example HPKE-14 Private JWK (uses ML-KEM-768)"}
-
-~~~ json
-{::include examples/jwks/HPKE-17.json}
-~~~
-{: #example-jwk-hpke-17 title="Example HPKE-17 Private JWK (uses ML-KEM-1024)"}
+Examples of JWKs for each algorithm are provided in {{test-vectors}}.
 
 
 # Security Considerations
@@ -210,6 +186,7 @@ IANA "JSON Web Signature and Encryption Algorithms" registry
 established by {{RFC7518}}:
 
 ### HPKE-8
+{: toc="exclude"}
 
 - Algorithm Name: HPKE-8
 - Algorithm Description: Integrated Encryption with HPKE using MLKEM768-P256 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
@@ -220,6 +197,7 @@ established by {{RFC7518}}:
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-8-KE
+{: toc="exclude"}
 
 - Algorithm Name: HPKE-8-KE
 - Algorithm Description: Key Encryption with HPKE using MLKEM768-P256 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
@@ -230,6 +208,7 @@ established by {{RFC7518}}:
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-9
+{: toc="exclude"}
 
 - Algorithm Name: HPKE-9
 - Algorithm Description: Integrated Encryption with HPKE using MLKEM768-P256 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
@@ -240,6 +219,7 @@ established by {{RFC7518}}:
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-9-KE
+{: toc="exclude"}
 
 - Algorithm Name: HPKE-9-KE
 - Algorithm Description: Key Encryption with HPKE using MLKEM768-P256 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
@@ -250,6 +230,7 @@ established by {{RFC7518}}:
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-10
+{: toc="exclude"}
 
 - Algorithm Name: HPKE-10
 - Algorithm Description: Integrated Encryption with HPKE using MLKEM768-X25519 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
@@ -260,6 +241,7 @@ established by {{RFC7518}}:
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-10-KE
+{: toc="exclude"}
 
 - Algorithm Name: HPKE-10-KE
 - Algorithm Description: Key Encryption with HPKE using MLKEM768-X25519 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
@@ -270,6 +252,7 @@ established by {{RFC7518}}:
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-11
+{: toc="exclude"}
 
 - Algorithm Name: HPKE-11
 - Algorithm Description: Integrated Encryption with HPKE using MLKEM768-X25519 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
@@ -280,6 +263,7 @@ established by {{RFC7518}}:
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-11-KE
+{: toc="exclude"}
 
 - Algorithm Name: HPKE-11-KE
 - Algorithm Description: Key Encryption with HPKE using MLKEM768-X25519 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
@@ -290,6 +274,7 @@ established by {{RFC7518}}:
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-12
+{: toc="exclude"}
 
 - Algorithm Name: HPKE-12
 - Algorithm Description: Integrated Encryption with HPKE using MLKEM1024-P384 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
@@ -300,6 +285,7 @@ established by {{RFC7518}}:
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-12-KE
+{: toc="exclude"}
 
 - Algorithm Name: HPKE-12-KE
 - Algorithm Description: Key Encryption with HPKE using MLKEM1024-P384 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
@@ -310,6 +296,7 @@ established by {{RFC7518}}:
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-13
+{: toc="exclude"}
 
 - Algorithm Name: HPKE-13
 - Algorithm Description: Integrated Encryption with HPKE using MLKEM1024-P384 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
@@ -320,6 +307,7 @@ established by {{RFC7518}}:
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-13-KE
+{: toc="exclude"}
 
 - Algorithm Name: HPKE-13-KE
 - Algorithm Description: Key Encryption with HPKE using MLKEM1024-P384 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
@@ -330,6 +318,7 @@ established by {{RFC7518}}:
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-14
+{: toc="exclude"}
 
 - Algorithm Name: HPKE-14
 - Algorithm Description: Integrated Encryption with HPKE using ML-KEM-768 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
@@ -340,6 +329,7 @@ established by {{RFC7518}}:
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-14-KE
+{: toc="exclude"}
 
 - Algorithm Name: HPKE-14-KE
 - Algorithm Description: Key Encryption with HPKE using ML-KEM-768 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
@@ -350,6 +340,7 @@ established by {{RFC7518}}:
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-15
+{: toc="exclude"}
 
 - Algorithm Name: HPKE-15
 - Algorithm Description: Integrated Encryption with HPKE using ML-KEM-768 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
@@ -360,6 +351,7 @@ established by {{RFC7518}}:
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-15-KE
+{: toc="exclude"}
 
 - Algorithm Name: HPKE-15-KE
 - Algorithm Description: Key Encryption with HPKE using ML-KEM-768 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
@@ -370,6 +362,7 @@ established by {{RFC7518}}:
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-16
+{: toc="exclude"}
 
 - Algorithm Name: HPKE-16
 - Algorithm Description: Integrated Encryption with HPKE using ML-KEM-1024 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
@@ -380,6 +373,7 @@ established by {{RFC7518}}:
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-16-KE
+{: toc="exclude"}
 
 - Algorithm Name: HPKE-16-KE
 - Algorithm Description: Key Encryption with HPKE using ML-KEM-1024 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
@@ -390,6 +384,7 @@ established by {{RFC7518}}:
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-17
+{: toc="exclude"}
 
 - Algorithm Name: HPKE-17
 - Algorithm Description: Integrated Encryption with HPKE using ML-KEM-1024 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
@@ -400,6 +395,7 @@ established by {{RFC7518}}:
 - Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-17-KE
+{: toc="exclude"}
 
 - Algorithm Name: HPKE-17-KE
 - Algorithm Description: Key Encryption with HPKE using ML-KEM-1024 KEM, SHAKE256 KDF, and ChaCha20Poly1305 AEAD
@@ -412,6 +408,372 @@ established by {{RFC7518}}:
 
 --- back
 
+# Test Vectors {#test-vectors}
+
+This appendix provides test vectors for each algorithm defined in this document.
+For each algorithm, a private JWK, a Flattened JWE JSON Serialization example with
+Additional Authenticated Data, and a JWE Compact Serialization example are provided.
+
+## HPKE-8
+{: toc="exclude"}
+
+~~~ json
+{::include examples/jwks/HPKE-8.json}
+~~~
+{: title="HPKE-8 Private JWK"}
+
+~~~ json
+{::include examples/jwe/HPKE-8-flattened.json}
+~~~
+{: title="HPKE-8 Flattened JWE JSON Serialization"}
+
+~~~
+{::include examples/jwe/HPKE-8-compact.txt}
+~~~
+{: title="HPKE-8 JWE Compact Serialization"}
+
+## HPKE-8-KE
+{: toc="exclude"}
+
+~~~ json
+{::include examples/jwks/HPKE-8-KE.json}
+~~~
+{: title="HPKE-8-KE Private JWK"}
+
+~~~ json
+{::include examples/jwe/HPKE-8-KE-flattened.json}
+~~~
+{: title="HPKE-8-KE Flattened JWE JSON Serialization"}
+
+~~~
+{::include examples/jwe/HPKE-8-KE-compact.txt}
+~~~
+{: title="HPKE-8-KE JWE Compact Serialization"}
+
+## HPKE-9
+{: toc="exclude"}
+
+~~~ json
+{::include examples/jwks/HPKE-9.json}
+~~~
+{: title="HPKE-9 Private JWK"}
+
+~~~ json
+{::include examples/jwe/HPKE-9-flattened.json}
+~~~
+{: title="HPKE-9 Flattened JWE JSON Serialization"}
+
+~~~
+{::include examples/jwe/HPKE-9-compact.txt}
+~~~
+{: title="HPKE-9 JWE Compact Serialization"}
+
+## HPKE-9-KE
+{: toc="exclude"}
+
+~~~ json
+{::include examples/jwks/HPKE-9-KE.json}
+~~~
+{: title="HPKE-9-KE Private JWK"}
+
+~~~ json
+{::include examples/jwe/HPKE-9-KE-flattened.json}
+~~~
+{: title="HPKE-9-KE Flattened JWE JSON Serialization"}
+
+~~~
+{::include examples/jwe/HPKE-9-KE-compact.txt}
+~~~
+{: title="HPKE-9-KE JWE Compact Serialization"}
+
+## HPKE-10
+{: toc="exclude"}
+
+~~~ json
+{::include examples/jwks/HPKE-10.json}
+~~~
+{: title="HPKE-10 Private JWK"}
+
+~~~ json
+{::include examples/jwe/HPKE-10-flattened.json}
+~~~
+{: title="HPKE-10 Flattened JWE JSON Serialization"}
+
+~~~
+{::include examples/jwe/HPKE-10-compact.txt}
+~~~
+{: title="HPKE-10 JWE Compact Serialization"}
+
+## HPKE-10-KE
+{: toc="exclude"}
+
+~~~ json
+{::include examples/jwks/HPKE-10-KE.json}
+~~~
+{: title="HPKE-10-KE Private JWK"}
+
+~~~ json
+{::include examples/jwe/HPKE-10-KE-flattened.json}
+~~~
+{: title="HPKE-10-KE Flattened JWE JSON Serialization"}
+
+~~~
+{::include examples/jwe/HPKE-10-KE-compact.txt}
+~~~
+{: title="HPKE-10-KE JWE Compact Serialization"}
+
+## HPKE-11
+{: toc="exclude"}
+
+~~~ json
+{::include examples/jwks/HPKE-11.json}
+~~~
+{: title="HPKE-11 Private JWK"}
+
+~~~ json
+{::include examples/jwe/HPKE-11-flattened.json}
+~~~
+{: title="HPKE-11 Flattened JWE JSON Serialization"}
+
+~~~
+{::include examples/jwe/HPKE-11-compact.txt}
+~~~
+{: title="HPKE-11 JWE Compact Serialization"}
+
+## HPKE-11-KE
+{: toc="exclude"}
+
+~~~ json
+{::include examples/jwks/HPKE-11-KE.json}
+~~~
+{: title="HPKE-11-KE Private JWK"}
+
+~~~ json
+{::include examples/jwe/HPKE-11-KE-flattened.json}
+~~~
+{: title="HPKE-11-KE Flattened JWE JSON Serialization"}
+
+~~~
+{::include examples/jwe/HPKE-11-KE-compact.txt}
+~~~
+{: title="HPKE-11-KE JWE Compact Serialization"}
+
+## HPKE-12
+{: toc="exclude"}
+
+~~~ json
+{::include examples/jwks/HPKE-12.json}
+~~~
+{: title="HPKE-12 Private JWK"}
+
+~~~ json
+{::include examples/jwe/HPKE-12-flattened.json}
+~~~
+{: title="HPKE-12 Flattened JWE JSON Serialization"}
+
+~~~
+{::include examples/jwe/HPKE-12-compact.txt}
+~~~
+{: title="HPKE-12 JWE Compact Serialization"}
+
+## HPKE-12-KE
+{: toc="exclude"}
+
+~~~ json
+{::include examples/jwks/HPKE-12-KE.json}
+~~~
+{: title="HPKE-12-KE Private JWK"}
+
+~~~ json
+{::include examples/jwe/HPKE-12-KE-flattened.json}
+~~~
+{: title="HPKE-12-KE Flattened JWE JSON Serialization"}
+
+~~~
+{::include examples/jwe/HPKE-12-KE-compact.txt}
+~~~
+{: title="HPKE-12-KE JWE Compact Serialization"}
+
+## HPKE-13
+{: toc="exclude"}
+
+~~~ json
+{::include examples/jwks/HPKE-13.json}
+~~~
+{: title="HPKE-13 Private JWK"}
+
+~~~ json
+{::include examples/jwe/HPKE-13-flattened.json}
+~~~
+{: title="HPKE-13 Flattened JWE JSON Serialization"}
+
+~~~
+{::include examples/jwe/HPKE-13-compact.txt}
+~~~
+{: title="HPKE-13 JWE Compact Serialization"}
+
+## HPKE-13-KE
+{: toc="exclude"}
+
+~~~ json
+{::include examples/jwks/HPKE-13-KE.json}
+~~~
+{: title="HPKE-13-KE Private JWK"}
+
+~~~ json
+{::include examples/jwe/HPKE-13-KE-flattened.json}
+~~~
+{: title="HPKE-13-KE Flattened JWE JSON Serialization"}
+
+~~~
+{::include examples/jwe/HPKE-13-KE-compact.txt}
+~~~
+{: title="HPKE-13-KE JWE Compact Serialization"}
+
+## HPKE-14
+{: toc="exclude"}
+
+~~~ json
+{::include examples/jwks/HPKE-14.json}
+~~~
+{: title="HPKE-14 Private JWK"}
+
+~~~ json
+{::include examples/jwe/HPKE-14-flattened.json}
+~~~
+{: title="HPKE-14 Flattened JWE JSON Serialization"}
+
+~~~
+{::include examples/jwe/HPKE-14-compact.txt}
+~~~
+{: title="HPKE-14 JWE Compact Serialization"}
+
+## HPKE-14-KE
+{: toc="exclude"}
+
+~~~ json
+{::include examples/jwks/HPKE-14-KE.json}
+~~~
+{: title="HPKE-14-KE Private JWK"}
+
+~~~ json
+{::include examples/jwe/HPKE-14-KE-flattened.json}
+~~~
+{: title="HPKE-14-KE Flattened JWE JSON Serialization"}
+
+~~~
+{::include examples/jwe/HPKE-14-KE-compact.txt}
+~~~
+{: title="HPKE-14-KE JWE Compact Serialization"}
+
+## HPKE-15
+{: toc="exclude"}
+
+~~~ json
+{::include examples/jwks/HPKE-15.json}
+~~~
+{: title="HPKE-15 Private JWK"}
+
+~~~ json
+{::include examples/jwe/HPKE-15-flattened.json}
+~~~
+{: title="HPKE-15 Flattened JWE JSON Serialization"}
+
+~~~
+{::include examples/jwe/HPKE-15-compact.txt}
+~~~
+{: title="HPKE-15 JWE Compact Serialization"}
+
+## HPKE-15-KE
+{: toc="exclude"}
+
+~~~ json
+{::include examples/jwks/HPKE-15-KE.json}
+~~~
+{: title="HPKE-15-KE Private JWK"}
+
+~~~ json
+{::include examples/jwe/HPKE-15-KE-flattened.json}
+~~~
+{: title="HPKE-15-KE Flattened JWE JSON Serialization"}
+
+~~~
+{::include examples/jwe/HPKE-15-KE-compact.txt}
+~~~
+{: title="HPKE-15-KE JWE Compact Serialization"}
+
+## HPKE-16
+{: toc="exclude"}
+
+~~~ json
+{::include examples/jwks/HPKE-16.json}
+~~~
+{: title="HPKE-16 Private JWK"}
+
+~~~ json
+{::include examples/jwe/HPKE-16-flattened.json}
+~~~
+{: title="HPKE-16 Flattened JWE JSON Serialization"}
+
+~~~
+{::include examples/jwe/HPKE-16-compact.txt}
+~~~
+{: title="HPKE-16 JWE Compact Serialization"}
+
+## HPKE-16-KE
+{: toc="exclude"}
+
+~~~ json
+{::include examples/jwks/HPKE-16-KE.json}
+~~~
+{: title="HPKE-16-KE Private JWK"}
+
+~~~ json
+{::include examples/jwe/HPKE-16-KE-flattened.json}
+~~~
+{: title="HPKE-16-KE Flattened JWE JSON Serialization"}
+
+~~~
+{::include examples/jwe/HPKE-16-KE-compact.txt}
+~~~
+{: title="HPKE-16-KE JWE Compact Serialization"}
+
+## HPKE-17
+{: toc="exclude"}
+
+~~~ json
+{::include examples/jwks/HPKE-17.json}
+~~~
+{: title="HPKE-17 Private JWK"}
+
+~~~ json
+{::include examples/jwe/HPKE-17-flattened.json}
+~~~
+{: title="HPKE-17 Flattened JWE JSON Serialization"}
+
+~~~
+{::include examples/jwe/HPKE-17-compact.txt}
+~~~
+{: title="HPKE-17 JWE Compact Serialization"}
+
+## HPKE-17-KE
+{: toc="exclude"}
+
+~~~ json
+{::include examples/jwks/HPKE-17-KE.json}
+~~~
+{: title="HPKE-17-KE Private JWK"}
+
+~~~ json
+{::include examples/jwe/HPKE-17-KE-flattened.json}
+~~~
+{: title="HPKE-17-KE Flattened JWE JSON Serialization"}
+
+~~~
+{::include examples/jwe/HPKE-17-KE-compact.txt}
+~~~
+{: title="HPKE-17-KE JWE Compact Serialization"}
+
 # Acknowledgments
 {:numbered="false"}
 
@@ -419,6 +781,10 @@ TODO acknowledge.
 
 # Document History
 {:numbered="false"}
+
+draft-skokan-jose-hpke-pq-pqt-02
+
+- Added Test Vectors appendix
 
 draft-skokan-jose-hpke-pq-pqt-01
 
