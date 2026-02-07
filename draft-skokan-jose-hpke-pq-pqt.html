@@ -1187,6 +1187,11 @@ hybrid algorithm identifiers for use with JSON Object Signing and Encryption
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-json-web-key-representation" class="internal xref">JSON Web Key Representation</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-examples" class="internal xref">Examples</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
@@ -1276,7 +1281,10 @@ hybrid algorithm identifiers for use with JSON Object Signing and Encryption
             <p id="section-toc.1-1.8.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-document-history" class="internal xref">Document History</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1570,6 +1578,99 @@ Key Pair) key type defined in <span>[<a href="#I-D.ietf-cose-dilithium" class="c
 base64url encoding of HPKE's SerializePublicKey() output for the
 corresponding KEM, and the "priv" parameter contains the base64url encoding
 of HPKE's SerializePrivateKey() output.<a href="#section-4-2" class="pilcrow">¶</a></p>
+<div id="examples">
+<section id="section-4.1">
+        <h3 id="name-examples">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-examples" class="section-name selfRef">Examples</a>
+        </h3>
+<p id="section-4.1-1">The following are example JWK representations for each of the KEMs used by the algorithms defined in this document.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<span id="name-example-hpke-8-private-jwk-"></span><div id="example-jwk-hpke-8">
+<figure id="figure-1">
+          <div class="lang-json sourcecode" id="section-4.1-2.1">
+<pre>
+{
+  "kty": "AKP",
+  "alg": "HPKE-8",
+  "kid": "DmOWQi-VwrjZWjO6mQQWdv3CJ_v9k_PH3vS7S0xoah8",
+  "pub": "6XRnIatC1KtI7DZlj8ISDxZvtsFeBOPKQETMRRYb45dR0kw6TDSb8UMXHHWhUBdbEBof5gvIJacZG4exGku4JsysQcc9AVR6Ydih7kaPNQgCiiKw9QACNCMWx2p171RVCpGSFoOwaejNGZeNJKS4jqulOWFQHGtbWhl64HZzlkZMxhqdA-EecEOLhzCkbCMMtXxb-cxUVkOxQpKkO5ofmEaKH7tjyNZyVsxqgUZFn6K8jOq9g6GCOEG4awGB6AZC72yNXLDBnVCy_7OMn2bAeos8AvhHkbsL0hsFFjsnWcG_IYvNPzUAcyGZlpsqjXJIh4AUxTi6iFeJFOE08nNM3KQEYlxkMAulVas2E4KU_TGeoEJeZjA5TPWVAQiPFFQ4nNRh1kotf4OHtHQVpaMzAypItIXAU8LI_gl4rdFKTfYu18MKnygjEnO9Z7e2cYwj_hqx-AQdA6ulQBcNR4DFSCOTLnMB22GMXGVOMDCmiaxZvchp9iEKNJG4TkZQmoKwR9pbEbahmsm1WvUbR6kEqNYOE0MMsRWNM3RBNltm0Iqo8RKMlpRq5RceWRRdjRkKdChyhuJ2ebBI05iRsuE6AwWEbCV6dQqNZ0gqdeU5imECjFWLNqYvs0BaxDgmoSdg4rFlq3UrZ3gLD4UTT4kM97HO5iedxoox__octTEEImMTf8uJI2M0nKTIpbWBHlofTfulcqVXjFYpr9GvuKM_mElaoJwn3MQYrFNLcwY-fzy9fqvGFtF-62fHcpcL7SVUu9KW7igiAHQfwXmCnMQzsxwLowVk8mFjDYgV2iIoNIeuwZdc8-I0A1CLiqOQNwCLObgSMVeo-WUvzmocsFOUtSUS1chNNwpjMCGKuHxOYOcvKLxH7mvPp6czIovPsqQUZdloA5Wqt8U1sDRZfrhRlUi4IVoTmevBpaEYK_Jze3cIMOkRKdO5Y1tB4TIcAHE8oNUarUEYx1YDUinIolRBBDyBAmR7rbV4iGenGHwgeTIZ0cpppFEDbkAX4AaG4YKGdGWrgWhhiDoPX2mda_BLOSilnlhmM2BhqGZBkKK2E1B5fgER-_AMYeVl9HEoKCFHm6KApgnLVnYMQjEv7kC6tsqxs-pOcnSs2EpGKMMk4gdIlcFNxsVU6sXINHADvNmtNyQgjRFKhmNPtYchXHWz_tgccWNkm1DD6qMATOoZcscAu8BBpKUwUIkIUICwKpay5KUsFjKpC9HPqSONVMVu7GYysVC8UDTMetWoXlSiDetoiolwFGGpIscf1ic_rUhbD3pyxVI8DqCsdFg2NcSvIJRoJBO12KHKRIYnc8ObgCzJBULNZ1Rmc5tCbmcW_mmhg0OiA7EJjwi_eoY82_g0eiyAr0K4DmBy8yqWDZV45KfAnYQBQZvK8zlj0npGqVWusxzP1mw_Dbhnp-Z6SyIrHNI9unG7DbeDhcnBD2QBp2t6cNgvUoCLzPReQPYy_bwVEwcrPSO4SjUG8mhuybiU5NWdgIRD95gD1ApNRoZeJIhfP7yM1vt1ZCxfV0xEvUSb25DOebimyplEvv7nxam2hbnlRQme00B5wPt9pETxPSQE4ZUd6u60U9e6F3C-Fqjwfg_xYMk3oOcZQ-P5NrsNxK3ho7xmtpSKVahpf_2P_o2Vz8YFc7t2S7jAx9bRLQQpbA",
+  "priv": "c1il1CJwUdajeAm8PMZMq4mw2PH9Z2vThLkHU2MQ10A"
+}
+</pre>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-example-hpke-8-private-jwk-" class="selfRef">Example HPKE-8 Private JWK (uses MLKEM768-P256)</a>
+          </figcaption></figure>
+</div>
+<span id="name-example-hpke-11-private-jwk"></span><div id="example-jwk-hpke-11">
+<figure id="figure-2">
+          <div class="lang-json sourcecode" id="section-4.1-3.1">
+<pre>
+{
+  "kty": "AKP",
+  "alg": "HPKE-11",
+  "kid": "oATA96dt4yMW31bur8UcRzxVBNV0Y0x30-NZ8x6dW3A",
+  "pub": "rtOlgemxnEE1spKpxRZjEawan7uQlgA4JPQKxViqjZE_ITiUd_cA3PQJRmVLGefIIODEIZqgoHhX2qLIRDhY2oIMcQFsDsuzX2G18BcGIYNiUGU9YzoEsEat-KDELTJTirkaA8ODJnlPeJda7oBB08lC4pu6OYDLzQcCt7iYdTCFPbrHH-wIDYIMzfM0bzlINJUTmKAXk6aNCTNAUggxgkaTRSNU5qUlXzYdjeTGeKoSayMUiXK2Y9ewM3qV3pvBbmkVPqR_uahgtkk-81QbnOEho1mZVVGDkHdn6bMWiYBYQfQVvmRxhifD17TNMlLKYHROUudxoaZt_aMBBzc-dSV6KtcE1ykdknmd6hMA1qFGq2kO5dk11ChLHQt0LCGDa7kVodnMy1HCbIMj-IF3d5tEw0Uwh2Y2lUSODKO_S4aJjAGcolp1RPGftKhh73OqpwpptcYpeeaDPUxbJHYW3yaygfpjjKgpQiog6OzGcfDIyAKkefFRiQQfdBMEercKFqgnjpN03zePQlYEjtpcNyhtg4mkcDUQfKJ5FqGbenY6DwHF3LyT3kTG-NljCamDcrQPA0ldXJPPTYwLPZlyzPtQRTPBhrhC-7se90g38tOXP-N9Sbax8fWtP-ykQQbBQQk9Pled82hrRWyg5gXBnSc__OIDSbEUIMMFhqy-UrqnrkMzXxq5vwgp7RQBWTQKrwGZjICbOMiPiDlQ4GTD8BUqmRgUW0mXeaiRtMoeIzzHwpQpDLEMsCddfskNIpV4deJqcfi_8CVRY1LBrZyXvVypmsSx_nSJb8k8S9WrBafG-DAZtAO8UAMmBnvOw6eaf7RuqVypexAkvsYW3bpFcAjLGaqqVuQPChSBRUQot-WxmBdET0kkTOUCLMpeK9nEi3Zi_jqG44lR9Hm7ZmfColYHhLguMKduKut03Th6TuhssuotLVmO-si2arOWWzRgB-tcAhcfRWDIgCcOHEmQfKAYw2RRTcS84zvHoGBdCSA2ILzGAHBESQAcvoc0SWvIons9yLSvaZZrpudSHDoV5XDMbNtCIcx4OsxIc_vEYSCFDPxLlcK5MNWzaGV4_Opgn5a89LcTyLgSukxsSaFxsvmhLnDI-axYvTezhzatjfmhYwg2VcVNOyQymau1GXXAnneS-9uwGEWXEEgA4JLI8zqVESOajMJQNtqhdYAPVfOKn1lJKPpz73abLNlU-JI6NxGSsapQiMfLbpIEHKhP7Pc1hzg4nnwmZ2xgnYwWUski4lCqeWKRiRSYEqqL1-SMDMHKJRs04kWZ_HVBbPkXLAzOajAXksFbBCt9NLwkhfRNnbVzQAe5CBAfUNUYyFuxWyw8IGZkvnIHngyKgVGztQVOkHGPnhWA1kgn4QFdyKuHPNNwEnh4EpNQBLXBe1Bmq6MwPOJ7U9SrwnuDRtGCU0u2WuyIBZq-kPNE6Rpe44ZEKuWflFoMqBIFZspuJRvOKJteINN2NCk3zKKTamYpmNqI8FxdXHF3Kix-pNdn4MyWy6CXBStwXUiMKiF2rLBvCh1N2kgtbkZSh1SM3Lf7EwK5vBHKgtzFMncy0jTUHWKLpyYut0fp1cyud8VefH6I4YWjqUg-IPY-XTna20PnMQ",
+  "priv": "fhCGTZ2DqLNXWjKdD8z7uSd28DZfYszfPpv4ndr44oc"
+}
+</pre>
+</div>
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<a href="#name-example-hpke-11-private-jwk" class="selfRef">Example HPKE-11 Private JWK (uses MLKEM768-X25519)</a>
+          </figcaption></figure>
+</div>
+<span id="name-example-hpke-13-private-jwk"></span><div id="example-jwk-hpke-13">
+<figure id="figure-3">
+          <div class="lang-json sourcecode" id="section-4.1-4.1">
+<pre>
+{
+  "kty": "AKP",
+  "alg": "HPKE-13",
+  "kid": "4xifOIawsHO0-c6lM_fIgh0hmcKUGV0ohj0aw8BQrA4",
+  "pub": "XCYFhAuieqBanCe6DZR7Rbdl2kST_-vGeTIobXcQuFAwaHiqlFuwf_BS2CAbcfe_j2pZO2JMNnaCpHU618FiPlu6jRsmYUy4m7aIB_xblaShNpuzO4eL16ZSh5KtILqNB9AbAVAuLOtigWGbQ7UeBuG8idyjXROjWpgHXrplOqmCyqQInfuMHESRsGU7_wN5pFRA8LpA01dPTjJffQGwnvND6VZfN1MuVMc1-cA2c8KYoaSDFtWhitVAestW-CGIL1G2xBKT1SK0CltxTRRR_UgrpUcvm3c0W6U4Y9QTRIZbncdhD3kdiYXNwwEXEstlvdYuSjcnwlIEhZFsLNCuH_G-a1aBmfyeUoHCKlYxHxsmf7sJvXYLyQEfzhfLA8lyqZWEXRNOshTNMrC7NimiHNIK-zF9vyqFTsE8Q4a0HKIjTvdMNXaoKgpqxgUDqTQk3HUS7oIYJOVN0qSeXqeaZnweAfy972CSOfVkTEk2BZQxzBFJRDGabMIuztggAbElcLEZVbMue_OvdOCj18w3BYI-PHs4zUU3R6NK21jGiJGIWYNyxui36KOqcvceGiG3X9V_zfUIrUtvdEsQ2_JKQvZcw8Rtw2JTnVQPKhpFsDZkzwhkaHOgdWnJPqSA8CmK0ZJnkXyS2CWYBiy9LQm018sn6hm5rLslIos4SHudeZBnOpdwkteQghFkx2Ic59Zmggw1mvJyYCyDUCMXYRVkXZGPrIe-CcAiUPQV_nmJjLwBwOdfh1rPF2KOsrcid3Zv06IuvJS5R8Oj37QfAKq_LtUjOTebm6Vr21VRzsJ0B3gN2wwei1MjM8VIS0yKMwtW1qg0vaoswSKpHvtYeqQt80CGK9yYx1R5X7Nih3sGQABMo_Gd_qu4m6XOI1QZUWmRQ7RcjzMDFvQVx-hxrtfFRRgqg3pyybnJkjlGhjyeChFGtBk15wskdGRu5Aql0WYnEcRhdsJnMcugA5nDGkSOEDQh8hmjCrqWLySwuzjBBlMNrfELTQSg3ZKMMDDBCfkKIBJzKNqOSch9FIoAubQBFqgthzpbLYafp9Y4IOvObpS-WkkyaVKy4YW4zuk49aQkkbeW4ZMlwCuhhHOga9VriKs1BWIfk0ukrECDWGWisstZTdW50LlTUlZZcvKgjfRTeUmuptsQWBtTDKaP3tFzq2wNjAQJpkuKcamIbLeKfXKCyvNrDgggfQggBNFCUgYXeIjL6KUbDbIIE3qtHZB_JwNMCogKzxi7rwsXZ-wQZGG7iNweL1rORhK8UUrFJ5uXKowHZNpwI6prZknPHOmEuJO0lXOnoDs5SKxzJHQ1kPCExymAClBeO6KPlTK0x8AWXos4wWeL3JoJjvNbhAMuzip9GTofQAfIGQIENfZ7D2WYAOa4tLwFHeAn1mTLRgVcD5QRGJdU-epS2gGhvdwcbhc5LjtXXVdWeWR6YuSw7ZGdwdSLHitYGLkJwMhZNCt4muDH94rLfnhYoXPOFzyrYeKRjdFCIhAj1aZsxTBYEpqTv8jDQcFdNTNGiazOB4c2G4G7IbdK92mYdrtwMGpW3YmPLYJKNhoIVhPKrQN0BYjJUPkDJlVPKZo9cWPAhVOCXbu8QkF85LkcR-wIfuClBzlWVWK8MBsB-DaBJkQgaNVQ2UqtQhw31rB41JMMZYQQUsyCl7lhVYu5eSd_x4qTEjl7TCu6xGkqXlAPZWUO8XeeuThSR4MqwFwqhYuQ35GPSVaI3bhvlfE1U_c7kmANl4ywPdUQVUOmOHt4abikK1GOKLurRHoZpRLCzsDJifRt5jJkBUiTpxkX7iY6-HV7J1DB2qCe5buiq1BixnqRFwmOx8ch1XZbmrZZc6iOP3GVqfW5jAxHCNrC-LYDfGg774uBzsIfyHdv8rUFmpQExcRYiQgnIdxsFAdkbkeucYKo2tgXyppUjYhe7ByjOmDOStyOVWPL_0cV9dRHSnhLRNJixaefp-AuyKBHzvmEvmNb5DeW39pIFTID6VpwQDBrFPyalvJXkhiQ1xkyfGEHXkNFAdpEbTNT0GC_K7BpYZWisXF-CPBYUNti0acN-izfVBRxV7TVEOCly9H9rzUWBn0EL_Alcz4-0u16W3ufnpD1NNsYaGu5ZyGCabEGaoAgPS8izvrwqFC-2kcS05W7Am6Rx4uMxZTjx3j2QG6KLkkw3SSbaOsfVABOlArIplM1Jv7ajoAFSPCKfhOKtOmSYljF",
+  "priv": "P8toumlkmiSZKU6UB6tJC0jx1pEqf2kpiawqW6x4Zsw"
+}
+</pre>
+</div>
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<a href="#name-example-hpke-13-private-jwk" class="selfRef">Example HPKE-13 Private JWK (uses MLKEM1024-P384)</a>
+          </figcaption></figure>
+</div>
+<span id="name-example-hpke-14-private-jwk"></span><div id="example-jwk-hpke-14">
+<figure id="figure-4">
+          <div class="lang-json sourcecode" id="section-4.1-5.1">
+<pre>
+{
+  "kty": "AKP",
+  "alg": "HPKE-14",
+  "kid": "tTd2rviNEWmlDSv55i7bpOBkYgi5nYuGG44ptRhV51A",
+  "pub": "NPoE7SUAWwcVJbAWGEAUiZUcIrAIN1UJIoR-ZjZSAvIUxKJcyhMFoeliHppZ1ncZuqqmSTCNmCM7j5XCvRRUZgqYgHgmHuCJOdMK3raAbPF_g2kkj-iRqtQJ5poXC4bIpYd7ruJcHyyf8rEytrTGOKejA7xw_9IN8VtW27ah89F-3fUGm3xidSJTgrgGHcHKPhewgnNkNprFpzqwwpUz1jlnz-mPGwAkMBlM-xiIeUlX6hqKR0xeTDGUbyt53iMUdbqi0EaRdHC63GSruEwE8NYjr-Wy1-NXPEYSU7qlLjGNeSRSxZInTarM0ulwnFTFzii7kkmygCkGDgIaeufJ7hGVvwSI_hcE5pyBMcaTDiSyH-ExcCQC3RpXsTGbvEm8uSRqCfkiucLKgKPMbmpkcRR_bqESteo-JoYrNtLDLbtifGDKnit823vKEDRpbDMpQzlNThOO-vlNh-hHIHNjCUocRqBp6HwLRTQBpkIv0ka4djEU3HVDNkEZfNAkcJK3lDQDgGdWzltRb8gBZjBrWLB4zdCxXGSjwaGwRJcHfmVTBZtCx5GAlDjBiYxhmqdS20ZnXDMTRbyh3kPFxcpNa1Ch9uBkAsLORtY2rVIdztxsmkOQ2pg6lJBM5ugPRaRCeZmUhfFFQhB9dQVQNno2R1skBHh8InJe7PNBhKu1P5Uom-p5Hll3PgVWsus4QbfG5fsykOWC1QByTCgcvewJftuc-XUtq3dBcVCNrsaOMACE60Ci55WxFtlHHpJ7qvvJMfeYkeyfGaCweFFMFOc9BbeRVaKGItC73QLPM-Fsuylr90BcXGKTMHNyIHIuSEFChzOzb4AefYuz1VZeWXwhuETOkFkPlFkVOdueGJZLvUhu9BC2bDgcETosxYlX77dbxiGjSilEI6TI-NiG5IxznwoctbxIv2kp7pUu-WdMJEiYJSCCO8io4XpqKQI6S5Zh48drHQG7NjcGhgAyGuUNWKUS9qauz_iyYihl1AAel4DL-keymseFwPk8NAuwORtPhiR671RWYNoUJvWG5pwhJBczvVCx2mgrLjZAFhaGgPJcdRY_Ymy-aQmVlWFgpkjOuaZCjKtInfJn79AMUKoLaFwj9LEaf_RYyCtlslnH1Ym2_0aIpqmGeFu4e3O4M4Yi-HAOK0kQmgUx2BS7xpfPmksEMiZ47CZMBqRqJGHK1vWlVAKbjRE3m4o0qSe2LlAUQPJvPwt3ktjA1VsyGtpROSw0-CcGUtEiHQMrOXQhIaUFebVWVnOVMnNeISpQj4gtDEkXTbUBdUqJSBZsJ3upmNqxckie-OC2c0GiflFOJjbD-rw7ORlqyaZPYqKyKUo2uEhlJYc2StwnG9J7FiJq_jLA-ROc-QLIirdxDGNxvKA8FddTCnqtxyR_y1ac9CQXL4mazTNWFLGjcmiXm1S1BSg9eYzJe_tC3FJlijSV1vpCEEljF6u8pMaRhIhGuCSPC3ifEZMzl8a8E9CkdjOug-hTWkdJzjE_vZkkBGce8vJSVelkY_mTVnO4kBqYyRmqo56COq_xTDAOFj12mqzWYsB0FfV1aXwEIThj4GHHhD8",
+  "priv": "N_Ad_9j_QIuhusOi_mWxWKvtFWt_Wvw8f5pL7LOW6hepmK0yxo8tk72JwqMJNfKM5-xzI3CjEM_ZdotrjtKHlw"
+}
+</pre>
+</div>
+<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<a href="#name-example-hpke-14-private-jwk" class="selfRef">Example HPKE-14 Private JWK (uses ML-KEM-768)</a>
+          </figcaption></figure>
+</div>
+<span id="name-example-hpke-17-private-jwk"></span><div id="example-jwk-hpke-17">
+<figure id="figure-5">
+          <div class="lang-json sourcecode" id="section-4.1-6.1">
+<pre>
+{
+  "kty": "AKP",
+  "alg": "HPKE-17",
+  "kid": "QWZdkjasH-qrIlYW1fIk0iqfSMJQBhY4-FbbeIMVErY",
+  "pub": "LTEwJhh9rvh6Qal4SbKkTHws7-RJvpEc8hBzO4BYl2KgEHCEd1LC62EvAAIMhQnJSil24tEh0IMD-JeyDiZ3ugUZ8dmM7Sc-zDc-StiEEiDBdLwNa3JUPjETBvkMcXk9rTjM-Xanl4QdY4oaHzPMv1c7g5eojHiXmWqj4MS-N1Sus7dmVkIsS2TIMsxIpiZWMAOzSmULK1FB6IRplXEyrKBKCshj-yBz45Ku7cwkQXnIZ2NHnjdh7jJfNdqhKgp8GcMej9s0y8MWCWt7phUIZKO3jZh1mvQ1GEqGRgBkQRINISxmlqA2UlyQZkE2w8dxCzzO7Sp3W4dvP5kpCPpDn4V6GphogiPMwogzfESSAGKjWsEIn7I6ECm39cAlMch1ccFB5-XF1ajFnYGVdOeopeUsW6J1yPhkuycXUZlExadrfcyM5Dg3xeKgmuy0w1yiuqXIRauaZ0oiSNoxQ7UfeRWY_aK4ujm2dDG1W5ce81qKZfyqD8HB4LqLUTebMQCCMkZyCgRRK-Mc7FmaRqFx01SIYwg4cvevjzeU2FyvfCqVGHy2lbRzFjdGDet0s-NgAgcsdfI8CUV4XZixA3B-xFaTBHq8OKpaNuFEsyu6fhQUfXxY7Peu4YxPsxKdQwqTJkVn0vYZGTABGyQ-uyWH3qKIqXkPLhMNBHs9DPESRDAcNcNbNgXK7HIFt7mvVzIB-1BGhPRiJDKosalBmRVoVUEq7JQ6AsQRmnRbgHouI_WTIyR8cCaqJWdpjvEOZghynYYL37ohT1cZlnFaRop_GppK-1k0gGqF7vJ_niKy8hhud5WA1LcjzXVE6vCWfunKv8IxjyUWzLsWBqaPmSaeEWUlWvcbJlZTjekMiDwtmqQdgoI33vwslieT__EhbDeEBERTGfJqO2ZP7luPQDTOVegmTVnAWpwWUOGY8VVdbGqADye-Ubt5oaWse3tThpXPXKeOpDNEvHzLy7KF0iIlNEQjYQrN_cQb0tKOMdWeVHqkmqsqNah9lfJXonQSqkerSgV2u0B639yew7gJ4-h2ZFg9WDcTO6Kx46GaA9Mr0MtuUawqqOLBiaW724qTKZiuJTUzkBZ7NKcgdbRy_SwEbbFvA6tbg7KNtaJIJUBZnLySnfSbB6R5lAdTLSlBx_HKUAE6Tcim6_tUJEmGNOyHOfTMFqHCUOoop1Zl7dlbkGVGdLY2eckVqBO6a_k9Scqa3IAQkNBYRlgsBKSKjWSkitF72FadR2wsnZIpbMqY-OWutZgKg7RrfTaMGioYrEuEcRRiCXEHhUBTpaQsWtISmnWF_sZkMkOkKTK_L9MUSmWqnxo5yLt5nWshAQWuVsU7QcIFP6oNnok5ObUL1AithOTFk1mBIKBgMelk58ptXydifTkgTfyeKFl7ffcpf7EpAbgl7gMVPVKAH6iFZNgs5OyDSyUJ-IUjgQSVPxpNr9S82WOAonh8UlBVGtiNUKca3Zx9SbpvDppsTQVdPhox5CUcv0hjF9mqr7qV6AUODCJpmGWJ4QpexiOOyZZ8MRetOSOdpVxviDotR7cTC4W8osYHvEbDo1V-axClLFaA8IBJK7N73tVcj8yoPBCuTGo-6-bAxLgZpRpOhNqDiAeUKoy-8FuCLdd8C8B9Fct-u7A6GbgWw9RwpqFES2BnqQzA-AtYBuF9HChrdOCHs6EmbwE0F0dGmQHGI4aVv4OPBJNjF3EO5LQ8UbQTj-Rt3fEhZ2MlMRVUxvQ_tDfNIwmtXPzIbhI4Q9QX0JVL46YN8pmV7Fw-ChdgEjxFywrB7JpzavacoLEHvtejHlFKLXnGtdLM7yrOBPHECBujbqdvIHfJNauyz2NVvoG7w7nEIZseKrEdPbanEMsGr7QA3mcPDxlMyORSSpsvP4QgUGWuy-JwrISjjyMHuLJJrXTI42fG-6uIQSAugHWOJmMQaXpNPWZDa7RtIThcigaWLhnO9NeX-iYEceKTGnlULLO8nLelaGeTnthdbcw6JhtpteLDMfZFEPs_-6p4NKY8BGi7k8ICggtrk9ywo-qo2jPLSHFtkJdYuqHz5Gdm3331wMfI-spQk4JNFy1der3YZkwP8TU",
+  "priv": "I1v-IPJPcDMw2xO4rcknLwMM89dk7Yto68XITmRf7YCQ5R99pM_cm0NLKf_zSzrd55rQEKk5KED1Mv3NBtxkJw"
+}
+</pre>
+</div>
+<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
+<a href="#name-example-hpke-17-private-jwk" class="selfRef">Example HPKE-17 Private JWK (uses ML-KEM-1024)</a>
+          </figcaption></figure>
+</div>
+</section>
+</div>
 </section>
 </div>
 <div id="security-considerations">
@@ -2255,8 +2356,27 @@ established by <span>[<a href="#RFC7518" class="cite xref">RFC7518</a>]</span>:<
 <p id="appendix-A-1">TODO acknowledge.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="authors-addresses">
+<div id="document-history">
 <section id="appendix-B">
+      <h2 id="name-document-history">
+<a href="#name-document-history" class="section-name selfRef">Document History</a>
+      </h2>
+<p id="appendix-B-1">draft-skokan-jose-hpke-pq-pqt-01<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-B-2.1">
+          <p id="appendix-B-2.1.1">Added example JWK representations<a href="#appendix-B-2.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="appendix-B-3">draft-skokan-jose-hpke-pq-pqt-00<a href="#appendix-B-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-B-4.1">
+          <p id="appendix-B-4.1.1">Initial draft<a href="#appendix-B-4.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+</section>
+</div>
+<div id="authors-addresses">
+<section id="appendix-C">
       <h2 id="name-authors-addresses">
 <a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>
