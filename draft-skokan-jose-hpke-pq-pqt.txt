@@ -5,8 +5,8 @@
 Javascript Object Signing and Encryption                       F. Skokan
 Internet-Draft                                                      Okta
 Intended status: Standards Track                             B. Campbell
-Expires: 8 August 2026                                     Ping Identity
-                                                         4 February 2026
+Expires: 11 August 2026                                    Ping Identity
+                                                         7 February 2026
 
 
               JOSE HPKE PQ & PQ/T Algorithm Registrations
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 August 2026.
+   This Internet-Draft will expire on 11 August 2026.
 
 Copyright Notice
 
@@ -119,6 +119,11 @@ Table of Contents
    KEMs, as defined in [I-D.ietf-hpke-pq].  These algorithms provide
    protection against attacks by cryptographically relevant quantum
    computers.
+
+   The term “PQ/T hybrid” is used here consistent with
+   [I-D.ietf-hpke-pq] to denote a combination of post-quantum and
+   traditional algorithms, and should not be confused with HPKE’s use of
+   “hybrid” to describe internal KEM composition.
 
 2.  Conventions and Definitions
 
