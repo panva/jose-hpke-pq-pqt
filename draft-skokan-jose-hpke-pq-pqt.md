@@ -165,6 +165,35 @@ base64url encoding of HPKE's SerializePublicKey() output for the
 corresponding KEM, and the "priv" parameter contains the base64url encoding
 of HPKE's SerializePrivateKey() output.
 
+## Examples
+
+The following are example JWK representations for each of the KEMs used by the algorithms defined in this document.
+
+~~~ json
+{::include examples/jwks/HPKE-8.json}
+~~~
+{: #example-jwk-hpke-8 title="Example HPKE-8 Private JWK (uses MLKEM768-P256)"}
+
+~~~ json
+{::include examples/jwks/HPKE-11.json}
+~~~
+{: #example-jwk-hpke-11 title="Example HPKE-11 Private JWK (uses MLKEM768-X25519)"}
+
+~~~ json
+{::include examples/jwks/HPKE-13.json}
+~~~
+{: #example-jwk-hpke-13 title="Example HPKE-13 Private JWK (uses MLKEM1024-P384)"}
+
+~~~ json
+{::include examples/jwks/HPKE-14.json}
+~~~
+{: #example-jwk-hpke-14 title="Example HPKE-14 Private JWK (uses ML-KEM-768)"}
+
+~~~ json
+{::include examples/jwks/HPKE-17.json}
+~~~
+{: #example-jwk-hpke-17 title="Example HPKE-17 Private JWK (uses ML-KEM-1024)"}
+
 
 # Security Considerations
 
@@ -387,3 +416,14 @@ established by {{RFC7518}}:
 {:numbered="false"}
 
 TODO acknowledge.
+
+# Document History
+{:numbered="false"}
+
+draft-skokan-jose-hpke-pq-pqt-01
+
+- Added example JWK representations
+
+draft-skokan-jose-hpke-pq-pqt-00
+
+- Initial draft
