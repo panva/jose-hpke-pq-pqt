@@ -298,7 +298,7 @@ Table of Contents
 
    *  Specification Document(s): Table 1 of this document
 
-   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
 
 6.1.2.  HPKE-8-KE
 
@@ -315,7 +315,7 @@ Table of Contents
 
    *  Specification Document(s): Table 3 of this document
 
-   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
 
 6.1.3.  HPKE-9
 
@@ -332,7 +332,7 @@ Table of Contents
 
    *  Specification Document(s): Table 1 of this document
 
-   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
 
 6.1.4.  HPKE-9-KE
 
@@ -349,7 +349,7 @@ Table of Contents
 
    *  Specification Document(s): Table 3 of this document
 
-   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
 
 6.1.5.  HPKE-10
 
@@ -366,7 +366,7 @@ Table of Contents
 
    *  Specification Document(s): Table 1 of this document
 
-   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
 
 6.1.6.  HPKE-10-KE
 
@@ -383,7 +383,7 @@ Table of Contents
 
    *  Specification Document(s): Table 3 of this document
 
-   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
 
 6.1.7.  HPKE-11
 
@@ -400,7 +400,7 @@ Table of Contents
 
    *  Specification Document(s): Table 1 of this document
 
-   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
 
 6.1.8.  HPKE-11-KE
 
@@ -417,7 +417,7 @@ Table of Contents
 
    *  Specification Document(s): Table 3 of this document
 
-   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
 
 6.1.9.  HPKE-12
 
@@ -434,7 +434,7 @@ Table of Contents
 
    *  Specification Document(s): Table 1 of this document
 
-   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
 
 6.1.10.  HPKE-12-KE
 
@@ -451,7 +451,7 @@ Table of Contents
 
    *  Specification Document(s): Table 3 of this document
 
-   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
 
 6.1.11.  HPKE-13
 
@@ -468,7 +468,7 @@ Table of Contents
 
    *  Specification Document(s): Table 1 of this document
 
-   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
 
 6.1.12.  HPKE-13-KE
 
@@ -485,7 +485,7 @@ Table of Contents
 
    *  Specification Document(s): Table 3 of this document
 
-   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
 
 6.1.13.  HPKE-14
 
@@ -502,7 +502,7 @@ Table of Contents
 
    *  Specification Document(s): Table 2 of this document
 
-   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
 
 6.1.14.  HPKE-14-KE
 
@@ -519,7 +519,7 @@ Table of Contents
 
    *  Specification Document(s): Table 4 of this document
 
-   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
 
 6.1.15.  HPKE-15
 
@@ -536,7 +536,7 @@ Table of Contents
 
    *  Specification Document(s): Table 2 of this document
 
-   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
 
 6.1.16.  HPKE-15-KE
 
@@ -553,7 +553,7 @@ Table of Contents
 
    *  Specification Document(s): Table 4 of this document
 
-   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
 
 6.1.17.  HPKE-16
 
@@ -570,7 +570,7 @@ Table of Contents
 
    *  Specification Document(s): Table 2 of this document
 
-   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
 
 6.1.18.  HPKE-16-KE
 
@@ -587,7 +587,7 @@ Table of Contents
 
    *  Specification Document(s): Table 4 of this document
 
-   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
 
 6.1.19.  HPKE-17
 
@@ -604,7 +604,7 @@ Table of Contents
 
    *  Specification Document(s): Table 2 of this document
 
-   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
 
 6.1.20.  HPKE-17-KE
 
@@ -621,7 +621,7 @@ Table of Contents
 
    *  Specification Document(s): Table 4 of this document
 
-   *  Algorithm Analysis Documents(s): [I-D.ietf-hpke-pq]
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
 
 7.  References
 
