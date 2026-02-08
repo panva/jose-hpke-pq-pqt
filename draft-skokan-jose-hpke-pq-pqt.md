@@ -71,7 +71,8 @@ cryptographically relevant quantum computers.
 
 The term “PQ/T hybrid” is used here consistent with {{I-D.ietf-hpke-pq}} to denote a
 combination of post-quantum and traditional algorithms, and should not be confused
-with HPKE’s use of “hybrid” to describe internal KEM composition.
+with HPKE's use of "hybrid" to describe the combination of asymmetric and symmetric
+encryption.
 
 # Conventions and Definitions
 
@@ -781,6 +782,10 @@ TODO acknowledge.
 
 # Document History
 {:numbered="false"}
+
+draft-skokan-jose-hpke-pq-pqt-03
+
+- Clarified "hybrid" terminology disambiguation in the Introduction
 
 draft-skokan-jose-hpke-pq-pqt-02
 
