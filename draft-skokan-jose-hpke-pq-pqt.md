@@ -183,6 +183,12 @@ Examples of JWKs for each algorithm are provided in {{test-vectors}}.
 The security considerations of {{I-D.ietf-jose-hpke-encrypt}} and
 {{I-D.ietf-hpke-pq}} apply to this document.
 
+This document does not register algorithms using ML-KEM-512. As noted
+in {{Section 3 of I-D.ietf-hpke-pq}}, given the relative novelty of
+ML-KEM, there is concern that new cryptanalysis might reduce the
+security level of ML-KEM-512. Use of ML-KEM-768 or ML-KEM-1024 acts
+as a hedge against such cryptanalysis at a modest performance penalty.
+
 
 # IANA Considerations
 
@@ -793,6 +799,7 @@ draft-skokan-jose-hpke-pq-pqt-03
 
 - Clarified "hybrid" terminology disambiguation in the Introduction
 - Added descriptive text to Key Encryption algorithm sections
+- Expanded Security Considerations with ML-KEM-512 omission rationale
 
 draft-skokan-jose-hpke-pq-pqt-02
 
