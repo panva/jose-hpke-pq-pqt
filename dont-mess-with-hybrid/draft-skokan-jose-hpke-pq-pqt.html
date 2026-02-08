@@ -1451,6 +1451,8 @@ encryption, where HPKE encrypts the Content Encryption Key:<a href="#section-3.3
           </tbody>
         </table>
 </div>
+<p id="section-3.3-3">These are the key encryption counterparts of the PQ/T hybrid integrated
+encryption algorithms defined in <a href="#pqt-hybrid-integrated-table" class="auto internal xref">Table 1</a>.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="pure-pq-key-encryption-algorithms">
@@ -1502,6 +1504,8 @@ encryption:<a href="#section-3.4-1" class="pilcrow">¶</a></p>
           </tbody>
         </table>
 </div>
+<p id="section-3.4-3">These are the key encryption counterparts of the pure PQ integrated
+encryption algorithms defined in <a href="#pure-pq-integrated-table" class="auto internal xref">Table 2</a>.<a href="#section-3.4-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1527,6 +1531,11 @@ of HPKE's SerializePrivateKey() output.<a href="#section-4-2" class="pilcrow">¶
       </h2>
 <p id="section-5-1">The security considerations of <span>[<a href="#I-D.ietf-jose-hpke-encrypt" class="cite xref">I-D.ietf-jose-hpke-encrypt</a>]</span> and
 <span>[<a href="#I-D.ietf-hpke-pq" class="cite xref">I-D.ietf-hpke-pq</a>]</span> apply to this document.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-2">This document does not register algorithms using ML-KEM-512. As noted
+in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-hpke-pq-03#section-3" class="relref">Section 3</a> of [<a href="#I-D.ietf-hpke-pq" class="cite xref">I-D.ietf-hpke-pq</a>]</span>, given the relative novelty of
+ML-KEM, there is concern that new cryptanalysis might reduce the
+security level of ML-KEM-512. Use of ML-KEM-768 or ML-KEM-1024 acts
+as a hedge against such cryptanalysis at a modest performance penalty.<a href="#section-5-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
@@ -3138,22 +3147,34 @@ eyJhbGciOiJIUEtFLTE3LUtFIiwia2lkIjoiU2NPNWJHYURwSUNEWTJHSDAtQWdQT2RpaUJaNjRiM0dN
       <h2 id="name-document-history">
 <a href="#name-document-history" class="section-name selfRef">Document History</a>
       </h2>
-<p id="appendix-C-1">draft-skokan-jose-hpke-pq-pqt-02<a href="#appendix-C-1" class="pilcrow">¶</a></p>
+<p id="appendix-C-1">draft-skokan-jose-hpke-pq-pqt-03<a href="#appendix-C-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-C-2.1">
-          <p id="appendix-C-2.1.1">Added Test Vectors appendix<a href="#appendix-C-2.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-C-2.1.1">Clarified "hybrid" terminology disambiguation in the Introduction<a href="#appendix-C-2.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-C-2.2">
+          <p id="appendix-C-2.2.1">Added descriptive text to Key Encryption algorithm sections<a href="#appendix-C-2.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-C-2.3">
+          <p id="appendix-C-2.3.1">Expanded Security Considerations with ML-KEM-512 omission rationale<a href="#appendix-C-2.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-C-3">draft-skokan-jose-hpke-pq-pqt-01<a href="#appendix-C-3" class="pilcrow">¶</a></p>
+<p id="appendix-C-3">draft-skokan-jose-hpke-pq-pqt-02<a href="#appendix-C-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-C-4.1">
-          <p id="appendix-C-4.1.1">Added example JWK representations<a href="#appendix-C-4.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-C-4.1.1">Added Test Vectors appendix<a href="#appendix-C-4.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-C-5">draft-skokan-jose-hpke-pq-pqt-00<a href="#appendix-C-5" class="pilcrow">¶</a></p>
+<p id="appendix-C-5">draft-skokan-jose-hpke-pq-pqt-01<a href="#appendix-C-5" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-C-6.1">
-          <p id="appendix-C-6.1.1">Initial draft<a href="#appendix-C-6.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-C-6.1.1">Added example JWK representations<a href="#appendix-C-6.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="appendix-C-7">draft-skokan-jose-hpke-pq-pqt-00<a href="#appendix-C-7" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-C-8.1">
+          <p id="appendix-C-8.1.1">Initial draft<a href="#appendix-C-8.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
