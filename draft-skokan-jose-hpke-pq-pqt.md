@@ -71,7 +71,8 @@ cryptographically relevant quantum computers.
 
 The term “PQ/T hybrid” is used here consistent with {{I-D.ietf-hpke-pq}} to denote a
 combination of post-quantum and traditional algorithms, and should not be confused
-with HPKE’s use of “hybrid” to describe internal KEM composition.
+with HPKE's use of "hybrid" to describe the combination of asymmetric and symmetric
+encryption.
 
 # Conventions and Definitions
 
@@ -144,6 +145,9 @@ encryption, where HPKE encrypts the Content Encryption Key:
 | HPKE-13-KE  | MLKEM1024-P384 (`0x0051`)   | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
 {: #pqt-hybrid-key-encryption-table title="PQ/T Hybrid Key Encryption Algorithms" }
 
+These are the key encryption counterparts of the PQ/T hybrid integrated
+encryption algorithms defined in {{pqt-hybrid-integrated-table}}.
+
 ## Pure PQ Key Encryption Algorithms
 
 The following table lists the algorithm identifiers for pure post-quantum key
@@ -156,6 +160,9 @@ encryption:
 | HPKE-16-KE  | ML-KEM-1024 (`0x0042`)   | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
 | HPKE-17-KE  | ML-KEM-1024 (`0x0042`)   | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
 {: #pure-pq-key-encryption-table title="Pure PQ Key Encryption Algorithms" }
+
+These are the key encryption counterparts of the pure PQ integrated
+encryption algorithms defined in {{pure-pq-integrated-table}}.
 
 
 # JSON Web Key Representation
@@ -175,6 +182,12 @@ Examples of JWKs for each algorithm are provided in {{test-vectors}}.
 
 The security considerations of {{I-D.ietf-jose-hpke-encrypt}} and
 {{I-D.ietf-hpke-pq}} apply to this document.
+
+This document does not register algorithms using ML-KEM-512. As noted
+in {{Section 3 of I-D.ietf-hpke-pq}}, given the relative novelty of
+ML-KEM, there is concern that new cryptanalysis might reduce the
+security level of ML-KEM-512. Use of ML-KEM-768 or ML-KEM-1024 acts
+as a hedge against such cryptanalysis at a modest performance penalty.
 
 
 # IANA Considerations
@@ -781,6 +794,12 @@ TODO acknowledge.
 
 # Document History
 {:numbered="false"}
+
+draft-skokan-jose-hpke-pq-pqt-03
+
+- Clarified "hybrid" terminology disambiguation in the Introduction
+- Added descriptive text to Key Encryption algorithm sections
+- Expanded Security Considerations with ML-KEM-512 omission rationale
 
 draft-skokan-jose-hpke-pq-pqt-02
 
