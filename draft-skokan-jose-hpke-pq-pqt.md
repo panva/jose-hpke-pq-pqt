@@ -207,7 +207,7 @@ established by {{RFC7518}}:
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
 - Specification Document(s): {{pqt-hybrid-integrated-table}} of this document
-- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+- Algorithm Analysis Document(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-8-KE
 {: toc="exclude"}
@@ -218,7 +218,7 @@ established by {{RFC7518}}:
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
 - Specification Document(s): {{pqt-hybrid-key-encryption-table}} of this document
-- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+- Algorithm Analysis Document(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-9
 {: toc="exclude"}
@@ -229,7 +229,7 @@ established by {{RFC7518}}:
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
 - Specification Document(s): {{pqt-hybrid-integrated-table}} of this document
-- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+- Algorithm Analysis Document(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-9-KE
 {: toc="exclude"}
@@ -240,7 +240,7 @@ established by {{RFC7518}}:
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
 - Specification Document(s): {{pqt-hybrid-key-encryption-table}} of this document
-- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+- Algorithm Analysis Document(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-10
 {: toc="exclude"}
@@ -251,7 +251,7 @@ established by {{RFC7518}}:
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
 - Specification Document(s): {{pqt-hybrid-integrated-table}} of this document
-- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+- Algorithm Analysis Document(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-10-KE
 {: toc="exclude"}
@@ -262,7 +262,7 @@ established by {{RFC7518}}:
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
 - Specification Document(s): {{pqt-hybrid-key-encryption-table}} of this document
-- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+- Algorithm Analysis Document(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-11
 {: toc="exclude"}
@@ -273,7 +273,7 @@ established by {{RFC7518}}:
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
 - Specification Document(s): {{pqt-hybrid-integrated-table}} of this document
-- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+- Algorithm Analysis Document(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-11-KE
 {: toc="exclude"}
@@ -284,7 +284,7 @@ established by {{RFC7518}}:
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
 - Specification Document(s): {{pqt-hybrid-key-encryption-table}} of this document
-- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+- Algorithm Analysis Document(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-12
 {: toc="exclude"}
@@ -295,7 +295,7 @@ established by {{RFC7518}}:
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
 - Specification Document(s): {{pqt-hybrid-integrated-table}} of this document
-- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+- Algorithm Analysis Document(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-12-KE
 {: toc="exclude"}
@@ -306,7 +306,7 @@ established by {{RFC7518}}:
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
 - Specification Document(s): {{pqt-hybrid-key-encryption-table}} of this document
-- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+- Algorithm Analysis Document(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-13
 {: toc="exclude"}
@@ -317,7 +317,7 @@ established by {{RFC7518}}:
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
 - Specification Document(s): {{pqt-hybrid-integrated-table}} of this document
-- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+- Algorithm Analysis Document(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-13-KE
 {: toc="exclude"}
@@ -328,7 +328,7 @@ established by {{RFC7518}}:
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
 - Specification Document(s): {{pqt-hybrid-key-encryption-table}} of this document
-- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+- Algorithm Analysis Document(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-14
 {: toc="exclude"}
@@ -339,7 +339,7 @@ established by {{RFC7518}}:
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
 - Specification Document(s): {{pure-pq-integrated-table}} of this document
-- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+- Algorithm Analysis Document(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-14-KE
 {: toc="exclude"}
@@ -350,7 +350,7 @@ established by {{RFC7518}}:
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
 - Specification Document(s): {{pure-pq-key-encryption-table}} of this document
-- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+- Algorithm Analysis Document(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-15
 {: toc="exclude"}
@@ -361,7 +361,7 @@ established by {{RFC7518}}:
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
 - Specification Document(s): {{pure-pq-integrated-table}} of this document
-- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+- Algorithm Analysis Document(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-15-KE
 {: toc="exclude"}
@@ -372,7 +372,7 @@ established by {{RFC7518}}:
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
 - Specification Document(s): {{pure-pq-key-encryption-table}} of this document
-- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+- Algorithm Analysis Document(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-16
 {: toc="exclude"}
@@ -383,7 +383,7 @@ established by {{RFC7518}}:
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
 - Specification Document(s): {{pure-pq-integrated-table}} of this document
-- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+- Algorithm Analysis Document(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-16-KE
 {: toc="exclude"}
@@ -394,7 +394,7 @@ established by {{RFC7518}}:
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
 - Specification Document(s): {{pure-pq-key-encryption-table}} of this document
-- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+- Algorithm Analysis Document(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-17
 {: toc="exclude"}
@@ -405,7 +405,7 @@ established by {{RFC7518}}:
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
 - Specification Document(s): {{pure-pq-integrated-table}} of this document
-- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+- Algorithm Analysis Document(s): {{I-D.ietf-hpke-pq}}
 
 ### HPKE-17-KE
 {: toc="exclude"}
@@ -416,7 +416,7 @@ established by {{RFC7518}}:
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
 - Specification Document(s): {{pure-pq-key-encryption-table}} of this document
-- Algorithm Analysis Documents(s): {{I-D.ietf-hpke-pq}}
+- Algorithm Analysis Document(s): {{I-D.ietf-hpke-pq}}
 
 
 --- back
