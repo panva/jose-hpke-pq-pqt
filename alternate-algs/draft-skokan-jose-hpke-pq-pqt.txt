@@ -1,0 +1,781 @@
+
+
+
+
+Javascript Object Signing and Encryption                       F. Skokan
+Internet-Draft                                                      Okta
+Intended status: Standards Track                             B. Campbell
+Expires: 14 August 2026                                    Ping Identity
+                                                        10 February 2026
+
+
+              JOSE HPKE PQ & PQ/T Algorithm Registrations
+                  draft-skokan-jose-hpke-pq-pqt-latest
+
+Abstract
+
+   This document registers Post-Quantum (PQ) and Post-Quantum/
+   Traditional (PQ/T) hybrid algorithm identifiers for use with JSON
+   Object Signing and Encryption (JOSE), building on the Hybrid Public
+   Key Encryption (HPKE) framework.
+
+About This Document
+
+   This note is to be removed before publishing as an RFC.
+
+   The latest revision of this draft can be found at
+   https://panva.github.io/jose-hpke-pq-pqt/draft-skokan-jose-hpke-pq-
+   pqt.html.  Status information for this document may be found at
+   https://datatracker.ietf.org/doc/draft-skokan-jose-hpke-pq-pqt/.
+
+   Discussion of this document takes place on the Javascript Object
+   Signing and Encryption Working Group mailing list
+   (mailto:jose@ietf.org), which is archived at
+   https://mailarchive.ietf.org/arch/browse/jose/.  Subscribe at
+   https://www.ietf.org/mailman/listinfo/jose/.
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/panva/jose-hpke-pq-pqt.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 14 August 2026.
+
+Copyright Notice
+
+   Copyright (c) 2026 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction
+   2.  Conventions and Definitions
+   3.  Algorithm Identifiers
+     3.1.  PQ/T Hybrid Integrated Encryption Algorithms
+     3.2.  Pure PQ Integrated Encryption Algorithms
+     3.3.  PQ/T Hybrid Key Encryption Algorithms
+     3.4.  Pure PQ Key Encryption Algorithms
+   4.  JSON Web Key Representation
+   5.  Security Considerations
+   6.  IANA Considerations
+     6.1.  JSON Web Signature and Encryption Algorithms Registry
+   7.  References
+     7.1.  Normative References
+     7.2.  Informative References
+   Appendix A.  Test Vectors
+   Acknowledgments
+   Document History
+   Authors' Addresses
+
+1.  Introduction
+
+   [I-D.ietf-jose-hpke-encrypt] defines how to use Hybrid Public Key
+   Encryption (HPKE) with JSON Web Encryption (JWE) using traditional
+   Key Encapsulation Mechanisms (KEM) based on Elliptic-curve Diffie-
+   Hellman (ECDH).
+
+   This document extends the set of registered HPKE algorithms to
+   include Post-Quantum (PQ) and Post-Quantum/Traditional (PQ/T) hybrid
+   KEMs, as defined in [I-D.ietf-hpke-pq].  These algorithms provide
+   protection against attacks by cryptographically relevant quantum
+   computers.
+
+   The term “PQ/T hybrid” is used here consistent with
+   [I-D.ietf-hpke-pq] to denote a combination of post-quantum and
+   traditional algorithms, and should not be confused with HPKE's use of
+   "hybrid" to describe the combination of asymmetric and symmetric
+   encryption.
+
+2.  Conventions and Definitions
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in
+   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+3.  Algorithm Identifiers
+
+   This section defines the algorithm identifiers for PQ and PQ/T HPKE-
+   based encryption in JOSE.  Each algorithm is defined by a combination
+   of an HPKE KEM, a Key Derivation Function (KDF), and an Authenticated
+   Encryption with Associated Data (AEAD) algorithm.
+
+   All algorithms defined in this section follow the same operational
+   model as those in [I-D.ietf-jose-hpke-encrypt], supporting both
+   integrated encryption as defined in Section 5 of
+   [I-D.ietf-jose-hpke-encrypt] and key encryption as defined in
+   Section 6 of [I-D.ietf-jose-hpke-encrypt].
+
+   Test vectors for all algorithms defined in this section are provided
+   in Appendix A.
+
+3.1.  PQ/T Hybrid Integrated Encryption Algorithms
+
+   The following table lists the algorithm identifiers for PQ/T hybrid
+   integrated encryption, where HPKE directly encrypts the plaintext
+   without a separate Content Encryption Key:
+
+     +=============+========================+==========+=============+
+     | "alg" value | HPKE KEM               | HPKE KDF | HPKE AEAD   |
+     +=============+========================+==========+=============+
+     | HPKE-8      | MLKEM768-P256 (0x0050) | SHAKE128 | AES-128-GCM |
+     |             |                        | (0x0010) | (0x0001)    |
+     +-------------+------------------------+----------+-------------+
+     | HPKE-9      | MLKEM768-X25519        | SHAKE128 | AES-128-GCM |
+     |             | (0x647a)               | (0x0010) | (0x0001)    |
+     +-------------+------------------------+----------+-------------+
+     | HPKE-10     | MLKEM1024-P384         | SHAKE256 | AES-256-GCM |
+     |             | (0x0051)               | (0x0011) | (0x0002)    |
+     +-------------+------------------------+----------+-------------+
+
+           Table 1: PQ/T Hybrid Integrated Encryption Algorithms
+
+   These algorithms combine ML-KEM with a traditional elliptic curve
+   algorithm in a PQ/T hybrid KEM construction, with the goal that
+   compromise of either the post-quantum or the traditional component
+   alone does not undermine the security of the resulting encryption.
+
+3.2.  Pure PQ Integrated Encryption Algorithms
+
+   The following table lists the algorithm identifiers for pure post-
+   quantum integrated encryption:
+
+      +=============+=====================+==========+=============+
+      | "alg" value | HPKE KEM            | HPKE KDF | HPKE AEAD   |
+      +=============+=====================+==========+=============+
+      | HPKE-11     | ML-KEM-768 (0x0041) | SHAKE256 | AES-256-GCM |
+      |             |                     | (0x0011) | (0x0002)    |
+      +-------------+---------------------+----------+-------------+
+      | HPKE-12     | ML-KEM-1024         | SHAKE256 | AES-256-GCM |
+      |             | (0x0042)            | (0x0011) | (0x0002)    |
+      +-------------+---------------------+----------+-------------+
+
+            Table 2: Pure PQ Integrated Encryption Algorithms
+
+   These algorithms provide pure post-quantum security using ML-KEM
+   without a traditional algorithm component.
+
+3.3.  PQ/T Hybrid Key Encryption Algorithms
+
+   The following table lists the algorithm identifiers for PQ/T hybrid
+   key encryption, where HPKE encrypts the Content Encryption Key:
+
+     +=============+========================+==========+=============+
+     | "alg" value | HPKE KEM               | HPKE KDF | HPKE AEAD   |
+     +=============+========================+==========+=============+
+     | HPKE-8-KE   | MLKEM768-P256 (0x0050) | SHAKE128 | AES-128-GCM |
+     |             |                        | (0x0010) | (0x0001)    |
+     +-------------+------------------------+----------+-------------+
+     | HPKE-9-KE   | MLKEM768-X25519        | SHAKE128 | AES-128-GCM |
+     |             | (0x647a)               | (0x0010) | (0x0001)    |
+     +-------------+------------------------+----------+-------------+
+     | HPKE-10-KE  | MLKEM1024-P384         | SHAKE256 | AES-256-GCM |
+     |             | (0x0051)               | (0x0011) | (0x0002)    |
+     +-------------+------------------------+----------+-------------+
+
+               Table 3: PQ/T Hybrid Key Encryption Algorithms
+
+   These are the key encryption counterparts of the PQ/T hybrid
+   integrated encryption algorithms defined in Table 1.
+
+3.4.  Pure PQ Key Encryption Algorithms
+
+   The following table lists the algorithm identifiers for pure post-
+   quantum key encryption:
+
+      +=============+=====================+==========+=============+
+      | "alg" value | HPKE KEM            | HPKE KDF | HPKE AEAD   |
+      +=============+=====================+==========+=============+
+      | HPKE-11-KE  | ML-KEM-768 (0x0041) | SHAKE256 | AES-256-GCM |
+      |             |                     | (0x0011) | (0x0002)    |
+      +-------------+---------------------+----------+-------------+
+      | HPKE-12-KE  | ML-KEM-1024         | SHAKE256 | AES-256-GCM |
+      |             | (0x0042)            | (0x0011) | (0x0002)    |
+      +-------------+---------------------+----------+-------------+
+
+                Table 4: Pure PQ Key Encryption Algorithms
+
+   These are the key encryption counterparts of the pure PQ integrated
+   encryption algorithms defined in Table 2.
+
+4.  JSON Web Key Representation
+
+   Keys for the algorithms defined in this document use the "AKP"
+   (Algorithm Key Pair) key type defined in [I-D.ietf-cose-dilithium].
+
+   For the algorithms in this document, the "pub" parameter contains the
+   base64url encoding of HPKE's SerializePublicKey() output for the
+   corresponding KEM, and the "priv" parameter contains the base64url
+   encoding of HPKE's SerializePrivateKey() output.
+
+   Examples of JWKs for each algorithm are provided in Appendix A.
+
+5.  Security Considerations
+
+   The security considerations of [I-D.ietf-jose-hpke-encrypt] and
+   [I-D.ietf-hpke-pq] apply to this document.
+
+   This document does not register algorithms using ML-KEM-512.  As
+   noted in Section 3 of [I-D.ietf-hpke-pq], given the relative novelty
+   of ML-KEM, there is concern that new cryptanalysis might reduce the
+   security level of ML-KEM-512.  Use of ML-KEM-768 or ML-KEM-1024 acts
+   as a hedge against such cryptanalysis at a modest performance
+   penalty.
+
+6.  IANA Considerations
+
+6.1.  JSON Web Signature and Encryption Algorithms Registry
+
+   This document requests registration of the following values in the
+   IANA "JSON Web Signature and Encryption Algorithms" registry
+   established by [RFC7518]:
+
+6.1.1.  HPKE-8
+
+   *  Algorithm Name: HPKE-8
+
+   *  Algorithm Description: Integrated Encryption with HPKE using
+      MLKEM768-P256 KEM, SHAKE128 KDF, and AES-128-GCM AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 1 of this document
+
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
+
+6.1.2.  HPKE-8-KE
+
+   *  Algorithm Name: HPKE-8-KE
+
+   *  Algorithm Description: Key Encryption with HPKE using
+      MLKEM768-P256 KEM, SHAKE128 KDF, and AES-128-GCM AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 3 of this document
+
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
+
+6.1.3.  HPKE-9
+
+   *  Algorithm Name: HPKE-9
+
+   *  Algorithm Description: Integrated Encryption with HPKE using
+      MLKEM768-X25519 KEM, SHAKE128 KDF, and AES-128-GCM AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 1 of this document
+
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
+
+6.1.4.  HPKE-9-KE
+
+   *  Algorithm Name: HPKE-9-KE
+
+   *  Algorithm Description: Key Encryption with HPKE using
+      MLKEM768-X25519 KEM, SHAKE128 KDF, and AES-128-GCM AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 3 of this document
+
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
+
+6.1.5.  HPKE-10
+
+   *  Algorithm Name: HPKE-10
+
+   *  Algorithm Description: Integrated Encryption with HPKE using
+      MLKEM1024-P384 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 1 of this document
+
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
+
+6.1.6.  HPKE-10-KE
+
+   *  Algorithm Name: HPKE-10-KE
+
+   *  Algorithm Description: Key Encryption with HPKE using
+      MLKEM1024-P384 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 3 of this document
+
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
+
+6.1.7.  HPKE-11
+
+   *  Algorithm Name: HPKE-11
+
+   *  Algorithm Description: Integrated Encryption with HPKE using ML-
+      KEM-768 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 2 of this document
+
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
+
+6.1.8.  HPKE-11-KE
+
+   *  Algorithm Name: HPKE-11-KE
+
+   *  Algorithm Description: Key Encryption with HPKE using ML-KEM-768
+      KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 4 of this document
+
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
+
+6.1.9.  HPKE-12
+
+   *  Algorithm Name: HPKE-12
+
+   *  Algorithm Description: Integrated Encryption with HPKE using ML-
+      KEM-1024 KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 2 of this document
+
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
+
+6.1.10.  HPKE-12-KE
+
+   *  Algorithm Name: HPKE-12-KE
+
+   *  Algorithm Description: Key Encryption with HPKE using ML-KEM-1024
+      KEM, SHAKE256 KDF, and AES-256-GCM AEAD
+
+   *  Algorithm Usage Location(s): "alg"
+
+   *  JOSE Implementation Requirements: Optional
+
+   *  Change Controller: IETF
+
+   *  Specification Document(s): Table 4 of this document
+
+   *  Algorithm Analysis Document(s): [I-D.ietf-hpke-pq]
+
+7.  References
+
+7.1.  Normative References
+
+   [I-D.ietf-cose-dilithium]
+              Prorock, M. and O. Steele, "ML-DSA for JOSE and COSE",
+              Work in Progress, Internet-Draft, draft-ietf-cose-
+              dilithium-11, 15 November 2025,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-cose-
+              dilithium-11>.
+
+   [I-D.ietf-hpke-pq]
+              Barnes, R. and D. Connolly, "Post-Quantum and Post-
+              Quantum/Traditional Hybrid Algorithms for HPKE", Work in
+              Progress, Internet-Draft, draft-ietf-hpke-pq-03, 6
+              November 2025, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-hpke-pq-03>.
+
+   [I-D.ietf-jose-hpke-encrypt]
+              Reddy.K, T., Tschofenig, H., Banerjee, A., Steele, O., and
+              M. B. Jones, "Use of Hybrid Public Key Encryption (HPKE)
+              with JSON Web Encryption (JWE)", Work in Progress,
+              Internet-Draft, draft-ietf-jose-hpke-encrypt-15, 30
+              November 2025, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-jose-hpke-encrypt-15>.
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
+7.2.  Informative References
+
+   [RFC7518]  Jones, M., "JSON Web Algorithms (JWA)", RFC 7518,
+              DOI 10.17487/RFC7518, May 2015,
+              <https://www.rfc-editor.org/rfc/rfc7518>.
+
+Appendix A.  Test Vectors
+
+   This appendix provides test vectors for each algorithm defined in
+   this document.  For each algorithm, a private JWK, a Flattened JWE
+   JSON Serialization example with Additional Authenticated Data, and a
+   JWE Compact Serialization example are provided.
+
+A.1.  HPKE-8
+
+   {
+     "kty": "AKP",
+     "alg": "HPKE-8",
+     "kid": "REOxA_NvwezfBm94AVWTk_xLqYnF9fQpwYCuPVNLhm4",
+     "pub": "eJNI_ZxoDWMXiXYFvRuvhbd0JCOZHqc60uIs2jsek-ibdXRLvEkmNfcyzGYcKVSq2oWT6yJu_FO3n4p_IRmKUpeTo_JWRKBSG3fHwukYLsm9jKZ_3IBo_fkBsWXOrOQ64Sm0WMlPiVQB_7BzzsgoivUoA_dR5wLO-CUWtaVHiaQKDWpp-iMN0xlOogVeQSVt-CCCmtuYH9yEIuDNoNGz3oh0ODa66RmE1AmwpjxRTJdvdtWdb7y1Xpxi9NKidCWy64w0EQRylehcX4aH27g0JtMjNUss46BqPKhpMjeXSFgjIpUJgmCUgKqE_5JwDQDF4lCuy8yBqTCduTWeqMcyHPbLT_q7n9UxGCzIvOCRfNBfdhmp7IgPRiPGUxaUnHdUZ7wqGlljAGAV3PgW97OcIGi2TeV5XgMkZtETgwhuILodPRy_QMlZBXun9Bu2pqlBacwkvhoNzaNG6dR2nbtIvjXP5liNNQCDkBNwg1GMGiiit0U5FaBIIlvL-bGxxAx0kCHCPmOZ8SxYheOX9FpJn9Mu5tgz5LCkixqsUHizbIlD-ClHgraNM6x8KTJhLIg5AHxoHUcPD3pypVR9WdQ0KKszd0eipmJ2JZm2v6B_wLMhkVcRicO0LtA01TXKCUZEKUU09ahBz6VtPOCrRnxb-KeLJZgLxngfXBVzM8bKzoRiFhehuRwkUkvHYXOwBlGxdwE43MCp9xEBH-JPZyZPMvqWL_kRoRJ08hagZ-bI_NUBcTKN7jRJGJZFUPXL18fExUQ3g6zDT-UZMneiw_mXaEEW3HZ-MnzIyWCvUiFddds6jeuq7UouqtSHvsgwjpNrgPkeX8rEGFASKTgzEDkcsHFOtVASLWRLh0qWQgcdhya2LeShX7Ufq7F1YwCTt0FlHgUylFNWxEqWJMsn0eTPhAxjfks6UBC04eqO1HPDSMxt0Rg7jgeBL4VXL3LKb-B9NsiSX5EoxIIYNneu0-aPEUeEdYaCRugkDcey7ZS2KqysABhTAvof9JUnKfEMgqStVAYFRWee6UJEa-SHpnYyzBQDwrQavnySdwUyWtUskPJPz1B7pRh0kTNySPdulZu5nzUJCMKwqtwe23Bs1RpvjlsO72wn6xbIDodv7CsWuqtq5ChWC8U1ywukw5sgZ4eZS9Y1azDG2zoLrFGLYHQ9i-NME2rLdsIsRPY3lIlusRo7URuWWeC3avkOyYect4JfpklB6zZCWqVnSIoloEaIBxtTdycdaXtTlPMd1XVz3kmycPWIoiuSKczFWMaJ9YAtq4waUTEsOFKvmqNYFPRxjRE_cBsAMpexYhVxhakNtJtfxEa-GUePiQNl36mvCMAYm7sqn7XISTsPweyD3ZKKB1uNwekNJZp40aS8JWBYomJWW5jHU8QkpswDdqwfjSKE_gHHoCQe3-KnqVau1PQgGxvPoIgzW2zFmqMJhPlopyENASwtLoOkt3rO-ES78qQ-IUTBB_l-bveVEMawdEBo0UgLDVAqArRGq6iVkps3y2ek6iJQKGu5gBO8R-lKljIzPhIEJ2K0VMqGqkeusohO-MwuXvBiKAYJ_yB5IvTJAJsEHVa1JbPeNxM3s79Tpi-mDd4-U9KG9pESKQHExfhDsEmAiDgu6maRD03ZjvLb-4_PQAmUAzv_1pYIQtsV6Cci4Q",
+     "priv": "VjHZjWaCNn-Y0trrVIbK6MIEYjB2alhX-i0vxMILzPw"
+   }
+
+                        Figure 1: HPKE-8 Private JWK
+
+   {
+     "protected": "eyJhbGciOiJIUEtFLTgiLCJraWQiOiJSRU94QV9OdndlemZCbTk0QVZXVGtfeExxWW5GOWZRcHdZQ3VQVk5MaG00In0",
+     "aad": "VGhlIEZlbGxvd3NoaXAgb2YgdGhlIFJpbmc",
+     "encrypted_key": "wU1FLz-fc6ohopik74XSbpdzr8C0X5ySHwzwvBk6TUgOmza9ChWCAfaADeZsGbxgAJAcUlhWh_iKPjtmDivIuCxMc_pXgvpybMCvc-6sKR1uWpz08OgjgQGnc2C8xVnb9uzPW2MhfETihg1OXiZ_WZ_rWl_d6jMwR8malerlpDYEdKkApgMfVzGqT0ktpWbW3pAOrSLY5Bml_k2l_D1xPXW63NrEe8ArqVu96vLh345GtDcu6QrBe4GtrEqm4mt6KaELlH-_S-3eWmMwx7mdoom_SKVTWR6IdYtG_EGWS4NMsUTp-xdsWrc8JxA-NBI9proiQOECf-hTuuok1klyrta1HhLCzENbY2aUzsSPe0qycMDeRrJYZa5PSqUTZdfT3fTf5_b805GDhkTpdAqRFqbfNYQmJtfTwT0yZV7qQB8_4EVUymlVI6bkclKO1alN7_o1raF4UiJndejWuaY1Eghz8e_qkbInq12egKsSr5jSuiu67zBGnUnYelkJr-hBvjRqzMw1KJbsL0QyT0mw6E1t5_qVwTJ0P8GLN-8Bv6NvHqVJTXHhvYFdqWz8-YcCmhQ_MWjR71mUAeXcgODRjzppfUo491Eb4t_KmRU5zFV2pBlwDZ_SMBcQQmVHQFeuYRjrq6pf8TNCb5mc0g_uNPwbLbLJEgF_bjzWCDwA5sZyHoXXfnD6JPE-bYIRfiQSudG7bTvMCtSNVGyCit6iBHMvTDsgnlRuGca4uM8uWmRvNORbJHV7hCXtW09RY78SK3NH8lGWjokWirZmXtMXg5DpYNeFaIL0dg_c0xW0cTI_eMeqoCy0MUhZiDvHPnkpC8vWx0nJHVUzrl8u5Bu6CHeF8OmHem9G8T1G3ti3wPpdWjs_4L3aLxNinqJwzCQUFSxgjs9XYZeTkjk5qi0GZ6M_pAb7ryMkuZz02hpgeIlgUBlIKfts_hqQ__5d47c0V-Y1cleRABuUkwK-xFBOK6U30NiMWZbkDnJEIgGujM7-45gRhm8e01KU7P7JW5gbXUz6fhchL3I4wuB8FfO5PfC9izfhMH_NiLz47MT_HAp1H5nM39kFkY6M5kYoXsuDf9j7cjtFI_deN-5NY3GSZxHsAV9_p_Wk1IixXZLqxhgY5ZPTGcGkjUerJ_g53rbZFLHHEtLo2PwfZn03-cGFHp41zMkswt2SmK3qhASXimOrANWhVtg8h0cLzTOuf2FHMTP4Kmui50ZN37Gyh4IaCXNBxigLov_x5VjCQLLbpCOLWYl0NIcJPxf5IXmXBpgtO1E9Y_ip5BWw1tBIq0UUDD2AdLGne-Fik4r_1ICskXBSg76rci7TDE_0c0MBWX8DgyXnfDN4UlxE85LXn-24AtlH7ut7n0RS9WzAFDRSlR-CDeG6MHhPy7n5o6BZOlr2iRyiY047sRtJlsyNdd-EA7IxkWHdnDMKGougFK3brk0EaJd_0cef3j5JJi4lqEBaS-iKsxMyZNc_6qrRZEhLN8RclsjY2wSA_t_Xl-bK27rN7ZRpvkHAZESgZlzYX1xU7Q",
+     "ciphertext": "7ByAmvYOOV6y4-waB1_fbYFOSacv-CZzMcMCxT9q2z3TLI1kcJASv1sdfuDsPrSZUNaYANO33GZf29xXMRbtZD0ZTNS4q8c1R-i4aeIW-K_v8NR4oSkYmAnm1qWi713E2pWX4NvIE5LMlnmBPrYmk9XonDEMnMsJUBPWO4amM3ZSL_n745buLrCh_q92DA3YQhvGvWaiHv0Ow9X8ZhHCyG4xDzV4wFio28NkZhq6oHAMsubF2-BqZJUSQI6M3fCayut1WuzqKwoYMjWHygQfgL_gFf3tYKJjVfpRFcwmpVkPq-_NWMbGx1rW2_fewYjLfPDVBZrav5Vuu5n7lZKzS5C6yfh4ndpWMu5JCcu6p03L3os6e02RuawwUAdN82dgDw"
+   }
+
+             Figure 2: HPKE-8 Flattened JWE JSON Serialization
+
+eyJhbGciOiJIUEtFLTgiLCJraWQiOiJSRU94QV9OdndlemZCbTk0QVZXVGtfeExxWW5GOWZRcHdZQ3VQVk5MaG00In0.nDB9rgR4WC2LFroeIbqboe6CntWndUfGGfhdWfctj5O8Xp3B33vvtj5sspKYXDb1RrULs6j6I2JfQFejtFFqWlszNCA2gLqkqTKPvbkG_-EgPFCCCnZRQx8fEpvXZG80Tiy__JhpYIfdBFKmxceBM3TM135-2vJPD09YS-BQlTrdYVI8i3UY1erWifhVW_8X8ALOyeeFVRH23i-8cP3CU9ce7St9LlfzsZitHEofB8prceOwaPsYXqTx1PI2-W5i-WktbPQoZXb1plXH5v9kJNv72sDngl48NJEeIChpui1K0ceN8CpaGJA088nW4rmlZ7vFWXVw0PESMJdz2VazOoip98Teiy_T8wFtPKePdK7CwxarXJhozIksbdnibQ-trDz12QP7WWVjT3fp02m9dNjnxtgIq-AnHiZ1nTQhcVi_ehutIiDpcyUWsGXhuBJ60M0Z3y-w0RmWguKi3xNmydsSUcRSufNs7e6K5yDKA4BpVDitJfQrxC_CAmg5TJyRSw0b4OfY7vXlWVpfTsgXXLMeP0mx_PxhJdn8OcL7-RKUZb_5F5d5QUgyRotyjiSW9NbWgJVTraMyoa6wTHs5HhbsLIHGDyq7WtQvOf59sgQM_vCEcFpjKZfCkX3z9w8H-RkOzcQaz_AbT_jlWjsHXo4MTZOBWwd7BPw81ZRh3vmeDFtNKVoURgfL7-b6hmxutKwMzZsBJj-o9P2U4rTMnXgwd3hIGyS4aLiazv1RUrLJGk5Yo3HbpfUq3zwfX_wUMvNfgW0ugMxy0eUoPpBtQBHlKFfVte_BQtKy5h8ZasSPqy5qXm8l86kIUkKtATpAsliKTthESrYhEJIw_8m8_Zpr7UCiCJT2O6kk2i-rzD_2eH8StPgO2S3kSlwGgdDbUbKZJPDT6p2EZjiwn2FzBgxc6BmEWU9QC-VHfpDjlpWkkf8P3F2qvGq3Pj6wfpos5A6twL7O8HS1yjRiUGeF4-nKIf7YDaqh0WhNOx_g84u5KjnJ1Ce9AL8SlPQW5SfIT0O7S45dzKUFKgLbwqtsJuAxn9QhwTCzJLsFR-zFUd0qTwpXEZ9lNeLEJ9iwwuxgagBGzZEc_x3tuf3jCMNiBUg2tuXLEpWXGrCd2pO-Pb_x1FdzMRt6OLC3BF84DgkHmqyNq-YoDkKAfTS7knlSz1F6pq7MqkIPenKeH-UOHVTMXns82WptI2uxksb_qGX3dOP2jZeLdflUho9iX0pu9sbWojsMoZD4tnJhkWufvDdccUsheZKvy-rt0g_GNDnxZxWzIYlJGXZGKnCcidySP-UNHPe4ppVYJI8j6csd3ks_oRcB0zwmbvpuHSJ2l3TJFSEvpUcx3HdgFGn26m7XyXFKPtDifFewoZoABlysYI8RHsm7Ef_gsV1YUqZV6LxSNagvG4VsfJDXGIzHDGfxw8Ct3c9y2iS6jEMRjFhUBuUEPENaAFZenmOxbCBzKXUSgFT-iJv76wGXZB5C3xfA4Y7Q-mC5FYtuxBiaFp5NpMFuG0Gtn0UV911gwIxAuCZk2Q..ILuCf2oQfVjjXpMZNCVu08wh4h_Mje0xK-5m-hYCVDMkhm19CQ_FHF9PrL0aiCBI3Y-BuJufszkOfO2XeGj-gw4K4xCYcUPMP2rctfw5jFiexYcnl4Ld2mF945udUlVllczO-DBkY_mmVwqiwXWE41FaZA0WfRqK1Xb3ApBChZXVhou5jrYVmxLqy7_VN9fA7rtoUuiYb1ZlSXf-SJNWJuzwsWLVruj5XflFN-ZR69yrfVI5ZE0jtC3_DrYkoFw23kcZOadcU7BFi5D7jybUuzTB5j5cUaxhSRHCw9EZMPpHfrxmbgB-OsoQmso9JjcgNe2Mup4AcadUClN6U3RDNyQq4lfkjN2mNOTxfaf4o4UaezuWwK6InB4Dqefu3tL2lA.
+
+              Figure 3: HPKE-8 JWE Compact Serialization
+
+A.2.  HPKE-8-KE
+
+   {
+     "kty": "AKP",
+     "alg": "HPKE-8-KE",
+     "kid": "cbVWMyr20x6chb8wY8M9FKJ9ubUEYf5Pj2_3IzZzqjo",
+     "pub": "_iSLv9sTKUMrDCCH4xob--nD2qAki9LDVkey0eyi77U7f1MG6bOkV6wa6FeNB7JlDVxzy9VHA9wSVgFx_mBvmgS6kCgJs-p5d8ZpPpqW3qc-vaheo7u0VZqZTlKXgsUr3KvBqUFw9_APEBcq_7llM9lfMhg9Ivpou9qSpSEc1NC8iwYjrZSvdHyBSPtaGEVHIhu7mNBCoEzNFGIYJ9lCe0MCvmFRoQie-5Ce10lR9pZdUWwfR_FC5VU-5YqwDWDOHHpdgBCPZXUbqLkyaGa3vwAsqsWBk1HL_xa6hgdKQtIkjUtLGaRlKedDH4WHs5QQlTBeg8Fm9UuVk-M_G8qqZGkdwnCvdfSM6uVqpnUafCmkpkBlFtV9XQxctREl60cwtdVNfRUlKsTGzJeypUm06PC4fNcJNrx7VPBVmqFnvlI0MaAt-cE1n_oGcTq61KRidkILPFIvtsHPr_WXxPFC3URfMjktFQVpfqQPF3eZSyVGDImHp3Qf54mWFnuV1mIqgbV5rax6gYZ_wWurPuijZSmuc2l8D6ShhFUnN_yxLhkPyjmi9LmBpyMtkfSgcAFrkGAYYAoNyiZ-N-I3mpywaWShcSIvfVKutAqPOOK8OaRhHNlOoSNk-bGQ0tNiRQF72bxgzdk32XltPAqCU8x0GTZdWpdE-ZjDcfYz8Syx5BdTcQxB4CJbaQEMvbQI76Kpv7LFzSxR8XG2eQeVr1IpY0QAbpFWMwtoeAS7c4w4jnYf0MWuAucRMFi8-PW9_FIUwGE6FdV-LtSeqEuedJfAg2S2MtQ5ezpJscqCtvW0eDCiPAx_HLwNChoyQaQtO3OogyE1MlWcGqkTcCdPMYia8loMIdEEGrSrf_Wv16SxQNmG--rFVvxoccmhMmpe53dWUqvDAsyOAAYgjgirlPU-4puK_IlqOIplfrXD7kIjwFNJV5s1rVGqd7lLl8R6BlmayzYLx8Q_aah2aycH70hIzsqdgnJ-w1S2W4mZCdZUpMeMkPyT7DpCs7oUqQia_4cSNGxKDkiRoHGD10ugOdFEYEif0wQbVHsrLPeE-tUkyXR3BpwWhUWB35gN6gexMZSWnFEOpZpbm5kRWDuFSLfNURydUmyxWMVMliScUWJ-rPmJt2ihcXgUlhUX-ynOCGhxaSgdgjg0ZrBXvua_jVA2Ptxj2wd1zkGl8QaE9simUGBOaqYlp3uYYPjFkxRP_vIoPFaWnFmizJPG8vWThrMY3vAMmaED3sNjLadRRkmvMbkzHEySk_yPxgCPqgI014p8DIKDvfwmTrIT_kEI1IVglhGesjMTxLa9LixNCEytUEyiQ7iSxcexwgm_ylc2gjgQk9HH4krDijJpMlrJ6KYUCLakWEx9TwCbVyNkiKacjpK8MjOdHJI_vXQ99sFDwVeeZ0diLDcPElcdmNjKHGh-U8Wc_siJnXwRIFhoYopumFSKKKQfmCrATSUi4BkJuTR4wlp37pEyUVUI7NsirsiIysC9TECkYeufh3Nejhltj6ldaZNQ5yt-o5lOy0MfYyiuZl4N-xrADGerVpCHy2yLfCI71es-Rmt_4ab52NBpQnwEz30vmU60sN74JEkTD4on2dt2Cc7uP7viMV4qLlSm2aZIwtmuPPqrcTfNaFNtQ59UxzL1kc7EBzS0UTvK0h8uVA",
+     "priv": "gRrmnoJDnOkpvdgLG4c7xz53yLdcsI7BjhwJtKWfSik"
+   }
+
+                      Figure 4: HPKE-8-KE Private JWK
+
+   {
+     "protected": "eyJhbGciOiJIUEtFLTgtS0UiLCJraWQiOiJjYlZXTXlyMjB4NmNoYjh3WThNOUZLSjl1YlVFWWY1UGoyXzNJelp6cWpvIiwiZW5jIjoiQTEyOEdDTSIsImVrIjoiUEZZU3Bab09tTHljR3NlclprZERmaEp3TnU1TVZvZUMxOXZnbXpYbGN4QWR1NW9JSEhDT2xRSnBfd3FXa19JVXJ5dDQ2N0d1VGduS3lPbmI0azIxOEhHTUloOEtBbC1sRXJydFlaazI5dG1kdWZhSXlOQU5xSzBtOHBXTktiME9ELTI2Y25PZ0NpeEFVRmFEbkswNUVkbGNKSUlVd3Bsc2k3dTFVQWN1bFpZVm5kdU50LWY0TjlDTGI0aHFmRllGRklnQnM0UDVwQ0ZWbElMTTBYMGxHWmRrcjdNRUtqaWV4aGhPNjlDMlNYcDFuZmh1dnpjNDVwTklJZVY3TzU5NVY0dm5iYnkwSy1ia1Y0VTdQVW4xTy1yWm16cy1aZDl2RmRJVlE3R2tiVUpndFRYUmxiNkRFem03cU1zTEJ0TFV6UGk4RkdDSXF6SGFOTnBmdlNfTTRraUtGWl9NVTRsOENBWXpxdWZEaThKV0ctNFU5R1VDQmVIYS1GQ01mNzRIVURRbzJXTWFycHhNMUZta2xWS3pfZzY1SnktYUc2aEliNnZGQjUwVVhBRm9xdUp4QWg5T0FpajFSSkhUQXlEQnRuTVBuVjdUNzBBb1k3SktZX2RSdlkzQUxwdlZwS3EtRUlCcm5mc0JXV1RQZ0hpV19NakcyNkYxRGtPVXl5TmdQa0lRYU1vUURpSWZPeE90ZVNWZlZYYkNTRF94UlFIakp3OHljc21yTnJtSXZqT1l5VWhreEN3WWU4RWRLcUtBcjJHNVpRMVFsU2d6aTM4YzZJOU5Za2hXcTkzMGExZWp0cDZwUnFFdzF5R0ZXbFZYa1V1NThZRHdHNVJLNGZ2UzJObllaYTJ3V1ZoTEw4YnM5dklXZW9CbWpKUmNWNlVQbXlMTGstWlQ1QzhiUjBodWZOenVoVXJGbENlbThSQ0RqRTBoSEFoTlR1dnR5N2pYN25fUkZBeGE5MHQ2ZW9FdEprbVRVb1ZKVWppcTJoa3ZlUzJ1WVlvQ0VwVjJvUkVOb1BVTFlpWl9Kbk1aQjhnTjJjRml5N2R4VkRCTnJSczhHSzhhbmRkLUh5emtKMkh1TkJ0c2RZZ1c1YTVSaUQtaktPVGJNRVVPeGtmZjVUTDl2TDNIc2g1aTdRSnZ0UTliaENUZGR0Wkp1dlIyNHQ1SXpUUlNyM0J6X2ZwWTU2SHd0d3VUOFZ6NFRwUWRsWE8ySG15S3FOV2p3VmRLck1NN3UxX21Vcmd5VS1LYWVpRE91RkpFMDdKX0tLemQwREg4MTlReVRZaEhyYzJZeDV5QnhwOGUzTGhxLTh3SjFKaUpfZ19mS1JuUERHVlRPbDU1VHdRZF93T25KVkt0TVBTWWwzQmJKdUZMczZVU1dHQXRtaWhRY1JzdkpOUUlCamlCNG9QN0pWQ3NIcUNQVnE2Z1F6QXF5MXEwalJEenVCd2JwZ09vZEp2eWRybDZPM0lNZjVOX1NncnNqeW9kZHRzdTF6c25Mc2xjamtTM3lWSjRFcThWWGpJbDR5OVc1bzFscWNXZHV5SzFmUHB1QUdIb3k2Y3BGYWdBRFhkUnpuSEJaOXg5VnNTdUpyNGdHTV91cGV6OVdSeklIRHlmTDE2VWpGOS1vX3FyQlE3d3FzWWRxRmtsUFFLbndXZFpTQ3JLTDVjOGVpN29sR0RKaWVFcUJWUkxfT3B3eF9MRmNQRmM1cTg3aUxtQ293RnZIdXl5dVNBdk5oLVNIaTdmY0FIOHg5aXY4dnFId1dGQUlvT19fYUx2Yl94TFVPYUNuSHB5VGdsa1phakhGNjVzOGttMXhHeHE2cTg2R2U4Skh4d3c1UTFEcHlRcnlZM1YwX3hzbE9QYm05LTRqc2UyelZmUjlVZUdDNFRyTERKdS1jYl9tVWIySzRBanFUUGNzZVhveVRBQmR0d3ZxbTRFNWg1RUQzWTZaNEtVWEZNRVRMdnpVU1BTLUhWQ25VRFF5dmtuOVVQMU80dml6NFVPMDA4S2JwMlZfeWJHY1hpVllOOEY4QjZDYXRYbGE2R0x0LWgxdUEifQ",
+     "aad": "VGhlIEZlbGxvd3NoaXAgb2YgdGhlIFJpbmc",
+     "iv": "WmFF59yhGRFe8iNN",
+     "ciphertext": "LT4pmx3ARniMTq9JaG_rgNXJqe2LxCpJPknHHT0sejpRBQ818q7L-ZJIEz9sQh-oylBuMt9BztH_R4arZ4wmRQxR36ZvSdwmQizgow11Lz4HNc5pHXUESdNVOgF_LANUbYw2LxltK8MIbtvM-vwuUhhUz4KmL5VUOqcNefCcdsiRBcIWlRhTdK7BIHAX4HTiZBX1BjYz7pJmGNwOBZrlaJUWwYYzthtpthRyLIE7sJTWRLw91tTxATjvEFygI4VWHxr5_Cb8Hwh3cM7CXGpGle6Vwg6mVfpjv0ro7yBodsgQND2ZIgBJXsnTEKquZQxVNivRKct0UlSEv1xCdouy8klEp35ljMaDGkqitAGWsIyN",
+     "tag": "QiHeLE3sRLB_e7bHkOKkYQ",
+     "encrypted_key": "CDh1BDRNtJznT3WG_pbIihN5jUZGrB78zYDZt-DQXf4"
+   }
+
+            Figure 5: HPKE-8-KE Flattened JWE JSON Serialization
+
+eyJhbGciOiJIUEtFLTgtS0UiLCJraWQiOiJjYlZXTXlyMjB4NmNoYjh3WThNOUZLSjl1YlVFWWY1UGoyXzNJelp6cWpvIiwiZW5jIjoiQTEyOEdDTSIsImVrIjoiaXZMMGpCRUxkNGE4U01Tb2kxbU9tYVJWVm5xQWlaRFFTWUQtdDNwS0cyOThZaVB6VHlZdmplaVNwc2pfZ3FEMzYxVTQ1b1Qxczl1eU9JSjd1V1QyaVUyUDhHaHdYOUlEbHl4SUhDNjlIUUk3N1V6TzZOZFVSUHdHeHVNbXMydVdjV2I2VHQ5VzJiemYxVW9lclphSGp1RXBDdXVvNUNCWWVOZkJvc2I4ZXhaVTBTaG1weG1aNGpUeWo1Z0IxRFlKdlE3Vmh4NGM0U3VNU1JVTVluRFc5QW8zOEhJcXkxU0tuNklWTnBhWEJJWjFDZkVUNWRfLXpwcHpFczNHRWEtdFFaaGRnaE5iVWVIaWhrcGttMUJTcnM3TFNSbXZscktXLTYtLWdBRldGZ0xXUWNWRnhJMkZRdm1kNXpVNHhyX3pqR01HUlRmb29ha0kzS0Q0QUs3RWVXa3B1WVVadE5lUld4Yk45bmN0V1ZuMVhBUHVHYmJoU0dldFBDT3hGUFpMc0kzVzJ0UlFMeXhFNzduYjg3WDdCbEZ1S2VfYzdYbTB4NzAybWZmMHo0WHJBYWJCd0R0NkM4bFd0bWx6MHJrUG9PLXQtNm1jNVM3YVpJS2tYb0xneGEzWk9aOGVrVVlJNUg0dV9xLUxsc1JuS0IzWWNjQzAwNkVVbVRaclVkMXlJYWV4MnZJeVIteEtUSGcyVUo0OFdMeTRjVmVzbU1YdWhpYXJzOUtLdFNtcGZGQ2ROMGZLRldrNTBXd1Ewc1hEc1RmUTFKX1dybFg2d2RoSVlWcktzbWlTRXJRcDdwdzg4VGRBYURxT0dqZU1jdTRJcGpZUVpoV3djcnhhM1FNd2R3dUFDY2VudEZLSHdjQ2ZQV0VHMVVocGVIUllQcWF1Y2N2SGpFaEVERS1uT04zTTRZREhRT1NMdzVxQWZ6enR4N0pQSEIyeTAtZDBJSUNzb3FfbjI4aHM1dkd5WFQyTlJXRnVHZFV6SlYtQVJKaVg4alFSNGlERWU1Uml3VEdOc1JVU2pPUGYwR3F6YkZVY3I4Nk04WmRDbUJBQnFjeGJVWXR3UFB0dGtlejB3OUFNWEcxWDhtSzQyN0dZOVJhQzJ3RnlNeXdPNUFmWTZiVVlvVDFEeFVpMUFCeW4tTnJfa3lyN0x1UnZycmRGcWctb0FpeTZCZnoyc2pLazlKREdkUG54UEJvOGlUZVE1TThlWDA4b2NpOEJEZ21JaGtJMU9zUTQ1bkt2eDVFMGdGcjdhbVNNN1QzeTNzdDJrdlF6Q0ZvWkZlWV9hWXByX0FvMGViVWctWTRocUhTZFVDSnUtb29MOTJQTVZRQ1czWEN3by1iNGthdkZkUkY1bmpncHR0TGlqM3lxNVZFU0pfTERtV05IcktDMlVBMGxRdUp6V05LbWo1V05UNGRTLURlS0hMX0RXRTFXQW5IbXNqakVDdmt6cTZDSng4Ni1VeUhvZWpIZEpYR0JCaFI4RkltdEIwbHEycHp6RUVxQzljbEJtQ0JmSFBzcjNZeEVnLUxmUXFDcHVwRzZaSkdGZEoxN21yY0tuVW9UYVNLSWxIWkNXWjRIdFU5clJsT1RlSUxSMVVBaXFhcGt6VUE2R0p2eFpBNFFlbFZHMVZ3MnRSTS1sSkhGNDJJNXNBUURuNG9QRC03WFo5cFJfaTlPOUdzZS1tWXk4UWdaV0ZUTlFGeWhkTml5SS1waVMzNlNyQ0x5eUZKMWF0SWtqYXdVOFZnaFRIcFNFYmR6d2hQbHAzeThpQk9TMm03ZXlmLURlc2dLR2QzWjFrR0EzcG5jZnlBNXVmNks3Y08tWGVaM1hVbExQeUpud2VSM2NkY1RSbFc4SzVrVW9BLWs2ZHhkUDc1ME1JZjRCa2tKMDF6ekdxQ2lnenVGemhwWGVUQ1JqMTRxRm5hN1N2WmdQY3NFSG1CN2FaeGJGRm9JVUpFbFRhUTlnaFY4R20zYzNBMTJsVkxYOUl0VVpVc3prRFFOd3F6S1dUMlRmbV9tOUxNWTRlNTN0cTBGRHFaeEo4S05PTlFNaGcifQ.WGAlXp2taWWDXi919XGSufWLY4pSTb88ksSET5s0r0k.grJ0W7chy06RBWvZ.uCnD-y01klphNs-FCk-IT-tzw6OLXAfJO23cACwXZtc00t59fUZzan1R22OmiR_Cv24SVuschiiwWyr3onzuGRp3k7FglMh8HAJ57jhyLVdSEamBiDXo_vpBz03dkejyu59Rcg2eAhftYBRe66obtZysyJfmI6qX4REHdesWg-8YforTGNiCsI2JEoEYvgxeLdRkgEPcLFpsd45jjFHTJ4HG5TsDsnaaiYZjeAbM_J3nTO21aro5YEADAnaDrC99fFE4U7KxB5XuigPdBaE1FgyZMH4ZFHEd6Sj_Ra61XQcKcmdrb6vZgDFYUS0fIf3CxwVT-w6f9jy7OXeb5jUSOCf9P-lw00IXSqcFJRyCtDjy.mvuCsnUt2rJxgU0N4GDikg
+
+            Figure 6: HPKE-8-KE JWE Compact Serialization
+
+A.3.  HPKE-9
+
+   {
+     "kty": "AKP",
+     "alg": "HPKE-9",
+     "kid": "eXHMmlwGPdUeX1gGFEljtmqbqqBTHhZTYvy8lB67NAw",
+     "pub": "nzg4uAQRXaAwSHARu-MvDwfJeclhojCvJzJ-zuCscZcpbLuiiQlvMNAz3QO1sWA9G2xkM1DO4yQ7ySybL-x53_Snv6A6bIhIGwUR0HWqbSaPJmxEZboAThAn94O6qsoN_0KmllMozHsWIhQ9PDACznJBP2ttUKKnurhWnilYO0gHxaQxWjkN15GDo5PGJNTDbMDCFxNPLUhYXIZ88iRSrCfMe3Js50BmDHxvBroxuFUFD7Vvw5yXeWVEKiEJvgMGePxbPxFGijIQh6ahk4pPFdsObMEomFIJqVZ6X1Sj_zUeaXAPFyDFvEDAajcXdDyS6NLOKQyozrBcU4Cr5mdS0KomE1ZG8OyHcjkGkbxvHzFrpGZ9AJljqoirkeWqu_ghtCIEKLEybKOtPPNLicamExFLyswD3PWTfNWGOKV377prU3yQB4c38xgrbmKPYXFWF_KUJPkU8pEaGSm9spBVdfvKpSqDWDAw3hBxCbTMCpqTrwm_z8SCx4JAmqCIWpcwiZUvCwEfVyyPFFG-JtAd_vAWoldTo9M7SYxG_yF8orxN3oJgPvIaMSlObAdOX-pB_IKxJLKTR4xShtAgavXJPrehZle8iHoPp5s3JJoJUwXPo5GyfbQJThGfUJk0u8FkTFlbcXJshNaw61CEmTwtLHU51WuMu9wlpnRplHhxyzJLM7kINKIrEslPZgxOBJbEXdOsd7hrCTvANec2gHRZT3tfGltI-CfEcmhKv7KV94NuomE1-GnBvMxwQ8AQH9d9BsCkp1w7Gqk6ckq4D4ujd1k0Tqi-k3TJrLkP8ChG7kGjXoFrw2K0lzehIiM14tIl7Kdt3DKm1glqG7MsXyHFHKqiaaZCwpeK03ETtXBj4Nw3mAbCTUYpNTy4TpYKugud0-ShK1uimVxh4uwHHXOY_mNqUyqPwqldhymaGjo7ebliVNTJhBsR77oXYRwbi4ZRZsqZVoWnrBIRpHEFt-ZMSiM7GdkfuNOQhEYVqxoSe2u-9PKvwHZG_PKClJqY-rGW2vMOMxmJhCdT-6SjyQYjV_t5NDxGQzhqYSijE1a2pBDGgwGe7hawekYufuFGTaFTYwR5OMZYMbSt37tizvtJ9VC-5Aw3u_Vp0pigMnQiP_jHUtPEJPJ4O1mKmvzMtvelHqFFu7KemUIPdleS1UujIdI6EqisyMuvCzwHIqd2-cydkpW5k4pSFXWFR6OeSUI9FHjBnpOt9BWYlzWvfhNdo9wyqEJf1KLF0CvKm5lIu_uOTPkenpAZXRDHucmRMpG_ohyKjGIylnJvqWCtMiI1orSO22upEBdjRJofBazBeTicTpcZUshF39C_NoqrGCV25AIr29KnPeAAVobN6Vw7XdGiTsQ_sNGqVMZMayAQs0mZ-fmcWDGd5rrIj0QntGtSnTiZM8udnbsSi8af9Rk_FAoqJegHdGNj2MoTUiMsSCIXT5kLvQgTJ4u3-dxrCRqHMGmj2WpznvQHGZefoOYuH_GKj8MyavEUhcU3LqdITkZzmgdrSBoIvaB0KxAerKCL8-iS8Yu0NlRaQcWWccbbmtyZxiu6N-sSp-P5oXH4HID4Fj7CTRgkGiNcT2hIDBUyvl7WFGu6XXnqag_oZHnPMw",
+     "priv": "ZMOLvAgejqLZ1FH-7eAkNOuFRKkiuWr3jnwD5n3HOok"
+   }
+
+                        Figure 7: HPKE-9 Private JWK
+
+   {
+     "protected": "eyJhbGciOiJIUEtFLTkiLCJraWQiOiJlWEhNbWx3R1BkVWVYMWdHRkVsanRtcWJxcUJUSGhaVFl2eThsQjY3TkF3In0",
+     "aad": "VGhlIEZlbGxvd3NoaXAgb2YgdGhlIFJpbmc",
+     "encrypted_key": "7FI-IhpHrDjQD8ZLDUzCkiczrYpUs6hO7Up2rAOFb6b5ISc127gXMpkYuo0D9myMLToxtsxJp7G0GZLjJcvI3cyaFDQ6guNUdF--KF_6fsF6ez0vF7ToXIxoH1ey8tRc_StxN_r3iKhZ3WTPeEwrM42mkLsjqh8SPcyPfl9tIyYIea0oV4qvpdaoI3MaaK8MOfLw02omHpIlI1-opkgw3Ck9b7vCt7Igb086pYUcaCwWRz0MtxPLjvB3kgflRUIUmxRd45yRfkogcHmv05qQE2Z70OwiOXRxU5UvGfZ9_zII8mEZbT49kKnxJUJExqjLi7LKqafsobB7e1LQizphmPWRkKKK21p6j3j2ps3AHL3AF_UlGA-cri8b3lG3ni8j5ttbr1c04vsg70B-ydZvxvNDNHWtBV4kL6d6MoP9K-seqiUuftk28IH0gEsxm5cR-ga3_5rXFbRyt1I2dttJ5sVkpajpJVU_NzoFFErb9iJldoQg4p__9_atwbGMKWlSMTMVHYRypxgbb99QIgMHfZu1WoDbGaT4c3qkffY1Z2pi2vASXrlRCdSiHgCaRQXEYtReTVR998zSapFvP3dnR8XJUYGYs7VOxB6qREaeTGPmwzvymDjpXUASWFfy_f2-YYLZ6vyNRo3nzXZ-VA9WzA4ZslRtv0iecfrWcJdnLBEyA1JmXnmp-ndCsa6ECUF23nbHD23Ydo9f4jrCKfW1mnaoYtE4rcGj9wO592HBoImY-KhzhbSdK87WWbew3a3aig_2K4wQHMxPGzsn-as60tVXs5faGzqQ80-ab5d5eTWqtBX7k1KRcfDZ5aA5iler5zcfYFyqb2_mshc6ezBMvnZsABco4WLvBQZJKWIbnHmSyrBaEfS0is91_-Y1VteJZTuuZkczIx3To2HVbGn-gv3yH4WyHloXpQVrLyfyO6G0PLrQo_RIqDYvrjtpOSs7fUjK2B34lDilQp4P4rl-6tsfE0thkkt8K44dI_3QJNzVvpalvhvM1meQf07x7btwTJxHkSRaXBGexDVWudJGKsh3hsJ1WXIbIF1-TFLRQ62UCEE_Qy7dVptZ_84XMnjAPuDoT5HL15A8MsqwTxMlSyO0kDWwCDczlUph7N05hRiM_tbPAGvLAlfk6VYPv5h77XMHHBFYhHsAGDn2wyx-K5jtRont725tnu6YBxyXFByz1lrXCfUDi_msEEWavI4uTMsSinwVGdE9rbajYsuaVUVBb18u9KHlNsXFX51nC7sSR89txA6aRL0c80tjCZplBGJQOVYE1glAdCUfhZjDtMfdGLoOKThTaSPI_aV2S1bvVgZNeDtvlbBdeHbegnNtI7YWS8Kp2KRJ-Rxztz3HchVlcEAzNS6HmBDIyNTSN36Tgp9IuYNwyygp9TRrDZBs-Oxfci0Q0pde-jUn3fO35WurQIqyzz5NS2gxPkFi78GUiYMxePQuq4W5DEyM7ROJwIqwGl2w7w2yTVV2REuHTA",
+     "ciphertext": "7j7zzNgtgwm4lfEM9AxcKV3DbAIvSvubYgybTbKUUG89Y3IYQ5u-OQMpJngyXkt0SA0BE4WPs-ltiWxvv_DLUoiWV7XP_4mHVUlo7HjQCHS-fTtGftDN-hhwH6-aew8dzKEl-JTOMMWpLWBgkuZg31Rvdx6UZ5abyNT93Nl6WK9P0z-Hs-BVvOchTPZ354wrEC3K8E5InVhWtSAbF6V0UKInjBPzwG_UzCutpY9TIteU6j5VkJzK7FKjxdOO5CkwrMALP9WwoNRY4ccCnwHupGbQ5_giHo3D_E1ymdevLu7z6arYYY4xI84ItZB1FYreELZpnmuIH-U-u2jtX6xkklks1fQtloztzxQksGnK3RNR326LMt28xTB6_qLl7S5SHw"
+   }
+
+             Figure 8: HPKE-9 Flattened JWE JSON Serialization
+
+eyJhbGciOiJIUEtFLTkiLCJraWQiOiJlWEhNbWx3R1BkVWVYMWdHRkVsanRtcWJxcUJUSGhaVFl2eThsQjY3TkF3In0.sJqciusHf9XtDCmYCrTPVmA88dblI6Szcs1Ff9VtNYyTx6os0teBQbxdRuE-wtzyCVRhFotZTIiiUWawRg5c8i89dM4v9FYzhibAojTLL8wP_bI0Qkr4bcNhQH1k5hKnce0FN1WcKoqJQcE4mPUzvx32XgFpBaRgrAs5QZ1-6yak0mg7dbv-oO_fQzL_-w-ydOumtFqjukHqplEhcBLRQpCl8aTu81MGOxmvWoEfwKemTGWctwcfj47rs7ecUUnRiDzDwlEPN8NLPa3ZQLA1XncndyLvzFlk3gpeiSYQf-lF5stRDAwwywLV450wx8Zlp4BxsmcoIuwGBNprSIeWlPZrNTGMmZE9uzzKtYT-m2sBVq1ENlZJKrsGeRHw8yAfbzWm3e_XKKBFNC6bf7Cy8tG6htB6Cqh_dPJ7hm5Mvvrl87o4wm9-i7HlZBr7h9vCiG3Xl2WNkYx8xZ-U9d7lMefNEFVV50D-U0QqxNCbDXd2UH4PhhOUE8sC_fQjFl8SqnhirX1xHGxbaiLuHD_k1aw4bRnQTM-Dnn_MqaF2TG9I4KYcOueE-DU8rNdv-DVK04YCBXV1PJs1jd0CYzbqQQFYrUGN-rcAs2XIUHiFjNe9JyikLdsHvdFfA1FBtxp4RsLcIIjT9EO3kpJYJe-nctthGJY03qbfcnCEP8vBiviJ-Zfo8OXjH2aktP2f7TiRezKujhalcSJUgCLj1v3KqqA9X5KiB27KFgMmdlU1w6LoYwTQxHv_l-PduWNkV19r609c2vQe4SGGGQXzn1NYNeQx-ip14IAL4rQI__PPOcpUNG2eyEwFEANugSGiWKNAIMR-WDbJQ2_4cltrC6o0huTZrGaZvzPdPBM5rb0x4LF0jzgxxudml_2HHPtUJPDJzhGbTz-JYd62LGig-BuTb2eJNZs_8ZiCCV1f8TYmGRaUcLRwq-HOXc-BIjdxfJB9tm5pfu6AvS3FpdpQckzvQ5rAUdILAj699nWFv0LISr9mHsJh2rBYZO-0_4X1o_vATe1wozoSdYuX15LCw-R02Hm0ww7rqpEfzAjJDr7WVXVXNSWVBL7a_rqktqilhj7zrWPcbzAtNTQKnIPJbN8zmqBZQw7_vPmbunDqgD5WiVIKPHqh2AZy2q_rEBRJuFdo5O7KrHlWTvR-X8XEsmLYNvOkhaxqi2MMtERNDZssYipdXjRmxa9jQq282D8mZFcoAdz5xldhVVmU-eBE5Sph3rmlA_NUPlhX_FpSgYmT22MHoWx3BnZnLhXnkyLK0A8LmTUFleO35sy02bYGxx-DOwAiinNUkwKbenrXASO49-cHh03rv6LIgV9fCOoUG204L8v4XKabtXrBG9na6hU_jfUywR8iIVZoWKHy2NX3IkSrWmcQrPED0TMeLZwirHZwZ58beWQAEqJ2L-VlPchMbw2jsoaDU1gb2_SqlOsLvZ7I7UhmoesFKeZS0zmBsRcMfi3cGeX2JbVn1LQNlAC7HQ..DAVuE8zzwYZVS46J7_H01opJ7n3JzcrN3B6CZGrnQlmZCxKLgRhyRjayLON9Op-9juY__jl2fFzy4JnS6FQaSPdbZYPMX9wXoqAGwj2-1Uxvj_UJ8UByTqRe-Sk0jMgzgpaJlrBLlDouN7D6ZEiNsg_wQqFNSdnAxCAY7I1tkzZqovzY1XHPB-T-5LtVwFPkI70iJdJLx6-B7pspQAS7yP8MFPRK3nmcR1INzI9P6oHJy9LChgrUB9f7qv3Sthw2PloIgq7lAag89x3Zs_m-qbE16DnjfO6X7YXGK6H3Sg1lfyJyOPW9e_k0D_tRqlflzDATYa1htEADFcZPh9F94xFzqF9bBX7OxOneKf2797Q5xV7xKOEqfaarXMwsxpUPoA.
+
+              Figure 9: HPKE-9 JWE Compact Serialization
+
+A.4.  HPKE-9-KE
+
+   {
+     "kty": "AKP",
+     "alg": "HPKE-9-KE",
+     "kid": "bjeJsrVOQ_EwPHBRUdi3Wt6iP7G6ycCI9IWVtIT3sqE",
+     "pub": "pkkBMGBG9mJKnAM_jFOnHAzOqqJ8QhvB-EKue-F0ZFJrDvqz3ICZXVkqVakkePS5UyGlckCuA5gU-WYTJbxV-bvNM_ZaTCOJ9KmOB8MAvGdeyTgHZTeaDpBLoNh1sjeFc9xWuix-Yltw_abLciOIshxPLBSWIVMBgnWeWYdOQFYlvGcqabRXJ2GXuAROLegV_2V8MCqpNBCtioA2HnYzl3ROAmsjN-IO2YKbLRRDnME54moTvBkj_9JfygGU7-KGPJQO-AQZjhCMr0WEqCG3qeSO9FIeBEVsFdOgwHVmYrE3piSss3V5oEtBQ5uiA7xcqSJyF4wB0mQBugecmnFpm6FbObhibQgELGZQwPUppvlA4Mo_mgKMJwqJwYfFKjqKRbuLxkwWdgWXrwohMaFqLSZoxoo3toQbAqBh3ZAJKAB068eFRDKpr7lAoYDHJwDGa6uluhe9yMZCxnNL6lkkYnk9OFEg-lZshaBYuINTChNrXBUjUOwVm2g1QfUWeZI_mJmHSNAHaFg_puFXEsUC8wWKR_WZ5dPCv4KlJGe4JSCw0WSWANm18hYD7ywROsW4sBldUBaMnhMwypG82ExXXFy7k4U9trrMMUcWComAl5FYdretI-eZANglUCs10cMUGaYueWcDPzs7joWcAvA8lZO64diyfpwrAlFekohdq0AjuQRoAFtgGTe0K3ENAcESHhV9RmRoXJGjRlcT3MF1D8hIQQd8psE4jIV4YLQ9O5UX1Nl5OxMnS3m--lhHDvGc3uPBSTVjUSNADjkmbPVbD3czxuOov2GDIPYj9jdOU7szBflXD1pODOxgeXI2hGWuMjKuh9AlqVyHUYVHF9Cg62PEw5ka6RzDmsxQ9Syxg2u_T9MNCYlfkbcHIKm0MLc-Qts4LsVQi0ZCjzdYLiZN_dFdDYizZ2aT9URaPDItEinHKXg9PvJ4kcyvWNYdtMpm30Ka71o36MMAwpVmEjRYzLlEsmB_BkiwqSxinKQof0NbJmVIFkE3OjEBxOLKMQsFSpOabTOaO5rONrWvsFygSNc_jGkgJKyyI2Ob_nNP83IBMDCFUfdg4ICZg0FMeYIwRwoNGTyRRgdKUpFE9vNqE5JcG-W3rbOpF7U_S7QiNVR81AuELdtyl5RebupQ3Jy4pcp28IfFnWzDikYY8AMduhApByPCv9c2AXetMRaDTRrAxwy-iTFa1CaHnfUhiaCFWcGr56Yr-GGV40YzwcxVV7A47piIsmsH9dkcsngNLLSMGtcn5DmMeJFFxdCZ-Ol-AIyku_lGO_RlFGShhqZNCEMFZGRB2JlZUwO_8IR6EYEHVBLHZkwaU_NkVQfDMWSwMFEjDLdUluIJTZYDzcFmdqQKXSC5o3oIZvmtaArOZXkWmdZHkewsCTlsXNCz1fhm3IvAO7jLTytNfWBpNWatminDYuYxc7KnH9KlshWsfubMolKYsDiuhOxbmVhhapYNCAKLvBMovABRQ5emVAgK-yVmgRarnpA1ghGq2FJjquCRgEt809NixXh9akwouVuxhFU6u07Om-n2-1ZgLMhL0KBoASMCe62Zh-gYMy8ftJ3w8MC2K6spYJeE8Wmr9JAONTnmAjexUeHY7DQ0K6TiBg",
+     "priv": "QXJAupnO8tmrUyEBWQgZP-D590HbmpuZD4oFGRIq8PI"
+   }
+
+                      Figure 10: HPKE-9-KE Private JWK
+
+   {
+     "protected": "eyJhbGciOiJIUEtFLTktS0UiLCJraWQiOiJiamVKc3JWT1FfRXdQSEJSVWRpM1d0NmlQN0c2eWNDSTlJV1Z0SVQzc3FFIiwiZW5jIjoiQTEyOEdDTSIsImVrIjoiQURCSVlyZmdKVktfOGZqdXkxU2haN3FlbDRXX3FiSmdYMnBMbUNNNkgxOXFqUS1EcTY3Q3dJSkZWazZHTVE3Y2VsNXZFQTlQUGQwbVNQdmtsamdzaHRZRFdwb3lsbmFjU0ZLa3VuMkhZRzNoWk5rQzNMQlBFUHdmTlpISDRmX2U0d2tWNERlcHZqWGhjNzlObW42c2FjY2pwNVF4eTR4SmRmaHdSNXR1RmtLUmFIdUNER1RMaUpZZXVpc2xWV1NHQl94SE9EYzRUcjRKNFA3aFR1eVNpR0x5Z0t6RVBjdjFpTDJsQmtQc19IWGN4YkRDNUtETHZSeEZLV1VQdW9JS3hlWDBHNVQzRkRJc1BCZVpXUUFudWJoM256Nkxod09nLWR4bnpsRUY0enhyRk1VclF4UGhITlhrTjZ6ZFlPaGJyWWhoQnJaTXhEM3dTbDRxNVFGY3FBbENxX09sVElVd0hET1JuMkIyM1NtdG5BY2h1SDF1QTVXcU41VDFyTDhjdzRUZG04aWtJeDRkZmcwaG5CX2lTUUNsVXpZS2lmSGJpLVQzOUtLTTFhV0c3MnI5WENNV3Z6QkdkMHVROEY1emU5UWhPLXF2UEh2Wm1oMGg5b0cwUmFaLWdFRFpKbFE3RnVCcHd0LWlJZ0FUUHpmdUFkcWR1S0VmUlFSb01iNS1vNjR6Rms3VzVZaHdhdHJ1ZXVMVXVEU2l4QV9SQnZfazh6aEQzV3FLcVNGZEZaT1BkRDRFa1M2U0trZ2RVZHRVS2pfN1g0dGZGVFRyRllfd0J3dng4d24tTUUyN0hhZjVHSWRjMHd2b3JieW9BSHo0ZXpYUkdDYVdVaFZmOHFYRy1GYzU2YVhMWmwtMTcyMXRGbnpQV2xzT2JiUFAtZ2ZZTmE4WXdqMm1WeGM3ZjBYWm5CWUllNllfTXA0M2JLSHNla2dMQ3lsQnRwY0tKOGF0alNNM3ZWNUxtaVhJaGZNNVlnR09oNXl3eWU3NThiSlloNHY5WE1Pb3ZXaXctMnctT3NCbF80dXdSeWlUT0ZRREJGNDA4Wkc3WHlxNlh2cWthVTIycWtlZnlvN3FWeGszc2FtNXhrUF9NTjcwRTN2Z0JRSlFaZzdFRGV3TEFMeFBiTXR0V2pSdktvSUxMUFBFbi1CT0h2d3JyTUs4M1JNT1Y1VFNBRF90TTFfLXNucTNScnZtclo0SHBwQ1phV0lDRHJka1F4cWhfVFNyd09vNHAxUEdoWDlRUHNmckdwalFfWGxMdzBUbTYtR3g5SHhCTWF4VDdWbHB1U3diZ3NCNV9XeHhvZDFLa1NjRmh1bGo1N0ZueWxWVDlQVEZwQTRjcHZMcG1ZWnNaTEFaYWhDTGFUQWlEell6QVdiMUZHSGNsY2loVUpYRnRJQnJDNV9HQUFHWmVBb2s0LWRQYTFBMEw2YmlKd0xQd0lWOHVGZTVmZUo2dndFUG56cWdmRWJ6ZUx5cHNiVDZZMWZVODlkdUtQYVVQWVhmOUh4TlQ2b255M1RuLXYyUWkxeFFQMHVMVnRZUFp2V3k2NWFUVjVVWWpFcmE5VTRSZlhnQ0ZRcURLenprNDdJRTFzUzFkNFIyUVFyQTVFcjZYQjBDdEJkWXp4eElnZHR1UXJ6WUNnUDhLbHkwWTk4U2F6LWNsZnE0SlRQUGU4VGVRRmtaYk1xcTJFNUlpN19ZbVRSa3BQTGJSUzRKb2pFQkNsUnp3NGdzQ09HcFBNRzE5Wmg5eVJpWU8tRGJzeEdWZ3I2VEhUWXRhbEtfRUk5S3ZRQUlWUVl4VUZSdExwU2lrYWczTDFrNG9xVE9mbWpxelhVLTZrWnhsVXN4Ty1PVVJGOVZTMllldVJ2eVlmaVoydG1DZldIdDJpU0lkbXJnUGhUVE9VcHlCUjVaUVhCZ3JZR2tISmVLa2pWQXlFTklMQ0wxSTc4VnVJT0I1MkdLV2pvWHRPNG4xd2JEN3FsZEp4eHhRSjdHbVJDRlVBIn0",
+     "aad": "VGhlIEZlbGxvd3NoaXAgb2YgdGhlIFJpbmc",
+     "iv": "aokXEbzu6woGa5Mb",
+     "ciphertext": "CF_liWqziLhRkPJJxPM3F7AmNdKRxgdoafEhLidxld_LfYRZmoazm_pfkE0AKJIUSq5bM6KBCCFj2bW_mobOrdCUeor6ks-ZdAciJOHdsgnK2Ox4P2majC_JODMIxpQPgtktjYD29yAvFQNYZObOeoLCfxlHsZccuDMveb7DY-Dtu22SgcRw9z8xo5URiekGPncLrfeMhj5_dHg0kyq5zrQJEwDb_HbHPHgDUELKa40gjltCQ9iwqSrMN0jchDfSRf-BzOk02k0BI3U0mYe0zu-a1MURfENoh6NnHGR4yKQwuYnpcoZz8tO0wExN2A0fWVb5-nkuYoi1NlF-R6sT6mCwk4qsJrUYjhh0Sp2nRy7r",
+     "tag": "u9GU8vNK0M5wnHazVWwHSQ",
+     "encrypted_key": "2GLPERe53D5LAC23RMi68ns0ePPjPqof3-kd_DqRjJ8"
+   }
+
+           Figure 11: HPKE-9-KE Flattened JWE JSON Serialization
+
+eyJhbGciOiJIUEtFLTktS0UiLCJraWQiOiJiamVKc3JWT1FfRXdQSEJSVWRpM1d0NmlQN0c2eWNDSTlJV1Z0SVQzc3FFIiwiZW5jIjoiQTEyOEdDTSIsImVrIjoiLXpkZlZyZVc0eWpoZXoxcG1mWE5lYmxFYU8yR0tubTk4RzBudDJNOGU4bmtXU19XbEl0cjNiOUJoT1VENHhVUElnekdDT180UkR6YzdMNG96RGdLVUNhZ0QzNmZEUDRlQjdFRVlpWVZsczFUUndpb0tNSFFqRUQ2LURtQnkyOTNjNU5GVmoxTXpCMDdOLS1SbzVIclRoSXM2RHV3QjZTWlRzMGNDODVkUURmS1pINFlfMWZIWElwN0szQUwxTk5OX3d1RVAwdXlRUnJKaU9OY0VPTXdpRENaR2ZEbjZnU0dHVm9JRHNaTEs5ZF91R3k3Vllrc096eEtRbWxGTENLaWpXVU44b1ZpV3pyQVp6N0hPNzhmelVXYzVHdnQySC15RTI4RTdmdkI3Nl9QTWE0bjVKVm1TRjlvTS1HUGpWc1Z0LXZKYlE1ejZnODhhczljYVB5ZGJXd0FmMDhKT1pxT3NlUFRxdHJfZ3VNLXFrcERYMlU2M2xtQ2R6a2VKMGNQUm1ZS2ViRHJoZFVVeGg5RjdteVZ1bkg2M0VEZ2cwbkZ4eXlmOWdzQnBYWGJFMXJLb3BqUHR0VzFvby1xQmh3TFBpcTZjS0JCMFpYR185LWVSaVd0ZmZ3Zk5BTFRSN1hkZ0hyMEtQZmdyRHl1WXNxMkZYX0NOdEpOWU90ak1EZF9pTzFWengtY3liTXFQSlgzT05vV2dEcFhHWFJxVjUzSlZLbVI0UkltYVJKWkVsY3RnS0RZQzlMUHpRcHdaSVFUMEV5NllDRDBTWkEzaFlfRXQwR1RTMWI1NHJ1MXNKUkl6Z2JCOTQ3RHBqNmdPUVRwN0hOQ1dmbUdYTmZVUTd3T2R2bmxncUpsYTBRZHlsREZpcXkwTUlyRFJ6NnJwWlI5SlY5bjZJNFktTWdMNGRtTkJtaUFSQU1xd3lDVkJYc2ZfWFc3bDJpZlRzZE9qR0pUaGtCVHhLejBud1pWcFE2eW1jTDFLaVFUbU5WcWVoQzJGSm9ab2VTdEYzaFAxak5nSUYtcDNzWldnS0s0eXE2WlE5aDgtLXlXbW9qeENuZGNrWmJEV1ZqYnBad1VXd19TQkllQ2lDRkRBd3R1SW90aHR4R1ZHSHM5cFZwbHVJRXQ4enhDemFaeFhVa1R1UFpNb1htSEVDU1NaOU5MSDM2YmJfVHRVMzhxc2c1QlpJcDlvX04xMFE1RlIwbTdNQ2NfcmI4cUJPVzNJdXA3bWs1dmxKUHBHcm05cjVGTnVBY0dmYzE2OEdxVTdhNU1NcFBYNC1RbDJBT24wbE1kb2JqdERwcXc5d1dZUnNWaE45U1VNRXU2ekk5NE92NGUwa0VEZFUxY1E4bUF3TFBETmdKaUhjdVRTZkh6TGo4RjB0OXkwWjlvVDlNelYwQVd6SkI1dXpTQzFWaUoyNmdqcHFxa2Uxa2VkRGEySTJVYjBTYi1NelF6c3BkVnNsSnhOSDVfazRrbHJicVR6WXByS0xYWnZxVWllejMyOTFkRG9McWFGdWhqcU5vdW51emZvYUJrVUYwODVrWFduQTBNbUxaZGc4U0tncmVhcjJYZU1FNndoRGZPc29sN2JYdzU0T1pkQV9jSzZpMnl0bjB1Nk82bnlDZ3FaTUk2c2VGdVNvTE9UcjVTUmt0X09KU2VhZlpBNWxjSllWbkQ2VG9OUG1XQmh3YXY5NEVfSTVQSzBRZzl3YUVsVUpqUERvSkxKdUhfN1drZ0Z6UWJCUkU5cDJBS1RyWlluXzY0Tm0zMUxuamdfbDhscFBkam9Md3RvMTRLcm1CT0ZwYzZLcHMtb2R5QzFfeUxjUThmVmIwVHZoaGxMN3k1ZFhfcUJ0ZmRZRnd4UXhPTElqNzlzY3N5UGJ0TkdfY2NsMW9hamh3SlFGWWtGRWRtQVA3UGw1MUg2SDVMWmxHOFYzRWYtQ1RseTN0UTJTejBiT2lsbmVWOHVZYkRsOWlUWFNfVjA5MVlIOWMzSUtOd0pRIn0.IcH8APfBVOgt4M6s9VhOC5Nb03nJjSXpSv2uTsUzlTo.orH3R_fUSC_QcEvv.digyQ77YCw2LITpdHLBSe1FENPrZMokizC4uwJJONmaZD30fgXhHUb1UTKeGiR6KsTxWamNzTaqf6E41_h1LwDXpfWdDvebfadt3CbFql4yOEcDTxO8_NnziVYORvPy84N6nIplPaEGERclnW9JRrhS9_kStaKMDdqcFVag3v10Xn1lyX0c8wQq739Q_MfJl4OFUzu4Z9N6HdWye5_KQzBqfdKL7pF1wQld7mojQH7XjJD5Yd15Ir_4K5XeszryIn07jquU_o2YR0mefXquGocSjIY47ccokvBaH2bqmQhXxmPJ-5oL5U8hp4GOH76wrCU_Z6qs0IoHQgUrw8Go1wqy9cPAQFG57TBgGSL4MgOA7.nsJVk-RrxXO-mDEWfVfefA
+
+            Figure 12: HPKE-9-KE JWE Compact Serialization
+
+A.5.  HPKE-10
+
+   {
+     "kty": "AKP",
+     "alg": "HPKE-10",
+     "kid": "EkIcXLM8dkXQX6mzrxYWNBY8lndA5H3H-v8TfiSDLfI",
+     "pub": "1KUYqsq90ghiwoFuSJjL1qKhZhRQujGf6cXJtSRSJoShpMyQGMdsu-eTJTE6FnZeUQNtWyNfsRAjzQqYgCvKB9MWZddwzkYlCqRSXlcSHmgQCLkj9_TIJZipHIXL1km4_2nGOIQ80PCbxscLN-iyKKt9ikJt1Ks95aa_PSwRnum14MVuHIyZu5wAQxPNTjw9S3EnI0ODyDaPaVG5zHqIB-mW83I6WfJUFQRErfRHjTwWhztsYLNkldjHMZYKxAiwouemzdymoIoBxaebXIyLnHsAycKP3NByWaxMXrEpdJMGQveDwbW1sXOffAulTzw7boeHBdQcGINzg7xiIXcgYeq95KmqbNqKMkZNFiA5wFpOjoy1kUE9snCwVsV-I_dUrWckargyJNUONoRMOCox4cuziEUU3WkBK9pOBKV1WjrL0kBqBZUy2DhsmJLG6QjJLng4M6S4AxAmCwp_2zNjFGaMbLZCoKqPt-FGe_uXyAVqoYeZ2jAfWgQubrRAl3NVd4RzAnQh4hp4gPU_t9mwS7sD1kd3-zm0sCiqRedvNGag59JDFAIxuUaw-XrMyVx6dZG5xfOnaUE8ivuZ64iPQ9asASugUFVJtuQgD7pONlw0cUQq2-qVV-QTS3SG_Agdn-SDhqe8ixVrqQI0TYmFVAquRniDgEx68NM4jmyPvwuEQeN10piAj9w7jOdF98dutkd6UsQGpPcgXcsCRXrN9uSLpVQCJUUzFoG3SBcuUEhh7DOr6mAcG0Zae0c9E5e2qTZ6bUU3E2KZZXub-xcZj7oGSspwgrG2ITd-xzi6aexu7guYMMaP4ek3PEhjUFwV5HgtzNSgp9SOQEAPlYJs8mCpE5tNsYquJ0Q3CXYa6uqe5SKYY8MOpmkpuajOmIQEbvUjmJQxjSQxPXcDP0a0ucdbG0k0kshqrPAUWvSoLSjAVxAdgyxe5pdXICkrSjs0LuG7fac0gctlw9RIurq36EF4EitsM0WhAeubkmEd7ghIB_FImfQKx7JaJscx0taYAehRD3lN3dA8m-NNd2JkX2DBXmQyKqh1JslcaCHNYaco5rlRqvpwR0t94_nNbklO5oAy25ZcJ2iaAiwAkPSWptfMRAM1P_TMoTFTv6R-qKAexgqtKYBK5_aJKpGjCri4GSkwv1RPeXC3mrOJNAJ_8_jNl1yVjVVVh9lDSTQGOrtYWlmHA9jGATRK3eso_DO5ONWRytaY_awbxLJ3ZeSttLZEl3Jj79kd1LigAXFmLiS5fNxiqElcjugb3Wx2dNPEhVlc2dI06Nm4nnfIEUZDwzkfDcU1-dJV0PcUCbAbPyoraEqVSGJwMVFkt5a9QqqUXKY03hJsTaqEukgM0rYoPlEJ_UuqRptoGFZBWdSct2pEI7muOZA0licZpuYqx4jGCAkjS_xuaFKjieExA1IGySoEX5ETuREZTtNdp9hDKyJQ76wVcoVqlniEHeUTSdxgTIEGM3NLacqxHFVAmgURfAojo2UCx4sXXdK47RtBuQiBf5Z-0hx2DDqvgkTOKzy5trEJ9MhvKctYsYRWQsWz5ly0WTAgUeLPWYWkLXxi5BYAF2KqF2yCatyQ_FQZO7mwCZUB5ZutKQcxAOAcm3JGQRsDL3cG2MBlH4UkOihSUNsbsrJ3p9i6HEFc8IVmiViuBtEZbdFZ4wKD1Jqah3ghkjtHbhwLdME4ZQKs5jJZvjGFBsGZG0KCYGKbf9QQ8Ooc-PNjyOqzo2k2y-ETtMCos6KdcnGbyrEBVKk2rKLJuaDF_CQ9q0YQdsQ70VaBjeckNGLL22OvhiVN7jbL1kJ8bubIYeymm1KyLRcT0xmpDDgYtvAsygUdQykKbtSmOxhHZrcIFeKazWWe6qcSZCOML0hszyw16MGUiLtVfEAvp8gzrGWQFCA6aDhrnSs8YDMAz5Yoflp2wai8H7gC27ltycEpVsWz9oBhQPcmq9C6h_kX7RqfrtusXPBai1pGXBIz_tu9V6ETzgszMUFOFdoKxscc5JcNWgWRaayYDBy08VenbQggLsOd_BsJ8kVV2fwnIp4dGUmthqqjVkrGtl1OKCYX5_wb8D6mCByPQ_BsXIMEJqvQYJp8bSZ0Bp3NUvY7EBwNvM1gfMiOw_pwcXoglaZNgzWLi_VBzXIY9lcM4qjigOlj9JyfbYRGPkTJ5Gj4Taj57OC-wIVoeofByZ5tLATYBKFPwjA6SlRhI8j4EiKN",
+     "priv": "Ru9DwxiJ7BdWBh82FsXaAPPR4s5MZoadKL9y2wGmino"
+   }
+
+                       Figure 13: HPKE-10 Private JWK
+
+   {
+     "protected": "eyJhbGciOiJIUEtFLTEwIiwia2lkIjoiRWtJY1hMTThka1hRWDZtenJ4WVdOQlk4bG5kQTVIM0gtdjhUZmlTRExmSSJ9",
+     "aad": "VGhlIEZlbGxvd3NoaXAgb2YgdGhlIFJpbmc",
+     "encrypted_key": "FV-NNs0jN1RJWZpm5476aSuTsMAIYWfeM4RpCaaZwp2wcp5i2YG3wvv3RD6Iro30pi_miBRH9ydFry2s02HAKOYORYlMIyBYxt0mE0kwENHLaL3NtAPD91W8_F2IyYnm1xvzKmzjlZ9mUcoTYlNjBcwXxlmbi2nA1YfnPtbSa8t2W7vbqZmziljaNJw_2ovpnsMcaMQDwjv8O1MSGlTK-DHn3u3YtoKvA0_SoK2SmCpYzX4inTw_2y6Yym3xXNO_3RjRJPryUXLA2U2mNNGhTPoFsOvLwbmaV7gkKi8wwH7PSCDXT71wcQDsCbRQD5kpUVovmL31YeXDFjAFAs6qDMYYL6aOCQBzldT9spyJoA8GB05uol9scut2t8gYqhU1pKXWdjQSC6fpKkqoXCHEX5O-nvQbc8LNnKs44UhSaDM4WexVHg-LnCbdWf1-cdnxf74lNtm8nWnywwLfQwGjDm4Bmzhv4dcNu6OPw6eIaQgvhHqgjj0Xe5bVUZNO-NClGaFa5GRN_W4wdtFfZEVr5Hm0d73helMTPz4VOg27S1SiY2-BEHhPT6RnEcB9CtACRGzexkIkldCwj0G-qzw3lv7qMmZYgZ1NCUgMHgzTpp1WIh80sPZP2Gbq2bnHYRSNhw7U_A5MFcGbSZdKLCdPj8onC9jLZ9IdheDP4w7pMfy1IZ_EyafHgRm3_cJI42CIKaojZ0eulQ1PKnW8qgmrRCP5NzzOj6W2O4pdLviXKfFdud5uUy_0kkeYBs4TYPd1u2x55Atkjm2EY4LHtUngagtLoz6kaNaaILzeM46v4U2LSVFi5ELpaVBGE__jF3TEZcPa1r8VS1YSNY5cfszByJpsUFkPMiSja8aks4u9P0P7VT3WpocbRQBj1DmPHImrRC1EN0DacWgWIlHlgoquikFbNQYR2ZYSVAO5ESUUlBm-PNs0hw-SUbOgXW47h6MnfbdC82GobExBQveuodt0tw130z1LE99V3Q-Utrf5v_4ZM27NT9MBYY0zFDNaahEMXAzXk16V0blxaI7YrtJSKsKaQZdiHEtPey0nx1rNv3p-qVgfgFiTZqcBVk8FOnVRWgZ-dDZSQ38Do-RlnK4Gzjpl36Ld2rZEwRikzSdZP5ioWCAkol0ZbLplyswJTyw9pxa4jr7Wg1GCsQ07bKl64ASizlK1vb0te2qI6Rx4gi49t-XjTer7xnNdZSDRet7hbqul-cmXd3zfwAiDn0Lv5FBDdCBdPIexPStp01yXBIW6r9fWiHvoLaD1fbhSwmu5L-FW5-ftKscAzHy7VgG1XC6cbuxU_sMbQtE1ws8EilOzrJJ_aMw-LGJK3BoKP5x-svSnXRYfIGU6kdZhWKairUPt3P_MG2pn3DRtJKViigfdYcKUWHqbIvEZc0UsQe4B74lx2zTl_hgU550mrWUaIz3kKQd0CD4oIOkJb9Sf5A821I25F9h7CgMlQ_hPiGsIV9rN0CqD6O7kuVgIiNfizvRDP3P_4tsAuZwo_3qfY78DuTk5K-JDle2h5eri8qWhMUqgxp2895g5_oxwPYNxie4rd7au00qbJEvFPNoqbud_rQy3LwVa-e6Fbffra5brbMtcteJhHLIwC-_8CTrRm3DKvgBiBq-TsHLqsQKE9IZE6GB7-OOig_19xqt2PoG0I__uLQlAEUkEsWSILqfWab2lXhwa2cn5colt3p80ykDnAmuwNXrWTk3_wfS_PNGFAVJOzHKV_NonTyOuU1W5-hgMehcZT0HQaUNhanayoQpg8THAYsCG019F8I8yl-1sC2gBhGnTjgOttC1qOLreL9ZG1m_a7YU294fMZR-zFejUo0nx2WolCB-xg40SWnHInb6CKLcgVtqldOFJDSkMTBpEB4JaFKDGh2uJGtpXQ5So8u3kQg-cu1Ev3VeZXmDYETjpfHBA6mVZJCA4-xOiWzutiSLVsaFpWERRfYvwkmzulZQeMBRkIxqG2GfPtH5BdYmEvxqmNwMmRUqVFNqhD-xPPX7USD9yYlb9a6CqkBDnZcy--zVoD4qTSu_mYrqlBrowoTR1q9-Zm53XheLnsiispJ1wDZOTpxoooLaE3UYE22itZ8j3xsg4ppLmIO1tq6jY9g3ShYdsAP34KQUrVo4vfwFLvWzTaDF0ksZZSsDuPjqrJ28orAQQyMNme89szdcCOz4YjkSD7t-bx5w9u0Yl4d_5JGIqd_2n9CcUJx99",
+     "ciphertext": "P7MU8gmyOW0wu1_DcGfZDB62PtMn_ui3y1MdBqP5AQLZlPmCZHf3fEwzJm342wsl9uTEf81I2O0-bigJVCLrDHCw4l7XCE1rBCj2Fj69a3NYCH3lhnqAv_bWsGBOy4im_tvgy2MhF-ApZu9DoFmTRWq8_RXNlEVCNzg9v5GgJvsWvAC1IlKw2T6VxQqH2hM5bp5SdIhzXlUDZWymf3ZWQOgU2Vp5cB7fNjtqQBzDRdU5MeuFAl8EP7_V0CjJZG2kl2p1aIRadvCCGlMBSRa5pXNbBxiYOWeU8dSXqA5N3pcHOg17EYNCxRuPHRkaK41ZLu7kywSMTERiK-jBw5eGvR1j9UOcSGfGTJUEhIl4GjLX6gL5aE2dp7UZSaL8T73O1g"
+   }
+
+            Figure 14: HPKE-10 Flattened JWE JSON Serialization
+
+eyJhbGciOiJIUEtFLTEwIiwia2lkIjoiRWtJY1hMTThka1hRWDZtenJ4WVdOQlk4bG5kQTVIM0gtdjhUZmlTRExmSSJ9.kzAtiHxP2984t56uvkkjjEk0xaMFb1piyHW0NptiHXSV2i4T65EjBtw2ceBczMpJSdvo4X4G5d7e2AdB1ScQ7bZ3XKBLLabs_YmniYEF82nxalbgJfc_ExUl_U5bhVoM1jLByepf89AxzGLX5D7txLDibDAYEis-CgOmDDGetGX1GHIGNFuQFwSYBVqfQsdqusurCr4vr_Y54TTi5Cx1hmUPbpI4cyuI9z2QAHc5kUfKc7dtj_-AkHD4Fxtf9qPb2JCsTg3WNrdIi58U_cgaP8cfieC3OuGNlExITJV-VcOPm3lTZ7aiqvS5lu1RoNKxbIANjceSJSGST9X75-OLQYZxe7Hea1-AtCfx-Id1tSYmTDe4nTjXCEzsSSquNQ846_WByOrmHBZUGFr6o2FkuvgZ-B3pLontQQZgWcfaAl9K23Q2r-48SbZDBLYMG-hUCHUyXDN-MMNs0QUa3z79dJ4lU-fEt2I9njHKqvuVcBYpuhW63_TrEcumwfT0j7ngPbnlZ9GOTZI1_tiNMkHSh66RrwfhdopYrA0ebXyzwyrSOEbl0tj8nMgTA-cErhq7hcUHQdTsd0p42RWgVOG4WFRLMwEIFL4bTkLcuYnbyYc2bg-DPPqIUyNZgU0Pyl7c42jQkgMoHePsyuDwsrFXBxSI7NPYjKCUIiBOGllqsQvka5uWMveAta_ApItadKtj6WUZ0uct9Xv2j8D3eFWPQTWw2j0oAqVQ_vSvwqJm7m8HsWFQ11Ab5yTAJuNf4BQdtkZnOxk3tnwmQEyInB3EmZkBSwTsy0iqi8CuchN6QSS87qgFetz9iCnnAfbj2IX1WiYImvCfqsdo8oSzoUmin6mT7s9-EX9eG9Ap17ptn58Gn81KZo3Tve-L5IW2KcQkPo1hFq6IRdf1_bsy815Q8_6515Ka-gNWM9r1n-aONAPFsSNKEqGseZ_L5gPUQmnpQlxk2f86rh8zeBsGCe01rF9PALKXypOh5quzDx-fqWXpzBvetc-q2SQ-iE5jhW3jX3jEpc5F1N8QRoUkzwy1Kb5xRZsUr5rZeujLAPwFa7R4C8gC9HgyMTrl-yNoGnNuoWMTfDU-j9Uw7fb2IBAF9CwpSIegFmuHb6tA6atRlJjeob_VkzkaaxNUf9tzI4Jxl7CjT5ADO96Jjia1Dtrh6hWrwy2Y7951dF1hBgzmPmHbXU1zJ9KRVSmUy-mHxUYFFBSWx9E0NjR0KnFQvHShhfgzLJ8OIiDbHSHysXXbtMJ3RdTP3w_4Mq7pB7q9CeNzhnKo96vFKGJ4BI0QzL6qMg7y-4Qtxt9aAZ-GtasyY5vLTulMfoB2BMO61254cVWgtw-LuZCcPYuTPWk0K8qGce4Wj5VVIev9Bnu2sm0My8J8PM-K-UV2k0CCjsdoFmhv-VxxtKc08kdMQmr0BkUpw08QeOJmX3AP9Kd6BtfUGJ0GHy8Fe72Q4zkYw8i-XhWk8LqTZhqMA6a7ah0DsA61OUtc5cq44Mb_QRzBjlScyXwpgO9MrIrLgxfy2KoofdOIQRxNR1NYioMeIzQ8HQvFYoruIKmmbrp7TRf4pIhV5_7dSUVlYYUcwGHgz-6ssiy77mkm3_6q1htf5x-Cp_GDKlFsnFxHMJRFnAdsVK66lcIUL1Iu2p5_saUFN7t2QEgHZn_0_gMUTu0E4OiRETL9jLOihnLe3K0sdelP2-wB28UaB_yUtxrEP5X81hZLHcTxx5vkt12M3Z5hxBFaMob3Xub3yZWzScDMCQf_jIvp-4SopuPoev0kq8WPaVUx1bVSx6Prd9ntVoc8qgPQ278aKPKu08buhipyiqEjo4UYo3ERR0rKBekvBgQQXTmRXQ4QaCP41sMjFCJ4VkVyy1bhoPqHTI4WP751rqhpnVFRe0bDrZyrxyN5nrNLB4hqZOhzQLIV2VYhFz3qHBtThsGC_LlzsgVNc7IGdX7LrqwtPOwR6P2i_Bdfxszd5JAsSL54IYK5w8jBCYNVQtQ9VhPF32yUr24pjGOXf3FCmSvNFrzJKtzpCPiT-C5CPACshEiAxhOz3QLlOLqCB5bkTLjvr9AvicT_-OzqmI4lQv91z3QES2XGTwavmdX9kNGOKd_EvRAhMOkMf0yHiE8lEgyBZbBeU_CCSGqbuBRX8pNSWYLe4Tkw4SR4ih7tHBibM0OTpmECjUsq0Gz6z1A9IywqNsiRpEvqCDyYrs7MdE8aeO4Y..7ZgDXpRmmlllc4afpPkWQuYtFCKU56s8RJPs_1TCv8HNcsjreKwnZhcsHpf3GHMFBUBHkUIldq_HDmOCjb-5KhTo7t68xMtX5djvYctC2-utcoZ4Dwx47HLLvWkIyf_PCt-VrM7o8gOmVl1IZoENOuVNMiI085AGwE2EKyRi-I_9jIkNhosnIHbvRQ_--KAPg72TL2WxOJpTh_0RjGCXCRcw4JANE8sXUNV1AdC6DP1p4yJmk7REKRuRA-l59MO-WDvuB7C1DR_VSG1wv7UAmHBU3FPainOZBRVCCTrI-7Ht-gxZsWEj6Q8L8pALWglrb2p86Ki_iPiLpViIxTG1axlfk6IYK2DXh6PIldtJ9fjOr2foNIPLpecw4RLjHOlyxQ.
+
+             Figure 15: HPKE-10 JWE Compact Serialization
+
+A.6.  HPKE-10-KE
+
+   {
+     "kty": "AKP",
+     "alg": "HPKE-10-KE",
+     "kid": "UVzPOxx3jthVCg56hBO353HIP_hObFaFrI-pf3maRr4",
+     "pub": "9ALOt9bAhXcL6nyuwPy-cqzMgPbADhIWe-g3IFA6fFUeidZ_SDun5zbISBE1i5YKT9STKCBYVlCUZlAo8lnMtbc73bNy3DNkQvii6TptYNmPTXmwauN5qsUFM5ouqjFtwBhQTFkVR1i5YuOynqhC4fp5Z3lcEesDFRQxhwGJlNgxiNGWkNKkeWBVELxU4yUPHUt366Z5_8eFxGxpRALKxrfNamuU5zeokAxmLAsVKZkwfIISxQV6EgQ0JCgApfRXp1gaHWk_5hBrD6WKlwagDFWO9npfrhFtHHNCm5U_FdTNheampphf0LJpdOLL2BGZWtqYn7xDuegxEJCBiWoBoEl4wpMcz4kqIDchWzTAvaCLtXvB0FOYlKqGY_MosDMIfYRpfkxlTdKDxMxWC_YZdTQCW9aGZqu-gqw5RCmwkzUUxKrMW8lVWbRXHsGa1WQmMTJlTLGGRnBP54YwisvJp3tRvzy3y-JXDadAxeK5u9UJIMZLvgmAs9cC3xt79YahZbo8FzIRCQIpUJsh7uC7VaG7f4KzgDZSEIaIqMRKY7uTUvasmiZbtoBMU_GPrwZ0XmFNi3R5bua0ieBu0RWducQaqrlQAPYVfRkuFHkPsMmcFToVmQtq4YlhE3hsSpdVIVs-PEGeKcciBDtJEIkJzxt2tsDPfagb7DlQQmqMsTg5d9K-2FYFUny6n3sXL3wdffoM2kG_XLwmpPERyxOi2uq_rYYazOHBWPxCdPg-bBkWy4uLOqp81vSHx0R-JpavAMEfs0dzLAFYo7a8BEpUcmNo4cciVsoOV7lUkqNskhXCtSeoSKw8zDxCo0ye1cMGNuogZnKNCPhGUSo9igeAcGqkHofMS3B4SJcnHYMMD0QJ7eDE_Hh0cMsT54aueuuJ8PauLHuT4mokG1s2exZP3uaXG1BmPMtpARyCJTNax2Qd1OVqqxukummV33Ja8pdC2zULU_XATzZjBdiQZ6e3R3vLQgtH5vpvnzBHvbRHAbKJdQS_szVihbeUxgEdGSwtcgHNQMMamedO3qmHYsRqc9lPo-W34_CUhyDHq6K8n0kgcxFBI-RmM_iE8RIyfrulMyNPXdnJ1dJociljcSUyjpZIRgE5BCeS7sGp1ZJ6c8w7JhiSDEWTl2OUb9GsbXNLo6PMrIBWkgl_A5EpMipqwgLQPHTCTmIJF0usHcYnMtECT7U1dPQVKgSvNusaXldU5miARrvOn0osBnk_uzPBayCi8DU7chRXMnoMSQlhOmeNIwS6d9RM64HI0oAcwAAFkYyV-pMvqRuz4Ax-EWlHubrGDvbMWTwMNpZOhzNhwDIslaggOoqHqZMegozO4qkjcueLDPBBZTamjdeShbkQfvcSRix_fdphv6sdnXyN7Umr9kxA_3dLS4m0AFuPBACn_Sohc-gLwRSHLueo3vut9VUbltNXTyQSHBzC_TgYVtCBPLKWlSvGhNw5eXiARYI659l2ObeD-8JQFjwN1fEcesBjfXWJKOhJoYbC2dUO6fLKolxt72UU5ZWcdwYjq9W1WEO8z6C1s_QqaDOrKCtuLRCO03lcXLIkKHkwAaspTVw3nhB8_6kn1heCfjafA1lds2dx-4zBechsq2E7l6GnobhnhUp0-HQXuGeTSiO4aamm0tou3-inXpNzuXsR6CYPG2q1RYAlgWoLJAMijgTMRNxtvGSPg1d52qxDXBQIpJOTScQf3fONnHBb5GZHTmiQ-BW9zyhPM5KUEoZ07nx_beEhzrtMX8VZOJe5swcdalMC8MejzOYvLhh7jdFYkeIbbgkxMBMZEkHHtfijFgC0T7qCLTkQAtXA6wKZLgjHwxsWDjsTDuuXglDFxxhv_dJNUXLD6XQe4vkDxnEI3xFBzVmoZ6VsRmwKdZVo3WylBShYO1h8YBaT8iARj8x6NekIPsaFFbs_KOhLR_ttA7ETiGCrn_U_E4UFjCqyGcZPEFvPc7YNcyMi60ujwIh1pWQEIDG8I5qsZwMPRXY1MXY_ipyOVmE2sxUbhWGDrHgxl7Rm0swGBmY8JdBH_dZ7IqQUmpfcFmsztkfIoV36-la8UmqjSN56xacvlWK6Wwj7RTcE5jkstUY_rBwX1kBU8IITnA8irT2vsR028wS2lsVFIVcmlGloIbCU6Oazzm3MujqBobbHMKqXnv9Op437pCNlilyNtAXS_6ZEcLdUIe3wTTxAd5idwaPiZKy9o3KyjiWZ",
+     "priv": "uSDPZnwwnLpJ18lwAGHj75e-fGohW7zOWhAG-7DGLis"
+   }
+
+                     Figure 16: HPKE-10-KE Private JWK
+
+   {
+     "protected": "eyJhbGciOiJIUEtFLTEwLUtFIiwia2lkIjoiVVZ6UE94eDNqdGhWQ2c1NmhCTzM1M0hJUF9oT2JGYUZySS1wZjNtYVJyNCIsImVuYyI6IkEyNTZHQ00iLCJlayI6IjBzVHJVbjlBZ2twMTZkRmpfbGZGRk85SzdCQnhid1NQQjZ0eldqemlEQlNHczBUaGh0bnJaY2hPNUJId3N0OTVJQ28wSnBsekFJbzUzZFFSRV9KYjJiMTdiMHhJQ3lCWHhha2VJOXBvLU4xcmVxVmhnZXV6bUZ2Z3hXaWlJUnR6djNESzNmTVlmWDMzRlFiQ3RlVWN1MUIxWjlpN3F6Q0syWGhHcGRCWUl0aHhiN3FOWnR5ZDBVU01ZRFgtaUVjY1B0SlJtVnY2WDZjWXlZZEo2UU9qWnJ6MUpKN2FXb25ISVREYkF2Ym14cWJsZTdqRHNVU0VIVV9Wb2ZOenpBNjN2RU1rNm8ybkpkeFlfOFJxQlNRV2tEa2FReGRKejRKWmlSNXkzR2dEVFlrZTVQdVBZNVJmYkRDQVU0bDBzOG9KVEVVSUpEOThGaUY0OWdOWWExVGpyRWRyZDRMem5MbHcwNWlxOXppX29XNWVaSzJ5XzQ0aXUyUDNnVjZzVE03OFNsUlhiZHZNQXhiNVpXMWM2SGQzSktwVEFMYzg2RjYwR1BEUXQ0ZTVLd2pwR0loSWJ3LVBwZElvcHhlaWNNNGsyZFAxY1c5dkp3bkxhYnVCOTdQZDZqQ0hRYkdlV0ItbUNydFdjU1pBajhnVWZ2blZwUnBBM2Y5NGFvSGc0WFlpQldoQzR0MHBBQ3JjT1JGS3JTRXluU1VJSXR1elpRMDNGU1Y3bnc5ZVVFdV9ZS2pIcmtjVEFwRE9KX2hOcUFiVm5kQXJIbFJTTEJYdkJkcUp5OUFPSWVVdlNWWkt1NmdXMmxUejg5WTByeWhFMTlTM1NvVXZjSGxyZkk3QVZmVC1VT19iNFR3aXhVaHlkM096YlpZVkZWc1g0VTVpZDczS2YtVjVkWC05V0dGcTUwTW02dzE4LUs5QU03dDduRDZ1a3RrVU9LT05uRGdJYTV3UGg5VHZUOFZ0Yml2X2FkeG1UaWIwdU4xLXRKWkNGSnR5MTBzOHY1Z294bnZ1bkd0aW5VV2NkM0dyTGd1UFFONTN2NU40cWUzQzZ5UUk2VWdJbTJGWDc4RFBEeExjVGlJX3Nmb2ZuTWVqcGhWb1haSGJLT251bVBVVllZYmk0ei01NFZ4dTNUTTllbXNCM2ttR1V5a3dySkVpOG9Mem04Q3QwRnpISGx3a0xmQ0tsWmw2LVR0OU1KdmVZMUMyaDRRUld6U05VVkhtTnlqNGFJWGlXb0gwYjE3bjJPV3o4em9Mek5fdFF1SjZaREJUQUg0UTBVc3NXeS1raGoyemR0Wkc1ZElOQUlrVHl5RFVMY0R4cnFETXBMZEJIT3dVbE1xakViSkgzekNtVEZYalQ3TWVROU16TkVwcG4wa1p5VWRlLW10MFUwdEpNRkltcTVYUk12VmdaQ1dXajRIYXIxXzB0UllDRklFbU5EYUZHdU5ObmtNMC1UTUc0YjE3MUNIRndVSlRvUmFZUFpQUktDblZ3V1pJeXcwdUNLSG04YXFRbUlfQWE3dDl1bGp5SkpsQVBRc3VGNUxVSm1HcWUzZm1LUjlFRDRuVEdkRnRqejItTEUxalEyOFJMSmZuT0VlZE5jaS16Zl9BaEtLQzNmby1wcnpmWmJ1MFVPTFM4c0R3X21vbEZiSGxqTGtMeE1lcHd2dTB2ZUswd0dmZnRsWWo4WFdVMTBLQlhFYnc1NFJWRVVGa0NkekJqQXNGY2gwdkdraTZDbnA3VVZiTFNGQkp6TGI1TGFIRkcwd0drTXE3RVBrODVpWlpaNGUzSm9TVDJNV1k3ZVVHVnREdHcxUTJXQjV0SVd0N3hNSWlPMGQ5RXBKQkJmUy14cDZtOHNFTmFBRHdUb1ctYm5BSEFfaVg2TUd1TE11bWZEWVJIUW5rYU9TYnMwX2VHX0trMzFoc0JrdUdCM2lnMXNlYmhPZFFveEhudEM4NHpnaTJhNkRfdWNUalVubUliZ2FmNGFHUWRnYmxLQ0NTUlBoM1BaVXpTeDVrQXRsYVV0UXA4c3RpMGV1dlVNTDl2VUNtS2RKMUtTeUUwM3Rva08taEgyY1RMZ2Z1djZuS1U1bmJXSmVrVjZVd044WUpZMVN3ckhKRmN0eGRTRjFhMGRDcnJReWZhU2NzcjdGM0dyMGw2SkxRZ1ZXQXcyMlRhdEhTMHNYWFJOSjZkbXl3akFwWHNnZUFwZVhvVjIwRncxVHl0ekFZYzJ1Y0lxMjctRDFRUDh4aWY4Y1NYMW5LLVZCaXFaNXFLS01DdnRzang3d0kyb1YwRjNka1ktc1lQSkkzYWpoOXZqdzhsMTNYSGE1NFpiTjZ0S0R4S19CR0ZRQkhydUlDa3dRdnFURC1PbGZhTUpUdHUyY2wtVnNUcWV5UkdKVUVBTkxiUHM2MDIzZzZXc0tQSkt6bFRNVjR6RVI1TnlxV0xjRndBZUhhMm1VSlgzall6QTdHWDZkMUpPVFA1Z2NyLW9obldYRGVqX19pS2M3VWdpNE1jMGdHYkRUdTNvWGZEZ24wYVFVRmxFSWNEazVKbFoxNWs1ems1WFRlVmYyRlp4cEN2V3BjdEp1Y3U1QUFZaEhYOHpkMzNndDE0cllQZi1OUHNPRWhCekVBVjdiNl9jLWJjY1ByQjcyLUhBVTU2UUE5RVBOV2d5RDNUbWNnSkRybUlyMF9nRXFxcDQzYV9mR2JLeVFIcXhGOGpFUVE1dFFhYjFoeTA2U3dmTllSa2d6NEl3X1pmWk1xVnhCaXZVZDJRM0Q2aE00Y2Q2Qmp1VFR4UFo5dUdJY0VSb1NPX3FQd0ZOSG9FaTRidnNENENKME4xNDRzUS1sejhhaTdtOWQydklqblJMWWJKN2JBd0ZqelFhVl9yTHVLQWY4RC02UVltLTJQUkZBbFlIU2ZXOFU4YlkyRUhxRFJKdVZlSGNHTUNDbXhWa3BHNzVISkFHNF9TeUtkazh4UyJ9",
+     "aad": "VGhlIEZlbGxvd3NoaXAgb2YgdGhlIFJpbmc",
+     "iv": "s84IRCCQwKgiBMtk",
+     "ciphertext": "urjLT20R359Rdmn2rU6Dhfupc65YxuLGkSFBy7h9bxV8WJiP3zgFjzEuBdwxj1eAc8cs6VKJtvMgN1_GnrwIng2zxbNDe7cs6lqfHU6ujMrrxqIRy138joMMXYIgGxHDI8AC6odhESNGgIfH8cgDVLy2Nluw6_3jc5n2bMFqdYeMvvc9Ol3xZlN2I5O2luclQlJInJwidofuFbepn5hLMH_5zl2r8nvX7yz-jCTOmgRpOhaPr4ejfspNzj-nGgcTVe-WIX3ZonMsG19EKdIFONSjVDXTBbKY7NqfTz4mk2rhFXqUw-K1_K5fk8OqkicMA2Y5gazRD0QuiTHNwCdjM1ctkooLvk-GgUO4TxgWvtnf",
+     "tag": "W0vKnA1kqpdL2OAygL2Djw",
+     "encrypted_key": "R12TlvMRJdjZ42YBDRViNzMNQ1WARPRSp6QQbYH85LrzCK83iuUOP2QAp_zSAu7F"
+   }
+
+           Figure 17: HPKE-10-KE Flattened JWE JSON Serialization
+
+eyJhbGciOiJIUEtFLTEwLUtFIiwia2lkIjoiVVZ6UE94eDNqdGhWQ2c1NmhCTzM1M0hJUF9oT2JGYUZySS1wZjNtYVJyNCIsImVuYyI6IkEyNTZHQ00iLCJlayI6IkZHeUtJRDd0UmVPRFNTdVNrRDR3SC1lX2p0UzdYNzNvVzBEZGg5OXp4N3NVWWZDNmNiOTIycVZpNVMxU1FQNjRvNmstWVhZVFJ6aHpLWlRIdjA0VXI4ckx1TW9OYXVWRUZIM3Nlb2RrZkh3Ym15TUdaeUJ0bmZ0eTlfeDF1QWlUUVE3aTNJOUdON0c1TTBKMWZKUklmWnVDZGxVS0hnX2xBWmxQUXhaS0Zjd1JEOExtSWx1bEl6eXhkRTRRcUhIb1Yxem9FZ2JIUHVhS0VsT2xlbXVRbW56dEdkaFhOazBCdEVpLWRJemhwV0JfWnBHMlJNV0hzVVoxY0JyZ1RJZ3lPN0J3ay1memdvbEthY1JCQktyWDFZUVFWaHVZUTRtaXRVaURaenk3VWp2U0pQc0J6VXYxdHRkRVJmZDFrZDF0eV9VQUFtalZNdDFKWndrU28yQk5fYWV5OGROUTFvQTJQUEtkLTFtRTQxbVEtSkVVSUlfbkJ2cTh0azNPeTNkdU9wVUJRMlY5YmR5NkxuT3drUkZyVXJNZjNyQVVzbnFKcWsySktpYmlRWm4tT3hpbkZHWG90cEwtbUhsSFNDTHJteHNjQzUyOVNkTng2UHdRWXlhcmVWbUZJWnNlVUJHb01SZVo3dlYyejByMW01QUc2eGRBS1pUQk4zMjkza1pGYXp2WkhqOE4xSFRMMGhGQ1dseFpoci1ESWJULUFZWG5mOWVuekc5bmpmaDdpbm9ZN0tvcVc0bFYwZ05pY3gyYVd4Y2R6azM5VmZZX3JHRU1VYmZEclp0T0VtVjRoR2JTY2ZOcms1SDNKMkllT0M3ZWFJWXd4UUNJb1BRTWdZVWRwZG5FaHV5Z1BuTDQtaG5sUU9GVmo1bXRjXzhSRHNkV2dfU1ZZWXlydmU0Mnk5WENteGkyamdWenRFZkwtcXhBSl9leWg0OWtHbjZpeVBzNzFVNU1mQzBRc2QwMzVtMDBPTTdDQk5vaGRzaVd6LTVEa0o0aEh0WkhUOWQtcHZDUXpac1ExWlBZLWZMWDR1QXVpaDZRZm5UTXNSOTA5cVFCbEM4a2RwSFEtUGc0VFFjcjA0NzJlbTh5UGlSTk5jOUw1NjVfcW4tWFJnMXRVTHJGV2wxUFR6MlEycWtOdWZnWnRkLUE2QzhkUVV2dy1lQUkxQzFUTy15WDJ6Y21HVFpPSnA4NDExU3RUVUhTQ2tBVHMzd2FnUnNReDU2NmQ2NVRXYmtVZlBLMDdkYVlMSWhySE5uNElHWTM5UUdsdDEwQWQ1aGhsaENBSWd6YkRBLUJVNUNyTU82S0NEY0FJM1J1d1IwOHJjVGx0WndXNHlfWS1yNTZwUFFCa2JSREk1RnNNTHJoZm0yNVBhNFZiQktwWW5yYXNnbGN3SFVGM1N1VG5XYzBPM2hTOFZBSW9FVXI0X3VvaVZ3T1JYSUFmV1VpVExiOUV1VEdqUHIyakY1VU5ZME4zSWRKVHpEZVNaMjlyZVU4dzNuMFdObmcxUXlwb3FIZFFreDRZZFpFT2tfODlsdVpxUmFqRjhTUFpvbXJpSnVQdEl3bkg5T21tSExJQXlpUTBZeWg2RnB4TzRFR3ZGa3JBLURmdEtVa1hxMUNmNTVYeUJRYTR2M0dHRmVNb3NRbklpRThOY29qQ2hxeFhYRkE4YlN6dTlSbHUybDJfMFpCNVY1Tl9pQWhhZlA5UFBIdTFvXzI5S0xUeFl0S002Q19nNnZTaXlyMG45Y0RUWlZuQzhhT2dWYllCajN0T1ZkbFdXWkxWZnZ6dkltMkZjTEFDWFhLYS00N0x5QWZJSjhSejV5NXpTd25LT2hOcjZMb1FlSElsY2tVSFVKemtTVERKNWpIblRNY0xicVc1YUJVTVhUMEh3Rk1ReUNKX2pJVzgtb0NXbExBd3VTb1E2MTZ0TG9EajVCUTRNMXNiTlBzbTNEazZ1YXBSNFFUdGNmb0VJakpHS21YRFpaQjE4SVN4X3lqSDE5cnEtTGVPUGFNbDFQQUpLOXVmMWRYSk1PMUl4YTh0UFRST3JpWVhCOGd5bGExbERQRUI5QnVUemRZanI1ZUd2WVQ3NHZRdU5jamdwQUZQZXNhWmt4VXlPUlRqYkxfbUlFaUJwNkVlU0ZMNm9HUllVZ2dLejVxMDlRUV92OTdidVFaRTU5c2FHRVJJVDlrVjRFanc4OUZfYWdrZ0dRa0dIOUQ2NlRqd0I5ZVYwVVBqOUZXZG1IcVA5eXM5elZWeFdweENGSDRMQmtjSFNBRHdHYVpHdTlfNDR3a2ZaZ2xGNmlwcFpjdWVZOTBiNmt6OTM4aFlTX1U1MkJIUURsTWxpYjN3NUFzUnVlLUphYkhHam51VWtKY1F5QS1nd2tpYlFSVHRPeFQ4VFplaEpEQWl1alg3VHNPYWV3SjNtem04RzdvdGQtZllrd1lXSTJ2a1liWmFFT0EtYTYxTnRGeFdNbFRzaF9pcVotbzdJV09XZWNKSDdiRjdyUTdrRHJsQ0R6WEpkV1g2c2p2ekZvX3VmLWtWYk9VQXdGN2l6bWxnX2JmNmFvcWhqOFFBdkF4aUlMMi1uZ2ZOYVYtZkdVbkJKSGpIbjF5YlE5V0JOcFdkVWxtcERwNmIzbENHMGNMZjAtMnIySUNLNkl6WVA0QnlOTlJGdHBiRUh1d015MWszUy1LbjV3QkcxczBfTkxobGF2b2RDMkNpMmpSQWdkSlNjODdZQVN0UDItY01TdG1iVGpIQWJNQmxXeXlOUnpMT3NzdTdrM09oNl9qQmxiMEVmc0VvTjRHRzlzYkk0VTlmVUFySHluUlZPdk9FamhqZXlqSHBWU1p5TW4xR3RhNUNDYVNLWG1vR2Z5UXJ3eWxMczRPeVMxM3RjR25sU3NrWkxSUlBfaVhVN3E1M0lnZzd4R1FUUFEzUVpURV9JZ19tejJ5b3pGRjBFMVZZLVUxT0hBSyJ9.m1QOuypK8qTxi2a0h4tWGr4-v-eSnFiL37RSr0px8FOWSE-MoXrQ8E4r--7WL7wZ.gjcEE8aUA4Hc6vPJ.X8SRgAhUAjyKUyqEG5WAHEEsmWa93dAUyQBwG7O59Hj9s0Av4WHx6PosQj0sBNvIsJiOMyujL7UHzXcmU--TBWxnRa3jQ0x9PJnZUu50JRPOdPI9pMG2rOxZHcvi7hTwidZC0tJi1ZcDVa4ntAkY1-l5GgFgLqTcEJcBsSY_B6fIjasxVaiAiip2Bt6JeWHgCioKSliJpvAUuXBHywzssOxVOazJav9d9yqB5vLACBGxoka3iSl9ZMV1xIHpw7hcDvZAZFhwyjx0EFxknhquIkCyyeLxaRJb4uEEGQQjtMp-0d3tSXpTItvSIwOfsBkk733O-6wNmq9REcZ-ro6htbL7NxuN5E1fQcVT2dMDAmlA.dzsE633y6qOCI8bE0fWExg
+
+           Figure 18: HPKE-10-KE JWE Compact Serialization
+
+A.7.  HPKE-11
+
+   {
+     "kty": "AKP",
+     "alg": "HPKE-11",
+     "kid": "V6NuOTRpkjQsIYLTK2V9EGxv-rDrdLtcQnlafpRPybs",
+     "pub": "wNIn1LabsWY4ndgJ0ZKD4XAojPR_BGh2zCw4HgFBH9uQi3oqvWMq9cwXsgdDsZawObNPh4OzsQSS-Sll0ZOhJMYbYzktvRJNwJcYL_g_c1uewylTenkf8by-duxeFYk6HMtU4isA96fPDvZypdwWDYga7uW-TNVp8KGK3SlZSyoK9kdVpoCDvCpm5_o4SZYCQAWtxww6BJlqkKcI0UJrBZpGR4d4jpcB3UwBZXFuIZWNxjVdeglSCSdSCVSftzsFJCKovpJmIBZa8pgrsWEBhamEoJYRmToOuCMe-kERcUsBCVqAoOt9cdYkCSJrmlK0HGqQtthl_JtTh6wsFjkJTHYkrpKQmYWOH_s-B_Zx-ksPSLAek6iw_TQRmtZ6HFOOiHQeyNQqrXISIVhEEUHB5ftE1ytVxDuI6axdWtAfV3gfecrDJnIk-4eMcsSh7iQ1vNlo-NIJWBBcWjJXm1M6RjEAgEc_tOGPLNxV4VO1YdLP8uNHCVWJJwFYTYeMXtVZ7BfCMKydDRO9ivcyDuBFh3MiDBA8aqKcHcyIJek9PhBGM6exwQumC7Z28lYvWUycu7CpTpimfGlghMI8iiZVQkgKBrV0teQD1jYrqQa5eaxSfAsFH1YBTban_mtlJvurW-WdcFOK8oY9empKcPNcznloyoAxOqfJysFq7dozLoS6PPNcH2x2HbJseRgAsXOYbIGeKsFBehuKSxYqaVoctPVddtdNEhKHqKCTDMY5cDpYDxoOIExBIGpu5zHIkKBZwwKRaEOODLk5O9E9TpQJDMi6dwiL4xertFjC2vNo6qNDcRepGiK0C1UTbby8R1nEyZp3ISoF51NbwFGfPhVFfxh5D9Z1oCRDOuzIVSAs8jNdAwNpddMecIW4pJWuZ0RXbdyfzdmisiBXb5UUvzO0lHiCDmN3IPNB5cgwrIQiLkl4KcWYiGF8O4hA7Mo_mGbGwtaCrSrGwCU3cplT8plOT_pO2RgyfzMFgmt7s9oA9sqZnDB9VJMk-IGKFIWV-QYsuwS9qPodyLQafoGHQne65uIq8lsdK5d0sGKAhQFwLYI0XbiDjEt6lJV76TOr42K2yaTOhfoNiOAQGgKHRWWpuVCSwCrL3XZHv-q4SmGPrGWrh1On28McddsXfLWD-GuTiGoYJJozOSISnFlnZEZ-zihe_emQALO0HKyrzrVjLFy-F3YPnPVfC4iWG5KdDAFs_2Nfh-LF0suitMFleEUmQFwwCPK2W_Q1etlo8ECBmeFk8TFifXorFkIW1Vc2fCGD-wvAlKVXhEBrtgINgEK00EcZH3cpvkxeAtcFaCJpnUx2qhFvpHgKU6JqoMIxgPE2TQGOgPCpKIe4qZUT99R-kME6yNdxqRAxfHQ9y4ef6SHEQQiYMGQbyiURA5QMJ2ZYtkoH7BQcPXRSRzRQQgtfPuk9iaY99QmfCDlHRyZGm0soSKSB2KIhtAJCoTKA7XllzNV_28supxc8L0wDDbDKCux6HqGyJ2hTxylZxkFygwA2fxpPd2qWwFEIFASg12R5TQX1Y2OEaepEPcgZ2ZboEW2_UESVBRkF4VInSDhTJG8",
+     "priv": "sPTZ8L24TMpoUuKDohQ39bXUSba6Z2AEtkea_03lc9YhLDVA18OIVpKzk-UJ_cGvxQtQAvQ5RVJY3eiUbladyw"
+   }
+
+                       Figure 19: HPKE-11 Private JWK
+
+   {
+     "protected": "eyJhbGciOiJIUEtFLTExIiwia2lkIjoiVjZOdU9UUnBralFzSVlMVEsyVjlFR3h2LXJEcmRMdGNRbmxhZnBSUHlicyJ9",
+     "aad": "VGhlIEZlbGxvd3NoaXAgb2YgdGhlIFJpbmc",
+     "encrypted_key": "lJqOwHptYFeiaeYPp9Z-TIqx7K_K1pZWdvuq5EFMPaFawrQ6I2Cu_8DgpxrBix3VpnMOuZBLu0xykd2aev6AWtLJFy2yQFQvB3FG9HpoPWRAYunyLJfARL4o-bDAJz852wJmhsqhueEI467JauOuJehz-nGIumdtn-alk4Rn38tGtbdqRpXMK0RhCNru-79375ZmrbHas8jawUBHcBXZM0aDeuJE4aZyq1x0aHRNx5-pbxF49I_qaUww6ooqgmNKQwiiekXi5PBuxPixR1WnLzne_TV4jJUPfECYcxdTdx53aVfSK2vEEsDch2W8SvSMZrNnhV-6nMzqJ6lCf_jUtbCWk3JJkIiG6aIRbnM5ESlquQA8NWoPUgjpoHWwa8scoC3NLXEEhErD7kHtTKRkOaHgAngUHsrL4vGzqm-KNyq0bsCFjk2p2h8DHC6ZBmzyxSMDi0bk6Jcj9gB3vZM8rFNuyhNIPe6fJW6NVl0HR0M47n5UAYgBxOHu_pDjhG_4kXsbQrJpbd0esLw_KfcQ5qY1_T44wJoesCEt-zvpSJQMbwj-2y0cBfJK2QC-4xaeErghBdRxtZyzjpRP2pr_ndJP6TutXi_t26lEyIFSyGihElBu1kZmxty8eGXLzodGJk3nOV-V1nboB0usVRdL1SM-f_htEfXMI63TXBGGkHEQ6K8VasyKpI1HgSFZ-WY8e9cSO0n18u8JZYwe3V1jrKoqVT8gtmm96pTAM8oQaWtcgaDdIfFOw3Pp9EHswSQXRudpU8Ki86xtfc3DrkZIXvwC97Eq_XuyoIpLXeUuOB3FYw4o-UD6qZgo1xIAe4XuOHa6nQvdaxqLioSmshfgbtVMNDKeVvOdKPIJIrGTxVDbbFZdLISNYncu0Ej3SGK8LPpZG2ImYKhvwavmQABHNnU_2IO0EJxLPiLFC81edlYh9Dh9hVWxYK5YkQ1pcHn1dk43R7prC_k0c4eprNFTEmvBGKukT00NzG40ogLKsiWH0KXmXA8Eviyjmf2UYJtekrGdv4wlO64PDujSjLMZrL9YZNPy23BFaoVVdO5DmaNLJ9MDDcyZ7S69JjBPxvz8es_ZsNYaCVUDTapPgxHt8BgczbWo7kRIrI68DlbVfSiU05rhBXE-T6O5pttlHlv-M2x8PG3ANFwPJuhFA-hj14fGLt5E5Z-d2Id0yvzzAFV5zw1mf5gqAH6Cv1I6unHVxMYyTiD7APa74E3abHxO5v5QRCUazSoCwf6RL-vvwaos8rCkesYh0Uz_3ULcRk_E9LKaMUVTT7QFqR_dZpqYaZDu2GD6edsz6BabOoBLw6904IjehFuBgDPludQKnBAeYfWBE_oJP1ohedFeeCglrhvVC_-5RXius9TWASsBy9-cclcet8stNBcjx7X8OL8dDrogOQbr4Tw5JORxGM0WD0DgXgwGzLAsxsc9p9UHYd8",
+     "ciphertext": "gM55eziIeULkx4MS7878t38kw-keF00FEM3gRFS_MZdIBn_9Je1klCyaDj927jwcTMw0vUmZepApnX_-BEZfkM0JPTO_kIUv0tAvQCEk5QxcWs5T7nW25NTlWmoAw8NwizlWFYNOxeu8q8gjn9BJ5SCMrxRFoF17ZU7Keqki1iczvWzGpGXTrrq3wVMG1u35D9pgA7s09WYeaoMF44qbNSMTodCjDz2sG1LlyzjDnRfVEp8d2Y5QoBBJh4O3Ceo9CcyvDpR2MJbUnDVf-rEaMKMynLrbBBipNizaxTSF3Q8H1Z1fYtytwJyr0ZT74vjLZYwCEQB9iTZ4QldTbQrEVuPKN6jL4mhU8XkfBMPtT3rzSg7dwIWKxdF0saNf5-3MIg"
+   }
+
+            Figure 20: HPKE-11 Flattened JWE JSON Serialization
+
+eyJhbGciOiJIUEtFLTExIiwia2lkIjoiVjZOdU9UUnBralFzSVlMVEsyVjlFR3h2LXJEcmRMdGNRbmxhZnBSUHlicyJ9.8h93NliauX5CUoGqDChcSuilEnB3w02so3K-bebJ2bTvzR5qRDsHHfRCqHUh80mCxKKCz6PZZXYHkWKGv1TVgDjxAP2JBpoQ0v6sq8lGHIx_CRVZsPECByKYvqKReJ5tthV-yiSbPssO9M_v_tVCxBVB5679W9WCA0B-JN_hlUrnsdpPhKzCBj86b_9pRRiIuaql0gh6nWwTN-0WqBTox3zkiHryeuLYk_wPEr4rSjPy78PJ18CHuSeSk8Z4CwxIlG0kZu1I1M3ag7h7U4SkZs4XBVmVFRcdRuN7VCbOVhZLAhiDUWeU04sjEf6Rzx2wdkZl288RZoXl-tbVZQnM6f6vaUKsTdjv4cEb10-gAIY15bO1kPersTpK_FH5Dsy4UVgH2n92Og62uzzkQWnqKaJMz0niF4ptxQBxulM7Uh8vbOFHPnqc6Ec01EX9F2Jw-HVq_YYL3UISQRxGZykU6sGNvvlvAdbBnQ_M2K2K5A7hMfkud3z_kj-TJm9iiBmhAl-GY_B3-WIv3JYS8O-1gq4OGktwewPgyoDO2wYq1W6eoXOqfdxCbPOk-Z0NjG12JHFHuQ1ogdlrWkfDEEmbWhmVgRMhTKbSOMBvOsXkXUTkuq9r9W9ZgQufHGtRn3c_KroPGCgeFWXKXgRTIAJ9Simg3qB9IUYPJ_zj_i83dprjyKXeoGmnDNKyxVKdC4L67Ku3zhnTPBW2yYgmj3hKSvbsSbD4VVYLzNYvx4KoU_WMwiuP7IhZ8dKqvm62atkLbyyhB5dmKdLiaPi1ggEOFOc096PeM0GBTbcrFuOaYV0S-OSAzmKfLaqR9-ryBRaOjQmUzF440tUPei6wQARmw5FEZZ5Xdu6tSPiTX8DQIHKIZPSBqDKcjRSj6BcQ3OYz8-5GMW0eDr0s8fbAK2w30jy5UJhgbifZ0OrF5D_Py9nLkQUS0SwvE4oKLySuTWZjRVnw4irTVE8aYAY6-nChDnhiBrtjZ5h5_0kLL_FWcxq4X2U6yjUX6E6JdSBsAyp0xH3zcO-oDm7H6H6gzQTRHY49cqnMUSaQFKzP8SZCn1bwl8TV_uLVnRJvnm8-ndMJ6bR-hmqlhtWfLSuOt7zO5NIIPept8pKj_UyqWzP6hjeAlJ9oRzjaCuwrcMEcpGA3GH15cQuir-L0vRgd4NIGlbd_mmC4k0EQhGZFqcrdwP5grWZtR5L9E3mu8h5RDmPOSqj8RQdbG2oj3LL7NAZKjT7FsE_hL3RRYGZR5VLm7DlX0qI5FpZMtIKMN-iVDOb_6JekOnvqzh5EIKxN0RCyy1ylIA0bMPDwq4nFCtMpbrH5wEcyuXkTj7eByPd1NmcvqzDCTPRkz739D-ElwIbJw42DfcCz0oHTIQgvCB2Z853e1biWLilxLxOdG70dmicV4_q51B1ENUa66DGTeXMOcrqkqUdz76npY_949FEMZO8..qLZv9sRJbJh0vP-IzpWKAoEOMUjEi10QfPMoRktCSxfNBdW44GnFD010eOpp-PKE5_PA2kDM3Vil38S1zDcySNlblOIqFM1d4Nfkn-uSmGSqLjqZ1SC5wuMBvHb8QoVLQ3seJKlHAPdTy1ODOQhAOTADiEik7c4nLiZBKwIJ8FBdgbeFTD9QZEd3CoemgFLEYUXY1-PBL_8sKbcIk5gEDUqzM4GvdsNynriwXzivYeEPvW_H1tbyn3eMmd-aWa-8bFX0AAu4HEI7cb6sRmu8N098ZOx_-hGXHGZ3cBBsubD22IN_8KrlwsYwxi6ZvIVOuyV_Bgri0neFxctBBCXHznAeN_3vUjaWw3LXU3sz983s8YBQFb4ank7qmIP76z-eNA.
+
+             Figure 21: HPKE-11 JWE Compact Serialization
+
+A.8.  HPKE-11-KE
+
+   {
+     "kty": "AKP",
+     "alg": "HPKE-11-KE",
+     "kid": "HZzzLQ-Ih1g-LYLZb5DT8lD9-vP5pG0iau72ZZJi-1o",
+     "pub": "ZBAfldkm_AMwe7hToFqTWKwgbGgsEdIcijiJrLGWePx2TPQf8eRV5HSPUXpmorZdMRpBeSVE7BZwsjYiaJiWqWJLtSVcA-sU6xsuOGJNHYQ9QKQZPeg1Ysmm9FmYDuOAzGwZIZnCsLEulnGQJtG9osMfT_mXimZPbFhf2emgjkcXFcJ6Q6JfK9oomfFB5JqPvHyKRpQGbGgQpmExDjyAIgqnddCEcDqjvYKuktF8NBp1Poe5YWMKh8AY-FCG7Zad4pK4XgF0U6lXBnprM4Ol6WuRODJ9wdIjtzW_42oeApwqcpJildcBmzstFIi5sjQNMPRBjLkCGDQFIYJL1fOfVAC_EvIfAEc7i-m88UsPixA3ZVZRr2fGlWNBZGQeYvMf3-Nu-RypLumqj4Il8QCWutdFFHWg8WpjXduyYFRtrONv2lY6Y5iTl8MgTgB8dmIsfFsY_qCIFEmF4yxdNGo7-PBx8MyyEcdqqkgKKgSVFgel0RwFD9jJsCimyOS__RGvy_wxhskgieqXToe73PGJdDgVVFRIYAkmPfYrxUjHc_nD5zNAXrFf-fAzd9GGGym6hBxIU0kFFyGRFSEfaHha8Wgbq2vMMCmWjbEAIuGIpDbDRDSUIpBTjtAnKtRcXQAMiJs0-ciq2fwlueIINPdthag5q1G6rjBUa6ioXfUm1mi6qaJ5a2yUfYMpFNBRe5A-phKf7pewH1i8a4l2X5YP1ru5v1MwcejGsioHTXkA21CQIVGnVUiBXcA8Z7VlAySDCnhkuQQf-VsTe8BfrLgQlMsQrHdadUZqOvWv8ytw1viGZvw_hZe3I_EgJ8aAiXlHQdOvB3iQxlRc2QXC6hyjhJq7PsyZshMqj0eQE3CiUQYzqwuV0rWqxaY5-EzP1oRK10vI03VJTlOeZSIKE_g56PE4ZwhuUjHDqOCceFqNjCW3AoOqJQQd3nWXzjTLJ2WdgeeQOBUnDeOMLURfJ0k1osFxUXRjWKpcI1o9XzFoTdZcgtqLczK92mmfIfJfiOUC5tJwz1Ga4edmxThX5XdanXS65hhMvtpSE6XM51s-ass9fJSon6cKMMo8kFaxIpKI1dxILJJvsmdrFyRKPEtK3YcbiPdjgcSZjzccTqsstUKl9GBvFNqWp0I8ViFcgbiREueQWkqo8iGVfZtcxpzEMChrV7C2baxZRtyCiUnGVsuCHoqakyKYAZkqtRbKv1MZ-yTJfmescJy-WngHn2y6a7wKgOrCfIpkkpdL_Ys3cqAT1DRG26OgIhK4dImGQGuuQcBcxjQK2ky0AKBkhmdEf5g6s-G7RmBygrEd-HVjb0pVX6BageBTOdCwCJQN8kefEFRebyA49ZEi7ih-WRfDs7sCv-B5aAkdpMS6OKUEGMG8mbtW24GhSlyDnaRBPlQgntepnjQSs5CNIJtbkNTL1tyX9Pp-hIE-5aS2HAgh4oizSVERbhZQriWgM3xa3ZRSIHZZASNOj4lvK0EzJFtFmuzMVTScHJySWGKGYkGM4YyVRSFHreKCZXXOk_YVwwdRhF1pf0Zt-oebnILWgYVHOKleu_7M0VsK4JFAa3AGyJ8",
+     "priv": "MdEcXWCxn5WaIadTtN_vZxqueTEEnmMN2Ip60Xjr0N8FA55JM4Xo8EQcFnB2FZy9Yly-p_MKUqVg7VIvPpW78A"
+   }
+
+                     Figure 22: HPKE-11-KE Private JWK
+
+   {
+     "protected": "eyJhbGciOiJIUEtFLTExLUtFIiwia2lkIjoiSFp6ekxRLUloMWctTFlMWmI1RFQ4bEQ5LXZQNXBHMGlhdTcyWlpKaS0xbyIsImVuYyI6IkEyNTZHQ00iLCJlayI6Imcwd1dTMEVrMXNQSXowSkZCSmNiSGhSakk3QjMxMGdWMGJTMUtuUTVjQ0ZuVDE4bWRRcllLc3VEakFtVkMzYk9KbmI1dXg0d25ydkJUOTVNRzYxTFFDdV9RbmR5RzMzbXNLbmQtZ0VmcjcxQ3NZUXBMSkR0VHEzOHlLNWJ0Q0kxcVc5U0txT3ZPSldTTUtnb19jUlNUam90S0dCWnJnSk9JYjF2cXZ1OXpBTlpHZFI2cVdBUGY2d3M1c3FydXVURUlhNVFscjgyTGJDMFN4ZDZZV2puWHI5TVg0V0JHUF93SzJ3aURXVThXWlNLNkFVTzQ2c1NxTndRRG5JVXlpeG1KR0h6ajZ5Q0hiMFo2X1QyVkJvemtRRWNJREJwdk5JUXB1WlBpV3hxTVBRNXZGc3FXbDlISFhiSDBGM2JmWGQzQ25uellwWWFDN0F6SVlqRnl1c3QwYjl3VVNhNUFoUkNOakFKc2Q1UHd0WGFNNnI3X0x6SXpoSUJzSG1tWjVLMk5Ldk9iMGdZVkhVZTUtbUpIV3JEUUJzTUZxM09UZ1o0WWpnWjNpLXBDUmRYLXE1Z0FvaDU4N21SNHhncFM2VVF2ZTVoUXFHNzdJZlc2d3hLZDlFNDdTeW81TF9BRC1DNS1EeDdTUTloa181M045elNMUGZpYm16Z2FaNjNRSkpVeGZJZzd3Q3A1Yy1ud0wtTDN6Rmd1N0tqMnNraGRrOWt3YjlCSVRQWjZURHZYMzFBTWpON0tYQ1Jzd1RvZUtsNFlrUkF4SGx0MUhJT3g1c0x2YlZ4ZUJZZW1GX3RzZi1HV0R4c2FGSVNlRGFvQnpzLVNqbkR4ZnhzUjliVVdkWkE5YzVRT25INHVYRFh3R1lCUHBObzNCMkNSWVlIRjU3ckNDOV9XVmJBUzJXS2pZRTQyR19BT2JDeTlraTZGSFpnM3JtNktTdmtOMHdtOHhWRmNGNkpYMnhxR180NEx0ODUxNDA3clFFak13eWxYcWloV3lRY1BDSmt0NTRzTkJUMTZ3ZFVuSDhMNTdxdXphMjJlNjktdWVPSTY1Z2RWRzBZOGIxd1ItTFYyTU9nUVJhR20wQU1nWm9BVnhwSjhfZ1liR2pHaUtKUmhrZkZrUXdTUlVaRllDdXV4eUJER0tTVUdfcHZpVTFobUl4ZEVLbzJhT3JXSVBZa3ZEUWY0V0MtaW5VM3BlQkprZ0ViNm5ISm1Ddi0yYUVxZk8yeHJKd2xjbzI2S2pGNHhSMnRPN05OaFhBZ3ZuTlpNSllwdzBfX1BFcDN5TmtWM1ZVRWc2LUJzbmNLNC1sMkNfMFctVm1iSjZ2MTE4N0hLcTZmZkV4Z25mMHQ0bU82cGRoZ2VDS3hOYjYxRHQxdVFUaVBOWVpPd19JZ3BSMmVUWjBGeTU0X2phbjFZOGZsR3lJdmdZeDBBZzh1WlFVUkNEeFhld1VYLXZJb2o4S3JkWjdCaDFfcThkcUZUU21FbWZ1Y0tfTnhTSVJFdUthZk5MNGFpU2lURDNvRDhJYXFfNkZ2a1ZSUE1MVlVlVzhxVnlXT29sNnFwY1NkN3I0U25mV1RyNlFfOXFCbTRWX3RPV2ZXUmxBcllyYVZmODdBYjRTU0Zlbm90NFNGdlZTeVVCQ3R0TlZoQlR2blBfZm9SWmxlSU9ERko2VXlrWmpJUHJBZjJFZG1mam1UNENEYzhLNHJXUE9weTQzY1NwWWdtZjVxSzJabW4xc3pON2o0d2tQbDFfNjhORFFXN2haSXNFY1g5R0drVDZQNUdfQllrbHVtRURFMVhMbUlHOFdadUd4RDBfa1lVMG1rRVlnQTNtLWlfbVBjS0Y1eGUxX3l1RFFwcS1OczVTNVFBVTVaaWFqZVVWLUUtYkVrMloxQjB5a1EzUnp5WEVkUlVjMzlRSDUzRVRLV0dzdVNhRWZBNUdJIn0",
+     "aad": "VGhlIEZlbGxvd3NoaXAgb2YgdGhlIFJpbmc",
+     "iv": "oxnTgxOd-KlpWd1g",
+     "ciphertext": "QXNe0ET-tbaIbdRhX_85ZCn9TeS1-fdE3UCwkil4YgPeFTpuzCiD9RIH9D5RzfJwiLOncYyDOCxaW0zKLoxUHROR9JzRRrZx9nwu199C5Kzqg2Ad4oK50d6c3cmhVd-O4iW202Hg61g8w4SQB0NEu9ZpBRtmMDn7LwRCCtLWopzEyN6L7jBjpjq0y-U62x4MZwxrZS3v787T83f0F7dba-kMbD8yLNW2-urKe8LA9qTSOTyDlJ7IsgR7D73W5XdTqQ0L8ff70RMjmMI78wHwzb4k9wGSlBweWEbQaZXK--FOoGLOdhLr_RMOxo9CzffX8mpTDI0u45wqLI4uG3QnF-pQx2H64pa87MsWd2xGvmwF",
+     "tag": "Twil-g3D4d9qIvkjYgh8yQ",
+     "encrypted_key": "6U-bJ_5FDx_mfWucA9fq4JFMKQCkUg6NvvkS2IwiVJL1VPUO6xY8ZgA8sLqfe2Yg"
+   }
+
+           Figure 23: HPKE-11-KE Flattened JWE JSON Serialization
+
+eyJhbGciOiJIUEtFLTExLUtFIiwia2lkIjoiSFp6ekxRLUloMWctTFlMWmI1RFQ4bEQ5LXZQNXBHMGlhdTcyWlpKaS0xbyIsImVuYyI6IkEyNTZHQ00iLCJlayI6IlprSzFZX2o1VUZkbGJHWUpNRWpsVDJEMWU4bV92UE5fdmFXbkEtQWozWHZlQ0g1WnZzSG5jeS1CUWd2SVJEMm5SRm45NmRtYVJrYlo1NUFLWXBGREFHTkVSZElWTkZLSlNTWFViT3AzUWZpWXRPTllIV3BpMHRFQXpzX3F4Ri0xcFc2cjlIU200bG9VcVBfLUx0TGhOWEhZcmZHeTVBOEtJUHBXNTFKeXUxWEV4MFhCSnpBNlZsbUJKNjA5V015YTFwWERfZEtHNG8zc3UtTmFKQ1h0MW9ncEJTcW14bG9tNzQ4bkF3bklrTWJINGppd1VwS2IwYUIzN3czOXMyeG5COXRnYUdfUTV4aEYxMmVldVBNZXlERE1OZThVNmV1dG9SOFhKbjRVLXN0cUQtakgxcGRIekRpb3FrX296QVMxMUVMejZiVlpZWW5maEViYzN5M1RRdEI3OHBxXzQya2RjRW01ZnRRajNSSzBjaWVJT3FTR0lEb1lIckFVd2JtQ0RWRTNDNVRYX0otNUdsVjlyR0Vuc3BjV0s5elYyN2xKNmhkRmZEWnBJQTVndzgzcGxWTXlNSFVUNkxZdFdIRWVMREY0V0NGdVpSVUpyVG8zT3VzS0RVLWdidUQ5UzFCM04xbFFCRDB5UzZtVmx5YVllOW1DMzctZ25oUEx4cHJtNG5oQTNqUVZ4Z0docGJ6c1pZTnJDOXZSMFFySElfLVZWTTNiS2w1X1VTZ2lZaXA5bmFGMnItOWN3aWtUTms3ckEydGtHc0RyX1JZRDd3c25haUYwLU5hV1labzZfYXd0U3VNMmZuNXZ5Y2d2aGJTb3JvaFZ5VGh5MlpMbXlRRlZmRHBXLWR2bDNhZjFWUWR0VS1TdTJQYXBpTXBEb3cwcWtoZVBESUVHa2xyYWoxdXlVT2hDNEo0TFVOLUVRRWluRVRxLUtud3dkaVpMMWphVWlFOEFCOEtHdXJwNmNHbEF0RVA4LWVvTzVEVUM0VDdZUWZlck9nSkFDQlR6NlhnZE1fZlZpNW5YZ2tjNEFnb3lKR2VJUVJsNFJ5WTBFRklpRWNIVUpFMFQ2V3p0b1dJcjNtb0cyQnJhbi1ZV3h4ZnJaOVMzN1hxTDlJbjdhUExOY0hGMExGYVJKcnROWXVPQ25sNzVuQzhmS2JPQmkxUHdodDhxMFVXbTFxLVVBX0JQOENCLVBPZjA5UUJheU9xNzhDenBwMDc0dUQ5bGhQMDBYM1BOOTE2ZGF2RUh6eUl1Y0N0NUZRVEkycmZrN3VoSEYzcE1FSXZucHAtUHRFQkZBYzBaVmphNTYyMXBfV3d6Yjd0ZWlVWWxZMThtM283a1FyeVVjN1AyVjlhVDl5T0JYRHJqSHAySlpJVmRXeFhYc1RRSHBYaFZaMFJ0c056RU9FQ2FvVU43cllHUkhuQ25jQTdqQmQtMTBhbWxTQjRZWE52SHlSZkZrbzJkcnVKb3lkT29XaUhTMnU3eTZJZzRUSlVUVUtxU1hHMC1wcnlaVU5tbE9hM2FEZWctbGpfXzYzZTh2ZlJuc0JRVWNUb0pheGFzR1hlYlVGY0RiYUxNcGFlNmsyOTlocnJzZXgzaGVNbUNzV2VuX081U1luNU0yeDZjOXpiRnBOX2Y4VUp6cTAzSUFrcXp3ZENXbTZrWEw1NmNOWGQxeWt1NENMLUI2d1ZVZk1lWFZsbVRYS05ONUE2alppTkRuQW94ZEFZdGtrTm81cDhURXgxMllyc2hZeUhWWjR6Zk5nN0xqOU9DSXpIZVpEMWlid1V0bW1MSTlxREd3aUpGaVFoZUJrMjJtUkZyTEhxZVF1RlVSa0YtZE5ibGdadWhMajVPSWhNNF9mT2FMRkUyR0otTlRFUWJid0RYb2RRRldjQ19USGdTUk0zckdhQ1MxS1JJcWxiel94eWlKU2lLdzBZIn0.-ZEgKcYBbNpWLanaaXep7HW3Ue-X5aBFsf1N6VTyGc4XlahEsdj7hYcc1aal6Kec.Trig1oW7jcnHek6N.okjC-uvX1HEqdYFyTk8qWnnCawli83mpVWiTcppM8d90TivUNcAXBrRKJpEE43uXWccMVS_kynZaaTzO1YYx26QY_ica8JAUbfZPdR8rVcFD2BhFI-oulhAQsnhxk_PBn7WBBfk74sXlaKzHRbKJxOfCEooNCszio5J2A9I7L5mlH7K_z40TJ4TtG-lKZJjNykLxqXEqJ4FpeCHF7o2Z2ON5idQeXo4-OJ-MjmEelVV7NzSX-TuKroQI2Pr0QeQTVJuV0OAlTc-BtPomAHsvW9mr0gD4dZ1r3als_mh_zrK6tDQ24Nevs09hjHRXddXTC1o5GG7WqLrveUCQSrk4exZcJYP596rEuZb4sLQnAs8O.taWm_489zeXpcpTqRCF89Q
+
+           Figure 24: HPKE-11-KE JWE Compact Serialization
+
+A.9.  HPKE-12
+
+   {
+     "kty": "AKP",
+     "alg": "HPKE-12",
+     "kid": "UZgqVMOvJ8Nd591kVluTxG375m91rfszVGvmfSYy0ag",
+     "pub": "yBjFl0K50OV1_xojNbsrHrtYJLA6PZsZ-BBE5dmZ1ZkaXCYqi2SNDRKw-pwmu8FdYpo35nZ-pVoZCGc7O0k1q4Rb-AMpJFA6xZAYSKh0nyNHbierRxx95libUody85KwlGK90XZ1SZtitYWREix2HGF2uysI-wNzKLaSOGkbc7GGCEy71IZH5SdMnjEKB8S5HopQx1ouwQWmqHCzISSxM7M7ymeKQrdsB_K5aiqfQecc8El4CQox5xWA3FglxGsasEwQnlPJkzW0v1jIMxbF_MRtGpcpU9Vvd9h-5UogtAEVITWaDsfGY9uYKwpNYlZMzZYGMdcETty8rLGsiZqqcXI_TTJPyvN5aAxwf7o6FySV9EprtUIiFyajXDGXVveTzWlmJJKkkvdMdsUQdUwD-eu1Pxmv7MIi3ocHoplPXGh95jhExCarXzKH9eh7TvUP6RLO_royJSeCtKiQJrcHb4MJEbwJS7DCP3RwyRZAoSZRwDYit0YnK6IdmQgCQNDJB2h6RsoEMinBsAQvlPZL-isnmNgtO6Jk09ujyTleRlkJtmUlSjstOBU64UoRjiSHhipEi-gwbrnBKGMdXcMgFHIa1IWTnIVQl5xejJybX1p5I5Rwi4wakhVDE1M9VjY0AOqSIEeXxVlPKlFDZ6xn7GEcJteZ8Wt43rmdJJK5ztmT2BNwGOhB2dVfofmOMqm5SsA2XWtEeKecmOe7A6h1Bfqh3MIzQ4c4RnO3zflxzFIUcxRLFuMFsOMxQKl1rScn9Fu77Ptd7RQdLua2YNpIshicy_kr-wusnjm5rEij7EMGkbIslocZAzwxWeuIcvQX9kZu52W7dYhspJwDQQRIF3w6uBAn-aCcK9KjQIADcvS8g3RmdVJmhrIXQQBB0qaYpAGemItzf3e6fYyMGxMO4cOwrXODlmnDLVYSOLcQW5J0_mx6TyyIwDuDJWRuUPipv6Wf6mmUE1ST74wEbrNoMgCKsRZS8Di11is1wsIhr8yZfUmWdXBsi3GZiJx9thBJyUppWkEBXPlsgFB77kRoupWwzDaWQ0B95TIt0qGPUGqGcGejOeZOW4OhD4oCV7fCX7yZn7VzggBa0zVC9XeHD1qlQhytKWYwkjE8G6AXi9gOSCASbXOUBQtA3PCEzOCPfBUvspweDBpRYlADDXYvdZmnssFiSFh0VzElkNgYZUc8bqeTIJySaOPAMvN0HXjDsmQfHboIW8S0y0G7frpj13INuyJfr7onLhI1T0yxaqvORAulZid7caExF1iQYIuBscokG8dFsPGG_zRt1LQni_N0_5NTvgE6kxAB4pOL5zGmkdOT6mUyahKvMFdO2YNMLZmm5sQoi8W-rLfCNhKnfVxYT1ZOp9ZAAYat1ek6DvYEDhNKQ2vHItgUwkjKv-ssL2FDnWC98XN01-SXknoBJ4wChxxwfGhnqoSU1RoFUTFen9c4d1NbtXp5IeC76Metv9osRsqRW-hwOvXNLVid2KjHglimzbQiEyvJD7h0KaFdSTWZE2qQCGhwQbsaDHUdqxI9_PbJu4yEyjOquXew6eebVjoZmOd0ivJuOsd_EJWu2aADvkKdcAh-npMUd6wslxWZ12e0vjgZmpg6u4ZJEiw4wCNHRGN7qMq3JAxn_EjNUsqyH8JfebqYPlYk1KtbehGy_ZJavqMTWPRKINdkVLuvUbKWz1hHgRiyRWwNMvafmIYyV-xCn8Yhc2HOWzgpUMAJYwc9JvCoBeVWxQCtczVit0B7Q2BhcTTJrgkoebqSkPmjxwF_U0e3PiBGHaWvs7Y4QtKOm2arVMY2Z6SZqZQwI4rIgjBNtHcbglcuKRPMlkaVG0TIEdh6d-gh1ri8CuiwN8cIYEnJSrJ8kNa_dNAXMuAmt0uGkHktm3OD-OhilwknRidJ7ws4ynCYbtdjhKJtAnxc-aoB9XCVFFAYVDmz61dPNgMABehnCdotfVXLdkEls4IOmuFvoFDMYPVqOQsZOPNjL_O8xHkbS2nEjbKbqCFX4pwJ4HRczjE8feN3JVHFatxTcDR0xwujTmVF3KtPBFal_K-1uE00DBIUSTEIbZcuRYUdkkvuyip_Rng",
+     "priv": "gfLKhy5tdkQyMbtlC3GDiD0z9lkSd39GfZqzf_9YLgsQzqE4QT0Grwj6OM8LGuxu7pEkc0UESxZHeT6Q7blKAA"
+   }
+
+                       Figure 25: HPKE-12 Private JWK
+
+   {
+     "protected": "eyJhbGciOiJIUEtFLTEyIiwia2lkIjoiVVpncVZNT3ZKOE5kNTkxa1ZsdVR4RzM3NW05MXJmc3pWR3ZtZlNZeTBhZyJ9",
+     "aad": "VGhlIEZlbGxvd3NoaXAgb2YgdGhlIFJpbmc",
+     "encrypted_key": "bwYjdgQwHH9A8Ukc35XGZPAI0iqQuMDYtEPU2kYKx5heBA-rAAgbQZc27hVpBhMR-zF8t2bcm1Cx2PNC8F2-4cxaPG48Ub3mYf6iGNCqol2_3RIM7_Wd6YEtmAz9YI5sU5dOR6UL1lzaFnBSO6sdSM0tMz1HGY58WLHgbPf-ZAV6pFxD8yghH_OVPMqQZoDGLVvvU0piHSKiqZyHmosAzZzA3_NVgQZq3JO0KMPF621QU-KvIlmaV1Skc5i51y6rrRKaKF9ISlHlzdT_aD8Gg_DFo8yA25WCN3ULbZfmETOromraG76_j2mPWyqKMuumXzyWOg-d9CDMuRKMTNcCRuU-TvOLj-o4azIhI6JfVVMdPL5WXkpXXQcy0PPcxSjA7UK51Cf8E0A5IrFx_seux5QHz53Ds61TAWuVRSFtvnv0_CUgLnkw4fefLebjws2fZdwP9mwbzKN8DtxbySDP8m21iOaJEwdh1bQIKe-c3izbvQA4UPXs7auIORDgUoCS_SGFIOwGBseAAPi8ACM94O4w9KIJ4QpqZkpIku7bBN8D4fVykbsl-_FznOHix1ftzsJu7FiQwZABHmBBC1zDLTaVyYvOh9Vr-sPdbUremgjI0EgL443YIDjUmPEbe_046T8KapxX16yeMtcqyvkOssQUeE7To5VWNdM53GU6iraq62QUYjRGo5nicbTCxJUAqWtEfVcpmUaEnOUA3CkR1EW3IEXyc4cvS3vBK6AXGRKzk8z6xZXfjAjmE5UWBiCCrb1BRf2KtrC9dT-428-nwbAi2K0bE5TerhWHgrH38D7MWlGsXGclIn0wUncE_nROc3ofwCBpUQfhAtN3R3PjSr7EbYHKWzxHgSF4k86dDF4fMrygBdm850lOmA4An4zCuiML-TDXVB5CtuZXm8K0I_jg60geJDp6u-T_6nMKYjAHevlWARh9TcINCIVwgNC81KxUrScXNljLI_ihmUIKxPXTysfEh2kFMz3dBYYWyoEqXIoAJB4axyUPf_KO7kkT-ZRrwAn-3nZ6yWIygOTlCSpCnWLUwNMW4jq3IPDIXkBBFd-RiHNGPmMNUxNPHgFpdqsYxy8BdUGSvnfHnQLmQwDHTCpkplFY90l3kMLW7Dq9qAx6N-cmXT7fYsKWAfUg1rzxy4sUvlSBIzuCKoj1-EP0wtf477CUF2OIZdPkIrXP2bSbEpDzVkP1KGJI_jMW4gaeoKpGtQIOSYLdFXrV3ZjEvCogTZuBljz5o-f4jCoJxgg2NeZ2vhSdKc_cnnP9IElNHuVsj9lifMygkiux3uUSRCtTiwfiYTUFxyTqbCHwI8ZYSNYvjgpbtqMdbkjTlp70YaasW9gPPXV4ckF9a0rW1BdmnsJCFTcn2ReLPLDcOFVN8nfoVm_yUVahN0W4srwjfiSnPtq7gMFsbpZSlGHPEiKRIPGMwwI9d9Mw7tFyLfr81Td6iRjPFLiX98icpFnX-BJ0RdEpE6ybB-ARt5xworuc84MxqrEUV8K6OfsWnRQHmvcuKyjv50E8wv9JH6GBVlX_mHobtOntTRg5-suHa0gsK-gHmits5hbVrUZhO_rWxxnEcBXLFdiBFywAsq2Shitu0W3AWKgL8GxZsiY6QGqfMKvf0w6l_U3fXzpqoxWTZORgvZ4H2J8lwL3hqkDit_ZuhRP1AILugLe-Iqz5fTzHi0KqgokPlDWpYm6Ccp8oCaHcCNaAAl6Cm97-NBZxuUT7ZvSgG0xGJAOe2VNE1rJdvPollRq5UPBENbCl0sXCP9aO585bfIORP_utkvMWEWXogWGwEOPN5K9Uqxp4Hs5nc4BajrLs8kX1K6-AYrLZUXk5WZOpLiyaNbcokPtT5EURdWLgDhNaw3JixJ4PkHy1q44tcQ1kvUDFg72wBNulsnqDJLMB0fb-9w11gHOC2E0UPhvjNUwSkWjNBXJUmewU_g0CUmsrvrG6ryAiO1YCgA5gnw3Xge5YzpnTVVShg3aIq9KlfOwCeaHD-y1_zTNAuRWUwECmZ5dGHgNJuEfDl0BkcpVn3V_kdCrQqms0YpU8tHgEzWz2lRWtuWIj2U8Rl7vQK0iCQWQe38s",
+     "ciphertext": "MELmSzak9lvisnZ_lJxFUD3_kUCsfSamFOYRc8WewnMiGaB3PmVOj7EHBme00lkFXjO595s2UQtSNBWhfivFbVesUY5oXRny4z9kPl9j993bJ7mCTKu2cYMWT36XS_LBP0lErII0mbHrl7te7EvwMtlyOaK6fmj35uI8vyTnCihiLdOO1w5xrl36T5ugltmGePk1WiRRW28iHXNM6hYaMkztNC7dLxlCiAQ1eZm53g_Dw1iHROVC2BO4Y9kuUkDErsPSWu-nJ0Zi-fpM7eJNMcUrvmj-MxCw8nNDmdo5f6RscR1VLfGWT_lJwpIYL-7NXGEZCRlr6YuSQm8nVk9LBkTzY1qbOldwYxM1ZjcvHy645m1cI_LSY5721Bf9RGrZzQ"
+   }
+
+            Figure 26: HPKE-12 Flattened JWE JSON Serialization
+
+eyJhbGciOiJIUEtFLTEyIiwia2lkIjoiVVpncVZNT3ZKOE5kNTkxa1ZsdVR4RzM3NW05MXJmc3pWR3ZtZlNZeTBhZyJ9.W9SY9p3w9GJmFinZ7B5g-D5DI8gRX5kNCI93XqVSV7TcZ3m8y_tPnw4utHmw_xYxUyYiFc4yvNOjJmYuJFkrqGmVQJvXYqr3p0NgsTLD9id09RdMI3Kac8TQntK8KpleV8AG8s7etOD_vswGvNLIWTUeyT5tlO9lDD30aGleqvMkl6OjU-gFMK1bU9v7Fza7TTCs5g3piYShJKSPafLi0KCESyeSjSylkS4C8WjfhbHKCAbJh-l11bn6VAONf07jZ3z0RDtLOf_HMvfK7R_znP3p009WqW9L-Z5Ckad-fJJc7vs9Ud3LwnC1c2XMtWFaVzA_x-TpmfSYE2xxW7yU3qAja-uWqgRi6mB5-0N5tZ6MYLiApeLLYAijoWBIoTWFQCiM1jYtN5y2hceN_NAUyJ9X3t5UIpJcPiUIkui3jltyT2CtoTBBnNxBOmQmLbZeZAwCC1NKYn5mFwnBhc2P9aRZpehwzRthj8aY52hQvbRHMT2YsFFDVPZNX0VVqhlAV1jTg0ZxMSj-Zgwbw_8jkRx3gwM2CqD5-PW399pp7IgJ4cRFcC8dOs62BHR619lBv4jNa86GiUGmvQSulOnWHjR-mvuaOqFbCRpx4dTakrIjpWXXdYK4_uKA-QNSvdMfOJk-xmKyX6BywHTDppucYWkWRcA689mS93CAUoEB_AF3U1NPJ8hVntF9tqFU07einVN1nlw-WVdQh_FABEUkKtekGE_66dktF1AFJre9s8hCodxy2B3bFiJHFgCGV4M9H3NLVHVSe_8WFG-I1rckbdGPyxyh6QtFHopsNO6iK7Qt06AEQN5Aj8DzFiBVN0Q40uC9LJs2omNOAdV5Q4ASM15APef_UwGt4KRHvxLoUdewjLJRS-v-lHAW2C_V9EhnFgpl8vT3TR2dzZaBlEdkhWPeu22JW6TH4TyTxSjYVf3K2dTFLtzJ_zhbJX-n9iPu-BOgFW9AxaENDqcLNO9KAFwHhhtvsgNTzeVZhmeORgkc6N49pXmIy3uZBvfrIs2jtfNiTEaIdcCFuo7rsV5eAz-_JJHJPdugKeqrSmoZBaXikEGCgKQBLc0LyqfYluIv0uGHTso6C4NhfW705ttc2aTqPx7uHWTjJBF8WRxr4EoypuleCLqMYFUxqjBGFtzNQhRyRF7FPG-YA-FN2LFxqSx1Fax9DCkUQrgopiERVHJ6MkiYrUgupqqEaC8C8B1E1CLLEDPoGOV-9n_Wj3BTmHMLAhaNnNFZyb9GxHmshmg4rZjr5fZj0ETeEgPQBHUHFYHF7t9EMN2eg-EgSdMEmY2eNfHaL0z018v3ylylM37UA8L9NIwbRgDaQAcwHUtrpxhdjp-BRjfkxVVUNun_Dozop8ySAVGgK5tp2UDpI2rDfC8dvXG-acUkNvLUxvEU6ZiqGxppQoD50bL0ccKtMIq-_uY0nZFLC4iZlMhKNFAtJ3i31vxw0eaQEIpMtnhB7f_5SR_SB-V0y3lz9EDiIgkvgq9ASLDoIjUGXYiMbs-5pKthIeULy6ZWgR-yQWsnwlYaFEernT1Ai9G-TGcpNgCbwdqV6onYVBHwgk9-t1BQFbQMbdFPbaQzSWMHZiLqFuc8MMNYdoNIS2rcm_XAK7qHSDC6_NatX8VXmLR-_1HZ57YKRKBmgF8_9PA-WintXk40Ef-eBGq8pemlAdJKKv30w0rctEfiPzFi6bUKjg6AaTiGKvEu755PEXLdA_xKp2DgUGE8BhcihpHk_EoALUOeUlr8KKCSCuvS0F7rkasido4erSL0KCFIBEWqm41d90oeYsqwjzktZZIwqMWJMNqpDM_coINlHdsf1fW_MKfZSWVyyZnF5JNFGCSQI0lkBORoTIlPFCPFf-fFgF_B_eSY1SpXTBGzdZEMziMgnYRukGd7JGgop7enVj4eBmBt1GcebcHH8sHPXx0MJKNtw_isIZFWXMbLXM74mLtTMbzFfFf-30DJGkOf-C92fUhP-GDUfqtxLvSM55h-iBZ2BevNy-AVCT6UoBLIVBq8KG4vWHs_M4HqzNEeRjdoYagywCCwfxVVFDZ7MKxTqdbvPOSM7YTb3ZfvX1tRHjfgCwU..grKFlbzfVTXfTIx5PyQakdvEyTfRCtVpB4GoDs4MgJ3LO4jngAuLl0jItjLaFB2usrwaPqj-Z-TxYsvjf4OB5in5R9TGUASOwguafAnLzyntqSZDL5S-Ae48nSmipG1dUZuYN80dwkIRRm7oroVNfqjHSaYeVvmK0GLeRj8WiP_OkMsGNnlw9jUQgfuSRRQDk9YA6TwJ6zvt-XX5K1NPP0rPs-Yu18kW9_VOYK0OXzRlN-7H4J1gjpR0EyH2dnoCF1z_O6oeBWLWr6jTVWGW1O2Qvs3Kcf6FN24jNLp8CAFmWYfyiBClx_sNQCWCxEfJ6pWqChs0TE6jtYzRiLGiNWfzNBW1hVzX-FJZdemlZVw9LiYVw-46thzcyhfdje_6yg.
+
+             Figure 27: HPKE-12 JWE Compact Serialization
+
+A.10.  HPKE-12-KE
+
+   {
+     "kty": "AKP",
+     "alg": "HPKE-12-KE",
+     "kid": "yEnDeWf_V22Y-Y6SP5sdDhkP-NHrucZEKC1UwW1P4CQ",
+     "pub": "mfav6mgg3kcmTrF7B3pojMgv4qZls5WGR7Rqr_WinpVGhNtQ3tQUFNQnTik-rBGPYsaT8TZ4JLl3OUQyWqTAdskLcbrI6BA09qh3GjZv9Hx9MDFnlcU8bspBARlCncIr0zqJTvSxjziEsnPFAE09ZzC6HcW9tdtCs_V6zYq9GrnIEdk-FCVzt9qqRdk6U0i5vZmLvgsZ8hiGTJxygqM_edAfjyIkY4mYZbuX79C9lZpT4WSt6yeo45xFpCyjPdZrPgO-5uAUNqOe_SkLsBobGOIabqAmPGAMfSlswiKB4XSJlGkV_4kA9qkCUfd1a8DGn0p_xrM0CrAYcdzECLpVq0piNHlvupxhcxSLJ0zGwwciRygP5uZRuCMYStttGaN68jyPvOhz7eGY5dkl50GCEBsJZDx02lpbs3KUHyeZdbyZssqR14LPOLPFBCiMmJt6bsJBmtuaYIqeLLiJqahfGkWAPLqzXbBllTakYce4l-Eby0Rf5syDxDIuaFQIPvKeXrx3snCfJCgAP9vBpmzBShNKmGwezchi0uUIeOVrh1cuZxxWksaO8YablsYwasMovAUqOkKJ4OJyOVA9J7I2lthPFVjNAfQg-UcsGOwFpLs_eOhKO2KK2jo2_Ma4CMByETOUZjs4cmQ7gcMbF8BTFFdDMwJ5hCaw0vwaXdY52ZWGSppOWsiRNZUcA1VSQXbJ5tMuhPYBz0MSsqedNDSaX5U8E7EyWDHIpeArsHYcOce5EasvRwcEv8Ewb_YE7TKqCYrFRxRnT3h7ZRUcWMk6b2OVshCBUVE0APFi4qU7JZqjCJk_Hho1PXO0DOoZ4spb8yyEmNmE1Rm3UCEwFuAILChH2MA3Oxs0MYXHEOKRfsy9s-Rdu9qbTeVLxccICLKGOgYTBat_jDgTl0K3QWJrfNu7r4GCDjoPeCoN_aFa_lxXjGR2ftsP8dqst_C4_YoKg0M5HeCN_1QKvtsDJmQNGcMr6LW5OppfTwwW6GFUhElzMJeWbpOrNnpqKfoThUQF4wRZT6kZaxwBiysXIqdFw0FYCoIsWPCF_YPBIGakxgVfF7G4_4qi9OqW0BCmvropGaGc8fldvzMpNSC2C7J_LtangAxfepPOvxKAsRNOEAufIGwgBBxQjXmARQaendbHKVk-WgRbdYm_6qtCprgJIAZ8mpxpcbyS_5BiV4ahGOtxIlwMprkRz6VhqEpitJLCigQOnJGQr-aleIRKmeZ8R-zEPKAJZqfOICnNkcREg1iXdGltBCtxQsIf7dt_5Xui13ZL1lJTWKoPK6Y9WARLc6uRDNRK25KPutuOG1pHsiWJepuudxNhyiuKacqyErZpOZdNBYEFdlNTyckB9sKGRtCFP7cK0wGidTGerlBlRlB_0Qw2PeC8h5kHwjqcjbuJemFPZGJefLc7BIuYp8qXvlPGosEcbmJ30TgQKpxwoFFnwJxFEWCsqFE3YkAX2adg6IFXe8TBTZQAtgoBCBIufkXLPxcYTMNTWXDBaXd0mFlnnex5GTKtkVNkwrRhemI1M8OBxhMmOTAOhrJHZxRBc2G8pIcZANWzzpMzVNQbpYlMlJC-ZBU_IoWv9fQCS6CVnmSuKBElYuoRf-yJaXEhhNONVdklFcUmRkxESqsqj3rB49oD6DJS-pizOzMh2_Z_U_dAmRuuNhGxiGDIuziEPxKUJlguVGZe5ZMofJeWsuOIepmGJKSH_MPMvYZregSB7xlM4igjorQRk_V38GHGlOSHgXYYWtC64TaRTIdVsWxI6SOS6Esqr_IaPDdjLvRbbTBrIZSG85YF-xYB1nJRBhogcnxwvmexRHYSv1QP6lp-9MRJVoanAHiUW1axNnmY53y76Bk_xzU4JuaAZnxPeMJHa1Nv_eewPqhw-jl-m4NVk5u2WQKDv0U5obIsCfcLm8M98dZxetTB7xIYWRMClvef6-NH4-fArMtlwlWpCaS1C1wwRFJ9SjhWrdcNfHZpPLJYgEl96hdK60e_aQpq2sKdmRFkXaVvOviwhLNWOFKzuBcLqRGiYtlpA_VmyLGL3lwwJ3A9rK-89CGtLEqffbXKE-efyQzxtZVAt2MTcfU",
+     "priv": "_bpSQu9ZkBVMPmRtuUk8A6GcN1JE_3WEu9PWaoXrZHD6INSRNwmQggywRSzCOeb-5byMvMpe02Qx6BB18t_SkA"
+   }
+
+                     Figure 28: HPKE-12-KE Private JWK
+
+   {
+     "protected": "eyJhbGciOiJIUEtFLTEyLUtFIiwia2lkIjoieUVuRGVXZl9WMjJZLVk2U1A1c2REaGtQLU5IcnVjWkVLQzFVd1cxUDRDUSIsImVuYyI6IkEyNTZHQ00iLCJlayI6Ind0RlFjQi1famhYNTFhZ1VtcXFZRkRpYlQyR1Z3eVl3OG91YzFyRGZXWGZ6VE9ocFN0MHJteFpJTGMyeEltMzVBS3JaT2Z3Vmlhb1JRaHk4LVllTzdDbzByeGtqZUpUS0ZfZlZCM244RDlaM292MldCQXVXQjBfY3JlNGJ1anFVU2xrc0F6Y0FOMkdtdDFLcll6NHctTGhhU09QX0t1Sng1bEJNaDZkUFRibGUycEpJWks1STJ0SDFwWnRhVzJDOXd4bTRUZ2hUQUVBNnpfQWdJNWpHR1lhdjFrdHh1YnFRbjkwd05pNkl4cEloV2Ffa2RON0c0dXpZeTA3UElvdjM5aHpXdjhQbjVpSHVkT2NEUXdLZWk2NVpJTnVpYng1d053eW5HWk0yWmhfNEtIeGlzQ2VGeHBvX3doV19XM0lNeWF3OGo5YkRnZV83TTFKcnN1Nk4wdXZXZHItbERjbm9xU2JjOEx0LVQ1R3hPT3V5WUFHZjlrUXFackJENkpxT2NaUTB3aU10SE9Cc3BmejhjeHVkTkRXMkppWmc5UTZjZ2NQN2VTdkVnNENOS0JTQlhLeXpLYTZlS2p4SnBQdXJqYktpYU1aYWVXbmU1SGtVSEFYdkEtSlNnYkIydGlXMVIxakI0R1l3VUNzV2xuZ0RxckFOZkJxMDN0bjJwbzIwWjJORmpGSHZFUmMwRUY5dDcycEtnOV9TOWtQNG9ka0FoVnBMX0N0SDRrVEVTNnU3N2xXcjBBeUNHZHBYb1VBd3Z0Q0tpUFZ4WjdQSFAyQzdwS0k5NGV6Q0g5ckFVUHc3dDZia05lY3I1bGVRQnFXMVgtWXF4bGVOZE5LeGYxRGFTN3hLOGdFSkNZaHhtV1RvZmVCRTkwYVFWa0tQSjVPekNMRkQxUjB6ZGgtcUk4eU5wbjFEcUdHcVlfZjhRY3pacC1QU1JuYUtxd3pxNmdrb2JPSDAtWjFCVjUtckI4LV9SWnNOUFVHWnRxVHN1eXFsZ0p6WXloTVFsU1ZTTWgwVmIwRWtwUEpEZGIyb2M3NHVsVGFNdGppbGN1N0loc3JUMC13OHRHY21tNzJGWVRqZjFOOGNzcjZJQTBuNmtQaUpVam9LN3J4clZaTjV5eVJTX2lXSUtnR0Z3cXJfV2pWTkE5NnotQnMwSXd3WEtJQlgyNUtTYkJySkRUYkVncmJPNk1EVGtDbndfYzJrTWNlSFBvOHZOTlFKVmpVdWQ2NWs0TE9ZVjBvUHdXZk91XzRjYW1sbXdLYzl3b3RhNExTX3JpVl9IUHhCSkoxd1hVdG1lVldRUVNtelRqZVJWbXZ2ZXhZS0l2SFUyYWhsOEs5bVREVFdrZjJzQm00dWVLYnJtYXVLd2tNeGVIbnVuUHBhS09oeGN3S1l6LTdTZjBXdGtrSl9UUWlCTnQ3bk1ZM3NvMldFZEpsUENXN3ExTzlmMzk0LVBNOF8zLWZjY2FqNEkzZDhsYnl3U2xMNUlaZjdWRjdYdXNMMVNualE2aGY0X3lUMUJia2lRejNCWTNvM1FNLUNsQkI1SjNqQWF4Z2ZnYS1MN1BTaExfZkx3WE5EZ2s2QmQ1dDZvQi0yMDhYSnJLTlJ0WUppbTdjZjZEbndQNkFCdFExUk1NUG41RG5MMzEwak1XYl9yZmxXcXpNa0dGWGcwQWVKOGlEVUFPMldyM2dlMHBGNlRzWWU0ZHFmeE81RTVUM0NhT0FrWmUyOHVUbkFvV1VaX1BHcElWT2NZV0N4ZjFwb2I0b09NLXg5cEVxTURaNkZqNTY3YTh0ODVUYkowaE9WQlNCcmluU3dnYWRKcERkeUtzMHVnR1NQSFBoa09GSmhhNFZJSU85cWh1Y2lpeVFPazcybkU2azdkRGFGQkxDYUZFZlBzR3YwM3VWR3V1RTFIVVRXcFRwMVJEdnkyd3V3UldSNXlRRGExVkRiYTNmRlRVWHBsa1U2OExLQkxJVy15ZXVXWEc1M056b2MtTEtOckVpWUM3RW5pSWZ3cFFqWER0UExYLUNFMTdrLXpocXl0OVJCUWFUeDV2QmMzeHc2Y2pZR0kxMEg0RXRaY0Jqc3lnQTluVGxtc0EtWEROcGhaZG1jeUstdWpDeGFXYlUwT3VYaDZzMnV4S0lrT0pJQzdfcXhDRUhLR2FGdFhNTXp6WDBmcWNZVW5wVmtBek4td0hQaW9HZU1QZkZBX2VXaDRwRXJneEZkVUZWaEhSbjhPck5Pb05qZnhOak5wWkVhbUs5MFJnNllibUJQY01fdDQtM0NEYkxBMkhXNmpoaHlFNDhDOUdWdU5oZHZvSVlzS2xQS3R6R21CRGRGMHNpdTlSRlFRamhRTG52OHBZZEZGTXBxN0VaUnUzQmhORGxUNm05dVd3TDRfYjBpVHZpQzViaWxXanBtZnR2ZjBqTEtrUDVSM1lKZVVPYjUyU2lmQW5NVHd4bXhRaFVma1M0SEN4cHVsYm9uQ2FYcUtJQVotdUxWNnhGTUs3RDJoYTZvck14SlVYRGRIZllKRmRHc0RGMUpoanVNdFBBSVJ4c0h4OWV5YXRBM2NFaWotcWJkMUM3Y0J2cF9YSkYzcThXZjYySEpXWkMzc0FlRFZOQ0NtOWdrMkxhdEZZcm45Q3ExUDFOMFVRMUZVbnY5MnRQSVNvNGFENk1FWWxDalQ1ejhJUDRCanh3OEluc2xPbEw4S0pOSkNxYWNuSzJfTlpfMzBtLWpmZWJUbFpETmJpbjJTakVwRnlFUmVIZENveFdpbFppZzVCRmZuNVFJOXhCM1Z1dyJ9",
+     "aad": "VGhlIEZlbGxvd3NoaXAgb2YgdGhlIFJpbmc",
+     "iv": "Ciy3i9JPtOz07uGT",
+     "ciphertext": "Von3NuHSikX8JNd-d_3ASCkCUm1GaPgIXy80DobVCUnxWeApkX72kfJb5HQJOEVAEI4VeWHM2K7cfpcxkN6_vY5WzQA1NjkJ3ejyKQ4yNaZwLNrzstgcarl0ILU5zhsTIHpIyn-zhI9LJleR31mftuNiMQqDIfOTftqYUcxl6SrDCLc4faK8AXggxRcyAjsGEVv2y9gzx4m9375d0lp255bbB3P_yQzzxetHGnr4HkHlHKskcPHUe8MxeOseieFT8Y8wAakhlYlCJyw51L-UVqkPD6KD3ZDaxrUtJtjEntKFAkgCa_ZW6KyBtIyynQAAfiArBtWRkpWr4hQUFGOp_5NVbcsc9umGq_avzMpk5AG3",
+     "tag": "TUUZeVk_OV40sroyHnZ8xQ",
+     "encrypted_key": "YlmUXaXeAwBOPIrYtfPCWTXrKdHTunshFQTZDdcktMz9NyrVF0yeTSpiWn1tAYki"
+   }
+
+           Figure 29: HPKE-12-KE Flattened JWE JSON Serialization
+
+eyJhbGciOiJIUEtFLTEyLUtFIiwia2lkIjoieUVuRGVXZl9WMjJZLVk2U1A1c2REaGtQLU5IcnVjWkVLQzFVd1cxUDRDUSIsImVuYyI6IkEyNTZHQ00iLCJlayI6IktpMUV2MVI0aWpaY1N4ZERWUjQ0SjVzNGZ0dFBmZVI5eG1WcE9EZFBNb2xPX2Z3dkY4Wk1Ja3ZKRlRfVXk1XzhCTDh4SmdsbVZoYWlkQ29neEpqWUQ3VDFISU9SOEkwdzdzNWNDS2Q3VFpWRVhqMzBudWFRZEtWcXdZR2wxRTNQMmNjbTVPYlEtbk5KRVY4ajdHUk1YbTJPdFZqMHEwUHUwRl9LQVplc1RncUNFQXVBRTdQMF9YdlktWjNjSDRiLUJISHQ1LWRoLUN4bXhZNWtRWm1ieVFtMV9aZFB4ZGxSWDRIdDNtVV81dVJpZzBsb2NKYjhzZ1I0VXlJTFNHRWI5aWNhUzY4MkNFRXFUdnUwcGQzLW5ieEJtZHNDN1dSWWRJSlhUQ1l6WU5pZDlUVjdzVVlxek05cFExQ2JaZElHbDYtZWI5QlpiUE42TUJjLVlFaUVYbnRydkcwSVk5LWgzN2RzSGMzQjRGc2M2QktHYi1ZMFdhS1RnaERRbHRxWTBvclVjcXdzcFBaZ1JIaHh1TDJhWmswYnR1TFFfY25KZDJHNlRYMExKUG1zWlJ6bWItMzJrRHJ5M1J3NU15VkFPQ1VxZnE4MGo0QTh5Y3phZzdOM1hDSjVjM3duMXdqeGI3anluX0twaXNOaDF3QkxnTTdWSDJqUnI0SFdJWUd4YUpndFdSOXRvNUxWVFE5QTg0UFRaTlR2d01oLXBIYjh2MHlfVGlKNGc1YmFkVWFocnVBTWoyWkIwZ1JWSmN0RFYzWXd0aXM1Qk1OTFUtemJZZjU4MjA1alV2N2VvVmVRdmpuX3lqZ25tWlhpeG9aaGZDc2J3Z19sRXI2LURUdFhrVkI5eTc1NVZkRURyRmNsU3UtZWw4TlpPSEE5d3R6My1nUTV1UlNGbmZnc3BONEVLWWNRNDhkV0hndVRzcHpqYmVhdGhEclpFT2l1SDZfcU01cTBOUE4xMmstN0Q4R19iSzlIclR6NEVmcGRWVWdrQkw0OEp3OWEyTUVoSjR6TVlhdzE4OFNaN09zMUhqdU1KYU43ckRIYkF5ZEdxZXU1NDdaY3hyNUVUajNwSVEwajNHUWVmUGR1Mmoxalp6ck5ZLW42SHl0N1B2cUIzZkJfM1A0ZW9MRUlUUkRUdm8yMFpMWjVBRGw3dGNHV1dZSGJSOThYVXlkdXRnWFhjaHlnRG1NVjQ0Slh6QUhUaFB5QlVIQjdkd3otNkxObVVDN2xqOHFZRjc5N0NJS2g0Rncwak56QjdNTHp6WDMxQmhCSm1PR0Q0VU1VZmRVcFltR3NxWC1Eb05LNVBNUHAtYXNMbHk0c3UwNVVtV0dRTmstU1ZTZm1MWTUtWmU1d3ZtZ1h5U3dpWkxmN0ZDR2VjTnZOZHVtamoxSFNtZm1rNm5jUS01NFpMb21ua2hfSnhCWTVpZ0dOb05Ob0dKY19PbkRNeUMzZkZDejIxMmFqSC10aGdtV0lubVF3WHpHQVFXUERGLWl5MjBZMHRhdjBQYXVGeGZFaHZWb2FaMHIzMkNnZVhHWVlfWURsd1JiVnNZaFRsc0RkYkhfNlN3T3Y3XzhmRUlZUkMzZS13X1dyY0owa2ctckdROEdRUDhVV3BWQWl1bzVGV05ETTVjNGI4ZDBJR1FITU4xclkwQk1ibDF5WjloeVA5X3VPY1FQLVRiaE9TdC1BWldiLU1iMllVTk9zRndSUEdMeEw1X3hsa2NxdWtQd0o1QmtrSWc5UTNOdlJuQ1BaWTlEUnZGVVRacXgtUkJDZHlYRGthWUtxb0lRbjNwYm85MG9pS19ocXNlQ3VhWmJQZVZNWllzWlNnOXVZRnVTakFiZjc1cnpFNGdFcFJGOC1hOWhEZXdJMEwxQWs3WGI4UF9kS1poMXNVbkZlTGQxaHJTWUw4RV9FYXZUWEI0b09feHcyTkt1Vjl1bVc4U21Pc1hOTG1Pdkt2dzVXZHgtOC1QV3RicFhjS1VqRUtKQjdZWmUzVGRxNlNzcDVOYkJXM0s2LUtFb0w2enBpM2dxS3ZVN1BjUTlYX0hwSnRMMEIzWHB5Ql9QdlJQS3FsdFR2dUFEMTBHdVdhbHJJVDBkZlFmc29Td0lmdlVLTG5qdkRaSDJEMHVfd2h0SWZMeUtWSzkycGpaT0xMTHZ1MkJBYzFZRWhQcFVQeXZGaElCYnJXRXB6ZlpnUnVKaklGRFZiOEJEd1BYU05RZXVSTlVzRDNZblR0Z0JNVGMwdGtRS1dpQVdfaU1HRnQ5bTFPWXh6ZGpwaGRST3BwYlB1NldNcWw1WUxZMlExckMtajQ1YnU3YWpnZ0N6S1JUMjRTRjBfTk9kbTYwVnlsYWJTbzQxUVV3MUg3UzVKR3VVSjk2bHNNQUhFYzRDQUhuMHg4ZVIzSnNFVGZwcnFsUG1zNHRvZ1BBWHhZbGFHTTZSaHBVZGNvUjQwS1Vrd2tlWEE1UUxOVmZXSWlnMGY5eUhWckxuRHRUS1V1UGJNYy0xNzNzNHh4TktYcGtMd0JxdWplMGNvbXIxbk5JMl9YV2o3R3h4MGNYc3hZa0swZ3RZZ3VFcE55a2g3SzF3T0JjemZUVmlhdzE2RXh5TEFVRUFRTFpXa0o3UW5YVlVQQlo1WktwNkpZckRhVzVyY3hVdnlUa3hwQTJNVV9IRnZFVWdOdHVnN29CTmNoa29ESjY3cDY3VzVzcjh4NHUxNWMyX19KdjZCNS04TVFVdmR1a1hEdXQ2XzNVREN0cXdsVWZNcjZCNjlCeUw0SmRMSFptWW1nbkdEbFhwUkFxUSJ9.CkoduMC3C2Buu0aSjjNYxwlSVj_hPWCcF_s3N2W2GSqhlTB9iwnHkHyUUWEH_VjO.rEcK9GR16DuevCYk.Jzy5-PjBhUXZSTf5N1HyHjgwemMZzLi3lj-2eknkMrOqT-uaRL8l5EZaWyqHZao59jnlCiYURLz5BlHf0FpjauYj6UvYuNURe0kVKYYGZj1ZXlWvJxKrsWlG4MkLulQ01NCuxTT_e9KzbGe5VC-wj0ugTXG6H9EkoCTHbI-nxp5e6DS6KwnDgPVVcOmHTdQG7lZHXZfRFW4jZ55nLDlxUwieB3tq2Z-JMUQEPoXejKfQJYACvj5jW9vB3gpKJFX2p5N5QgNbAs2HA1r8nvQDSEpltyeS8gU8Kh92dSzWpmjQWQcb00q8Iw1JjQKmElzzczbBYcMnkxbBu4HpS0lV1cWsuPEpbFef1lsv08vfmY09.QQjdjHIf2bf4m-m8lzhmGw
+
+           Figure 30: HPKE-12-KE JWE Compact Serialization
+
+Acknowledgments
+
+   TODO acknowledge.
+
+Document History
+
+   draft-skokan-jose-hpke-pq-pqt-04
+
+   *  Reduced algorithm set from 10 to 5 base algorithms (HPKE-8 through
+      HPKE-12) by removingthe ChaCha20Poly1305 AEAD variants
+
+   *  Changed KDF to SHAKE128 and AEAD to AES-128-GCM for HPKE-8 and
+      HPKE-9
+
+   *  Test Vectors: Aligned Key Encryption "enc" with the corresponding
+      HPKE AEAD
+
+   draft-skokan-jose-hpke-pq-pqt-03
+
+   *  Clarified "hybrid" terminology disambiguation in the Introduction
+
+   *  Added descriptive text to Key Encryption algorithm sections
+
+   *  Expanded Security Considerations with ML-KEM-512 omission
+      rationale
+
+   draft-skokan-jose-hpke-pq-pqt-02
+
+   *  Added Test Vectors appendix
+
+   draft-skokan-jose-hpke-pq-pqt-01
+
+   *  Added example JWK representations
+
+   draft-skokan-jose-hpke-pq-pqt-00
+
+   *  Initial draft
+
+Authors' Addresses
+
+   Filip Skokan
+   Okta
+   Email: panva.ip@gmail.com
+
+
+   Brian Campbell
+   Ping Identity
+   Email: bcampbell@pingidentity.com
