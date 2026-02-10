@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-02-08T00:24:08.663645+00:00",
+  "timestamp": "2026-02-10T00:23:20.621365+00:00",
   "repo": "panva/jose-hpke-pq-pqt",
   "labels": [
     {
@@ -50,5 +50,48 @@
     }
   ],
   "issues": [],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDORIZDwc7CS-24",
+      "title": "more updates (hybrid disambiguation, KE sections descriptions, ML-KEM-512 omission rationale)",
+      "url": "https://github.com/panva/jose-hpke-pq-pqt/pull/1",
+      "state": "MERGED",
+      "author": "panva",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "- Clarified \"hybrid\" terminology disambiguation in the Introduction\r\n- Added descriptive text to Key Encryption algorithm sections\r\n- Expanded Security Considerations with ML-KEM-512 omission rationale\r\n",
+      "createdAt": "2026-02-08T13:27:57Z",
+      "updatedAt": "2026-02-08T13:57:23Z",
+      "baseRepository": "panva/jose-hpke-pq-pqt",
+      "baseRefName": "main",
+      "baseRefOid": "4680e76effd2bc6efbe350501cc7d62a16fd0086",
+      "headRepository": "panva/jose-hpke-pq-pqt",
+      "headRefName": "dont-mess-with-hybrid",
+      "headRefOid": "7426a2b6ad66a4b1870f0988ace03c5d30bbe94a",
+      "closedAt": "2026-02-08T13:56:27Z",
+      "mergedAt": "2026-02-08T13:56:27Z",
+      "mergedBy": "bc-pi",
+      "mergeCommit": {
+        "oid": "dd4d187183569103bcc285914239c33e2f93bf36"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDORIZDwc7gsj8n",
+          "commit": {
+            "abbreviatedOid": "7426a2b"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "\u2705 approved",
+          "createdAt": "2026-02-08T13:56:01Z",
+          "updatedAt": "2026-02-08T13:56:01Z",
+          "comments": []
+        }
+      ]
+    }
+  ]
 }
