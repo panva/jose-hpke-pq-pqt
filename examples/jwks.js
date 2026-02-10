@@ -1,5 +1,5 @@
 import { CipherSuite } from "hpke";
-import { algorithms } from "./algorithms.mjs";
+import { algorithms } from "./algorithms.js";
 
 import { createHash } from "node:crypto";
 import { writeFileSync, mkdirSync } from "node:fs";

@@ -1,5 +1,5 @@
 import { CipherSuite } from "hpke";
-import { algorithms } from "./algorithms.mjs";
+import { algorithms } from "./algorithms.js";
 
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -24,8 +24,6 @@ const plaintext =
 
 const aadString = "The Fellowship of the Ring";
 
-const enc = "A256GCM";
-
 // Build the Recipient_structure for Key Encryption
 // "JOSE-HPKE rcpt" || 0xFF || ASCII(enc) || 0xFF || recipient_extra_info
 function recipientStructure(contentEncAlg) {
@@ -40,10 +38,10 @@ function recipientStructure(contentEncAlg) {
   return result;
 }
 
-// AES-256-GCM content encryption for Key Encryption mode
-function encryptContent(cek, plaintext, aad) {
+// content encryption for Key Encryption mode
+function encryptContent(cipherName, cek, plaintext, aad) {
   const iv = randomBytes(12);
-  const cipher = createCipheriv("aes-256-gcm", cek, iv);
+  const cipher = createCipheriv(cipherName, cek, iv);
   cipher.setAAD(aad);
   const encrypted = Buffer.concat([
     cipher.update(plaintext, "utf8"),
@@ -65,8 +63,26 @@ for (const { alg, kem, kdf, aead } of algorithms) {
 
   if (isKeyEncryption) {
     // === Key Encryption Mode ===
-    // Generate a random CEK for A256GCM (32 bytes)
-    const cek = randomBytes(32);
+    // Determine "enc" and CEK size from the HPKE AEAD
+    let enc, cekSize, cipherName;
+    switch (suite.AEAD.id) {
+      case 0x0001: // AES-128-GCM
+        enc = "A128GCM";
+        cekSize = 16;
+        cipherName = "aes-128-gcm";
+        break;
+      case 0x0002: // AES-256-GCM
+      case 0x0003: // ChaCha20Poly1305 does not have a jwe "enc"
+        enc = "A256GCM";
+        cekSize = 32;
+        cipherName = "aes-256-gcm";
+        break;
+      default:
+        throw new Error("unreachable");
+    }
+
+    // Generate a random CEK
+    const cek = randomBytes(cekSize);
 
     // HPKE info = Recipient_structure
     const info = recipientStructure(enc);
@@ -101,7 +117,7 @@ for (const { alg, kem, kdf, aead } of algorithms) {
         iv,
         ciphertext: contentCiphertext,
         tag,
-      } = encryptContent(cek, plaintext, contentAad);
+      } = encryptContent(cipherName, cek, plaintext, contentAad);
 
       const flattenedJwe = {
         protected: protectedHeaderB64,
@@ -142,7 +158,7 @@ for (const { alg, kem, kdf, aead } of algorithms) {
         iv,
         ciphertext: contentCiphertext,
         tag,
-      } = encryptContent(cek, plaintext, contentAad);
+      } = encryptContent(cipherName, cek, plaintext, contentAad);
 
       const compact = [
         protectedHeaderB64,

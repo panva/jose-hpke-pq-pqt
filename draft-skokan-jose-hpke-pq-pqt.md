@@ -100,15 +100,19 @@ The following table lists the algorithm identifiers for PQ/T hybrid integrated
 encryption, where HPKE directly encrypts the plaintext without a separate
 Content Encryption Key:
 
-| "alg" value | HPKE KEM                    | HPKE KDF            | HPKE AEAD                   |
-| ----------- | --------------------------- | ------------------- | --------------------------- |
-| HPKE-8      | MLKEM768-P256 (`0x0050`)    | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
-| HPKE-9      | MLKEM768-P256 (`0x0050`)    | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
-| HPKE-10     | MLKEM768-X25519 (`0x647a`)  | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
-| HPKE-11     | MLKEM768-X25519 (`0x647a`)  | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
-| HPKE-12     | MLKEM1024-P384 (`0x0051`)   | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
-| HPKE-13     | MLKEM1024-P384 (`0x0051`)   | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
+<!-- begin:table pqt-hybrid-integrated-table "PQ/T Hybrid Integrated Encryption Algorithms" ; see README for regeneration instructions, do not edit -->
+
+| "alg" value | HPKE KEM                   | HPKE KDF            | HPKE AEAD                   |
+| ----------- | -------------------------- | ------------------- | --------------------------- |
+| HPKE-8      | MLKEM768-P256 (`0x0050`)   | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
+| HPKE-9      | MLKEM768-P256 (`0x0050`)   | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
+| HPKE-10     | MLKEM768-X25519 (`0x647a`) | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
+| HPKE-11     | MLKEM768-X25519 (`0x647a`) | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
+| HPKE-12     | MLKEM1024-P384 (`0x0051`)  | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
+| HPKE-13     | MLKEM1024-P384 (`0x0051`)  | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
 {: #pqt-hybrid-integrated-table title="PQ/T Hybrid Integrated Encryption Algorithms" }
+
+<!-- end:table -->
 
 These algorithms combine ML-KEM with a traditional elliptic curve algorithm in a PQ/T
 hybrid KEM construction, with the goal that compromise of either the post-quantum or
@@ -119,13 +123,17 @@ the traditional component alone does not undermine the security of the resulting
 The following table lists the algorithm identifiers for pure post-quantum
 integrated encryption:
 
-| "alg" value | HPKE KEM                 | HPKE KDF            | HPKE AEAD                   |
-| ----------- | ------------------------ | ------------------- | --------------------------- |
-| HPKE-14     | ML-KEM-768 (`0x0041`)    | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
-| HPKE-15     | ML-KEM-768 (`0x0041`)    | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
-| HPKE-16     | ML-KEM-1024 (`0x0042`)   | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
-| HPKE-17     | ML-KEM-1024 (`0x0042`)   | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
+<!-- begin:table pure-pq-integrated-table "Pure PQ Integrated Encryption Algorithms" ; see README for regeneration instructions, do not edit -->
+
+| "alg" value | HPKE KEM               | HPKE KDF            | HPKE AEAD                   |
+| ----------- | ---------------------- | ------------------- | --------------------------- |
+| HPKE-14     | ML-KEM-768 (`0x0041`)  | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
+| HPKE-15     | ML-KEM-768 (`0x0041`)  | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
+| HPKE-16     | ML-KEM-1024 (`0x0042`) | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
+| HPKE-17     | ML-KEM-1024 (`0x0042`) | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
 {: #pure-pq-integrated-table title="Pure PQ Integrated Encryption Algorithms" }
+
+<!-- end:table -->
 
 These algorithms provide pure post-quantum security using ML-KEM without a
 traditional algorithm component.
@@ -135,15 +143,19 @@ traditional algorithm component.
 The following table lists the algorithm identifiers for PQ/T hybrid key
 encryption, where HPKE encrypts the Content Encryption Key:
 
-| "alg" value | HPKE KEM                    | HPKE KDF            | HPKE AEAD                   |
-| ----------- | --------------------------- | ------------------- | --------------------------- |
-| HPKE-8-KE   | MLKEM768-P256 (`0x0050`)    | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
-| HPKE-9-KE   | MLKEM768-P256 (`0x0050`)    | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
-| HPKE-10-KE  | MLKEM768-X25519 (`0x647a`)  | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
-| HPKE-11-KE  | MLKEM768-X25519 (`0x647a`)  | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
-| HPKE-12-KE  | MLKEM1024-P384 (`0x0051`)   | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
-| HPKE-13-KE  | MLKEM1024-P384 (`0x0051`)   | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
+<!-- begin:table pqt-hybrid-key-encryption-table "PQ/T Hybrid Key Encryption Algorithms" ; see README for regeneration instructions, do not edit -->
+
+| "alg" value | HPKE KEM                   | HPKE KDF            | HPKE AEAD                   |
+| ----------- | -------------------------- | ------------------- | --------------------------- |
+| HPKE-8-KE   | MLKEM768-P256 (`0x0050`)   | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
+| HPKE-9-KE   | MLKEM768-P256 (`0x0050`)   | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
+| HPKE-10-KE  | MLKEM768-X25519 (`0x647a`) | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
+| HPKE-11-KE  | MLKEM768-X25519 (`0x647a`) | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
+| HPKE-12-KE  | MLKEM1024-P384 (`0x0051`)  | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
+| HPKE-13-KE  | MLKEM1024-P384 (`0x0051`)  | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
 {: #pqt-hybrid-key-encryption-table title="PQ/T Hybrid Key Encryption Algorithms" }
+
+<!-- end:table -->
 
 These are the key encryption counterparts of the PQ/T hybrid integrated
 encryption algorithms defined in {{pqt-hybrid-integrated-table}}.
@@ -153,13 +165,17 @@ encryption algorithms defined in {{pqt-hybrid-integrated-table}}.
 The following table lists the algorithm identifiers for pure post-quantum key
 encryption:
 
-| "alg" value | HPKE KEM                 | HPKE KDF            | HPKE AEAD                   |
-| ----------- | ------------------------ | ------------------- | --------------------------- |
-| HPKE-14-KE  | ML-KEM-768 (`0x0041`)    | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
-| HPKE-15-KE  | ML-KEM-768 (`0x0041`)    | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
-| HPKE-16-KE  | ML-KEM-1024 (`0x0042`)   | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
-| HPKE-17-KE  | ML-KEM-1024 (`0x0042`)   | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
+<!-- begin:table pure-pq-key-encryption-table "Pure PQ Key Encryption Algorithms" ; see README for regeneration instructions, do not edit -->
+
+| "alg" value | HPKE KEM               | HPKE KDF            | HPKE AEAD                   |
+| ----------- | ---------------------- | ------------------- | --------------------------- |
+| HPKE-14-KE  | ML-KEM-768 (`0x0041`)  | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
+| HPKE-15-KE  | ML-KEM-768 (`0x0041`)  | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
+| HPKE-16-KE  | ML-KEM-1024 (`0x0042`) | SHAKE256 (`0x0011`) | AES-256-GCM (`0x0002`)      |
+| HPKE-17-KE  | ML-KEM-1024 (`0x0042`) | SHAKE256 (`0x0011`) | ChaCha20Poly1305 (`0x0003`) |
 {: #pure-pq-key-encryption-table title="Pure PQ Key Encryption Algorithms" }
+
+<!-- end:table -->
 
 These are the key encryption counterparts of the pure PQ integrated
 encryption algorithms defined in {{pure-pq-integrated-table}}.
@@ -197,6 +213,8 @@ as a hedge against such cryptanalysis at a modest performance penalty.
 This document requests registration of the following values in the
 IANA "JSON Web Signature and Encryption Algorithms" registry
 established by {{RFC7518}}:
+
+<!-- begin:iana-registrations ; see README for regeneration instructions, do not edit -->
 
 ### HPKE-8
 {: toc="exclude"}
@@ -418,6 +436,7 @@ established by {{RFC7518}}:
 - Specification Document(s): {{pure-pq-key-encryption-table}} of this document
 - Algorithm Analysis Document(s): {{I-D.ietf-hpke-pq}}
 
+<!-- end:iana-registrations -->
 
 --- back
 
@@ -426,6 +445,8 @@ established by {{RFC7518}}:
 This appendix provides test vectors for each algorithm defined in this document.
 For each algorithm, a private JWK, a Flattened JWE JSON Serialization example with
 Additional Authenticated Data, and a JWE Compact Serialization example are provided.
+
+<!-- begin:test-vectors ; see README for regeneration instructions, do not edit -->
 
 ## HPKE-8
 {: toc="exclude"}
@@ -786,6 +807,8 @@ Additional Authenticated Data, and a JWE Compact Serialization example are provi
 {::include examples/jwe/HPKE-17-KE-compact.txt}
 ~~~
 {: title="HPKE-17-KE JWE Compact Serialization"}
+
+<!-- end:test-vectors -->
 
 # Acknowledgments
 {:numbered="false"}
