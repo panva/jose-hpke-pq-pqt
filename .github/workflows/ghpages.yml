@@ -64,6 +64,9 @@ jobs:
       with:
         token: ${{ github.token }}
 
+    - name: "Assert Generated Content"
+      uses: ./.github/actions/assert-content
+
     - name: "Update GitHub Pages"
       uses: martinthomson/i-d-template@v1
       if: ${{ github.event_name == 'push' }}

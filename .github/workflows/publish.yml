@@ -43,6 +43,9 @@ jobs:
         key: i-d-${{ steps.setup.outputs.date }}
         restore-keys: i-d-
 
+    - name: "Assert Generated Content"
+      uses: ./.github/actions/assert-content
+
     - name: "Build Drafts"
       uses: martinthomson/i-d-template@v1
       with:

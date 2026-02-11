@@ -1,0 +1,27 @@
+name: "Assert Generated Content"
+description: "Install Node.js, run npm update, and assert checkout is clean"
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Setup Node.js"
+      uses: actions/setup-node@v4
+      with:
+        node-version: '24'
+
+    - name: "Fix File Ownership"
+      shell: bash
+      run: sudo chown -R $(id -u):$(id -g) .
+
+    - name: "Update Generated Content"
+      shell: bash
+      run: npm install --no-package-lock && npm run update
+
+    - name: "Assert Clean Checkout"
+      shell: bash
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "::error::Working directory is not clean after 'npm run update'."
+          git --no-pager diff
+          exit 1
+        fi
