@@ -5,8 +5,8 @@
 Javascript Object Signing and Encryption                       F. Skokan
 Internet-Draft                                                      Okta
 Intended status: Standards Track                             B. Campbell
-Expires: 14 August 2026                                    Ping Identity
-                                                        10 February 2026
+Expires: 15 August 2026                                    Ping Identity
+                                                        11 February 2026
 
 
               JOSE HPKE PQ & PQ/T Algorithm Registrations
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 August 2026.
+   This Internet-Draft will expire on 15 August 2026.
 
 Copyright Notice
 
