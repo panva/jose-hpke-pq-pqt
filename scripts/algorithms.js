@@ -14,6 +14,11 @@ import {
 // are named HPKE-8, HPKE-9, ... continuing from where that document ends.
 const startIndex = 8;
 
+// Each suite is [KEM, KDF, AEAD] or [KEM, KDF, AEAD, options].
+// By default both an integrated encryption and a -KE (Key Encryption)
+// variant are emitted for each suite. To suppress the -KE variant pass
+// { ke: false } as the fourth element, e.g.:
+//   [KEM_ML_KEM_768, KDF_SHAKE256, AEAD_ChaCha20Poly1305, { ke: false }]
 const suites = [
   // PQ/T Hybrid
   [KEM_MLKEM768_P256, KDF_SHAKE256, AEAD_AES_256_GCM],
@@ -29,10 +34,11 @@ const suites = [
   [KEM_ML_KEM_1024, KDF_SHAKE256, AEAD_ChaCha20Poly1305],
 ];
 
-export const algorithms = suites.flatMap(([kem, kdf, aead], i) => {
+export const algorithms = suites.flatMap(([kem, kdf, aead, options], i) => {
   const alg = `HPKE-${startIndex + i}`;
-  return [
-    { alg, kem, kdf, aead },
-    { alg: `${alg}-KE`, kem, kdf, aead },
-  ];
+  const result = [{ alg, kem, kdf, aead }];
+  if (options?.ke !== false) {
+    result.push({ alg: `${alg}-KE`, kem, kdf, aead });
+  }
+  return result;
 });

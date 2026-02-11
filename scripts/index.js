@@ -25,8 +25,8 @@ const previousHash = existsSync(hashPath)
 
 const force = process.argv.includes("--force");
 
-const jwksDir = join(__dirname, "jwks");
-const jweDir = join(__dirname, "jwe");
+const jwksDir = join(__dirname, "..", "examples", "jwks");
+const jweDir = join(__dirname, "..", "examples", "jwe");
 
 if (
   !force &&
@@ -114,22 +114,26 @@ for (const match of draft.matchAll(tableMarkerRe)) {
 }
 
 // --- Generate IANA section ---
-// Interleave: base alg, then its -KE variant
+// Interleave: base alg, then its -KE variant (if present)
 const ianaEntries = [];
 for (const b of base) {
   ianaEntries.push(ianaEntry(b));
   const keVariant = ke.find((k) => k.baseAlg === b.baseAlg);
-  ianaEntries.push(ianaEntry(keVariant));
+  if (keVariant) {
+    ianaEntries.push(ianaEntry(keVariant));
+  }
 }
 replaceSection("iana-registrations", ianaEntries.join("\n\n"));
 
 // --- Generate test vectors ---
-// Same interleaved order: base alg, then -KE
+// Same interleaved order: base alg, then -KE (if present)
 const testVectorSections = [];
 for (const b of base) {
   testVectorSections.push(testVectorSection(b));
   const keVariant = ke.find((k) => k.baseAlg === b.baseAlg);
-  testVectorSections.push(testVectorSection(keVariant));
+  if (keVariant) {
+    testVectorSections.push(testVectorSection(keVariant));
+  }
 }
 replaceSection("test-vectors", testVectorSections.join("\n\n"));
 

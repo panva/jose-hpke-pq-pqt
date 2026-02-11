@@ -7,8 +7,8 @@ import { fileURLToPath } from "node:url";
 import { createCipheriv, randomBytes } from "node:crypto";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const jwksDir = join(__dirname, "jwks");
-const outDir = join(__dirname, "jwe");
+const jwksDir = join(__dirname, "..", "examples", "jwks");
+const outDir = join(__dirname, "..", "examples", "jwe");
 mkdirSync(outDir, { recursive: true });
 
 function base64url(buf) {

@@ -1,9 +1,0 @@
-{
-  "type": "module",
-  "engines": {
-    "node": ">=24.7.0"
-  },
-  "dependencies": {
-    "hpke": "^1.0.3"
-  }
-}
