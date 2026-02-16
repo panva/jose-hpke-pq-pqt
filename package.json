@@ -4,7 +4,7 @@
     "node": ">=24.7.0"
   },
   "dependencies": {
-    "hpke": "^1.0.3"
+    "hpke": "^1.0.4"
   },
   "scripts": {
     "update": "node --no-warnings scripts/index.js",
