@@ -4,16 +4,16 @@
 
 This is the working area for the individual Internet-Draft, "JOSE HPKE PQ &amp; PQ/T Algorithm Registrations".
 
-* [Editor's Copy](https://panva.github.io/jose-hpke-pq-pqt/#go.draft-skokan-jose-hpke-pq-pqt.html)
+* [Editor's Copy](https://panva.github.io/draft-jose-hpke-pq-pqt/#go.draft-skokan-jose-hpke-pq-pqt.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-skokan-jose-hpke-pq-pqt)
 * [Individual Draft](https://datatracker.ietf.org/doc/html/draft-skokan-jose-hpke-pq-pqt)
-* [Compare Editor's Copy to Individual Draft](https://panva.github.io/jose-hpke-pq-pqt/#go.draft-skokan-jose-hpke-pq-pqt.diff)
+* [Compare Editor's Copy to Individual Draft](https://panva.github.io/draft-jose-hpke-pq-pqt/#go.draft-skokan-jose-hpke-pq-pqt.diff)
 
 
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/panva/jose-hpke-pq-pqt/blob/main/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/panva/draft-jose-hpke-pq-pqt/blob/main/CONTRIBUTING.md).
 
 The contributing file also has tips on how to make contributions, if you
 don't already know how to do that.

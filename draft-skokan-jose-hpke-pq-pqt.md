@@ -26,8 +26,8 @@ venue:
   type: "Working Group"
   mail: "jose@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/jose/"
-  github: "panva/jose-hpke-pq-pqt"
-  latest: "https://panva.github.io/jose-hpke-pq-pqt/draft-skokan-jose-hpke-pq-pqt.html"
+  github: "panva/draft-jose-hpke-pq-pqt"
+  latest: "https://panva.github.io/draft-jose-hpke-pq-pqt/draft-skokan-jose-hpke-pq-pqt.html"
 
 author:
  -
